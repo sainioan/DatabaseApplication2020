@@ -10,8 +10,8 @@ from dotenv import load_dotenv
 load_dotenv()
 app = Flask(__name__)
 
-# API_KEY = os.environ['API_KEY']
-API_KEY = "7DG90jdg5dL3xUQqtNHfrfb2xwaEU4R9"
+API_KEY = os.environ['API_KEY']
+
 title = "Becoming"
 author = "Michelle+Obama"
 endPoint ="https://api.nytimes.com/svc/books/v3/lists/current/hardcover-fiction.json?api-key="+ API_KEY
