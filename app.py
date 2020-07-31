@@ -42,6 +42,7 @@ results2 = parsed3["results"]
 summary =results[0].get('summary')
 summary2 =results2[0].get('summary')
 app.config["SQLALCHEMY_DATABASE_URI"] = "jdbc:postgresql://localhost:5432/postgres"
+app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 db = SQLAlchemy(app)
 @app.route("/")
 def index():
