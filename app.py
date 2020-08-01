@@ -1,14 +1,22 @@
-from flask import Flask, jsonify
-from flask import render_template, request
+from flask import Flask, jsonify, redirect, config
+from flask import render_template, request, session
 import json
 import requests
 from flask_sqlalchemy import SQLAlchemy
 
 import os
 from dotenv import load_dotenv
+from os import getenv
+app = Flask(__name__)
+app.secret_key = os.getenv("SECRET_KEY")
+
+db = SQLAlchemy(app)
+app.config["SQLALCHEMY_DATABASE_URI"] = getenv("DATABASE_URL")
+app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
+
+import users
 
 load_dotenv()
-app = Flask(__name__)
 
 API_KEY = os.environ['API_KEY']
 
@@ -41,18 +49,64 @@ results = parsed2["results"]
 results2 = parsed3["results"]
 summary =results[0].get('summary')
 summary2 =results2[0].get('summary')
-app.config["SQLALCHEMY_DATABASE_URI"] = "jdbc:postgresql://localhost:5432/postgres"
-app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
-db = SQLAlchemy(app)
+
+
+
+
+class BaseConfig(object):
+    DEBUG = False
+    TESTING = False
+    SECRET_KEY = os.environ.get('SECRET_KEY') or 'you-will-never-guess'
+    SQLALCHEMY_DATABASE_URI = os.environ.get('DATABASE_URL') or \
+        'sqlite:///' + os.path.join(os.path.abspath(os.path.dirname(__file__)), 'app.db')
+    SQLALCHEMY_TRACK_MODIFICATIONS = False
+db.init_app(app)
+if config is None:
+    app.config.from_object(config.BaseConfig)
+else:
+    app.config.from_object(config)
 @app.route("/")
 def index():
     return render_template("index.html")
-@app.route("/login")
+# @app.route("/login")
+# def login():
+#     return render_template("login.html")
+# @app.route("/signUp")
+# def singUp():
+#     return render_template("signup.html")
+@app.route("/login", methods=["GET","POST"])
 def login():
-    return render_template("login.html")
-@app.route("/signUp")
-def singUp():
-    return render_template("signup.html")
+    if request.method == "GET":
+        return render_template("login.html")
+    if request.method == "POST":
+        session['username'] = request.form['username']
+        username = request.form["username"]
+        password = request.form["password"]
+    try:
+        if users.login(username,password):
+            return redirect("/")
+
+        else:
+
+            return render_template("error.html",message="Wrong username or password")
+    except Exception as e:
+        print(e)
+@app.route("/logout")
+def logout():
+    users.logout()
+    return redirect("/")
+
+@app.route("/signUp", methods=["get","post"])
+def register():
+    if request.method == "GET":
+        return render_template("signup.html")
+    if request.method == "POST":
+        username = request.form["username"]
+        password = request.form["password"]
+        if users.register(username,password):
+            return redirect("/")
+        else:
+            return render_template("error.html",message="Error signing up")
 @app.route("/bestsellers")
 def bestsellers():
     return render_template("books.html", message="Howdy!", items=titles)
