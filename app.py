@@ -122,8 +122,9 @@ def showBooks():
     for i in range(len(myList)):
         message = str(myList[i])[1:-1]
         message2 = message.replace("'", "")
-        print(message2)
-        bookList.append(message2)
+        message3 = message2.replace(",", " by ")
+        print(message3)
+        bookList.append(message3)
     return render_template("booksToReadList.html", items=bookList)
 
 @app.route("/newBook", methods=["get", "post"])
