@@ -9,6 +9,11 @@
 <p>{{ message }}</p>
 <div>
 <ol size ="small", type = "1" >
+    <script>
+        let choice =""
+        let s2 =""
+        let x=""
+    </script>
       {% for item in items %}
     <li> {{item}}</li>
      {% endfor %}
@@ -17,14 +22,22 @@
 <td>
     <select name="item" >
   <option size= "large", value="{{items[0]}}" selected>{{items[0]}}</option>
+        x = []
   {% for item in items[:] %}
     <option value="{{item}}">{{item}}</option>
+x = {{item}}.split(", "}}
+        print(x[0])
     <script>
 <!--    add functionality to add books to "books to read" list-->
-const choice = `${{item}}`
-function hello() {
+choice = `${{item}}`
+s2 = choice.substr(1);
+x = s2.split(", ")
+console.log('full entry', x)
+console.log('Title: ', x[0])
+console.log('Author: ', x[1])
+/*function hello() {
     alert(`you chose: ${choice}`);
-}
+}*/
 </script>
 
   {% endfor %}
@@ -34,7 +47,10 @@ function hello() {
     <script>
 <!--    add functionality to add books to "books to read" list-->
 function hello() {
- alert(`you chose: ${choice}`);
+ alert(`You chose: ${x[0]} by ${x[1]}.`);
+ <form action="/addBook" method="post">
+     {}
+</form>
 }
 </script>
     <button onclick="hello()">add choice</button>
