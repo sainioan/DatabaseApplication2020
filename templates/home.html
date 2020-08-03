@@ -11,17 +11,46 @@
 <H2>Book Database Application</H2>
 <H4>Welcome!</H4>
 <i size = "large" class="material-icons">book</i>
-<p>
-    <a href="/bestsellers">Bestsellers</a>
-</p>
-        <a href="/newBook">Add a new book</a>
-      <p>
-    <a href="/booksToReadList">Books To Read</a>
-</p>
-</p>
+      <p></p>
+      <td>
+<button id="myButton4" class="float-left submit-button" >Current bestsellers</button>
+
+<script type="text/javascript">
+    document.getElementById("myButton4").onclick = function () {
+        location.href = "/bestsellers";
+    };
+</script>
+      </td>
+      <td>
+<button id="myButton2" class="float-left submit-button" >Add a new book</button>
+
+<script type="text/javascript">
+    document.getElementById("myButton2").onclick = function () {
+        location.href = "/newBook";
+    };
+</script>
+      </td>
+      <td>
+<button id="myButton3" class="float-left submit-button" >Books To Read</button>
+
+<script type="text/javascript">
+    document.getElementById("myButton3").onclick = function () {
+        location.href = "/booksToReadList";
+    };
+</script>
+     </td>
+<p></p>
+            <td>
+<button id="myButton5" class="float-left submit-button" >Log out</button>
+<script type="text/javascript">
+    document.getElementById("myButton5").onclick = function () {
+        location.href = "/logout";
+    };
+</script>
+     </td>
+        <p></p>
 <i class="material-icons">local_library</i>
       <p></p>
-<a href="/logout">Log out</a>
   </nav>
 </body>
 </html>

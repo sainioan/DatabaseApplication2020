@@ -10,7 +10,23 @@ Title: <input type="text" name="title">
 <p>
 Author: <input type="text" name="author">
 <p>
-<input type="submit" value="add a book">
+<input type="submit" value="Add a book">
 </form>
+      <td>
+<button id="myButton" class="float-left submit-button" >Home</button>
+<script type="text/javascript">
+    document.getElementById("myButton").onclick = function () {
+        location.href = "/home";
+    };
+</script>
+     </td>
+      <td>
+<button id="myButton5" class="float-left submit-button" >Log out</button>
+<script type="text/javascript">
+    document.getElementById("myButton5").onclick = function () {
+        location.href = "/logout";
+    };
+</script>
+     </td>
 </body>
 </html>
