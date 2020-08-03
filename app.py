@@ -114,6 +114,17 @@ def home():
 def apiReview2():
     return (summary2)
 
+@app.route("/booksToReadList")
+def showBooks():
+    user_id = booksToRead.user_id()
+    myList = booksToRead.show(user_id)
+    bookList = []
+    for i in range(len(myList)):
+        message = str(myList[i])[1:-1]
+        message2 = message.replace("'", "")
+        print(message2)
+        bookList.append(message2)
+    return render_template("booksToReadList.html", items=bookList)
 
 @app.route("/newBook", methods=["get", "post"])
 def add():
