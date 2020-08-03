@@ -130,7 +130,7 @@ def showBooks():
 @app.route("/newBook", methods=["get", "post"])
 def add():
     if request.method == "GET":
-        return render_template("newBook.html")
+        return render_template("newBook.html", items=titles,)
     if request.method == "POST":
         title = str(request.form["title"])
         author = str(request.form["author"])

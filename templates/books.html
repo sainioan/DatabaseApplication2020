@@ -19,7 +19,8 @@
      {% endfor %}
 </ol>
     </div>
-<td>
+
+<!--<td>
     <select name="item" >
   <option size= "large", value="{{items[0]}}" selected>{{items[0]}}</option>
         x = []
@@ -28,16 +29,14 @@
 x = {{item}}.split(", "}}
         print(x[0])
     <script>
-<!--    add functionality to add books to "books to read" list-->
+&lt;!&ndash;    add functionality to add books to "books to read" list&ndash;&gt;
 choice = `${{item}}`
 s2 = choice.substr(1);
 x = s2.split(", ")
 console.log('full entry', x)
 console.log('Title: ', x[0])
 console.log('Author: ', x[1])
-/*function hello() {
-    alert(`you chose: ${choice}`);
-}*/
+
 </script>
 
   {% endfor %}
@@ -45,16 +44,21 @@ console.log('Author: ', x[1])
 </td>
 <td>
     <script>
-<!--    add functionality to add books to "books to read" list-->
 function hello() {
  alert(`You chose: ${x[0]} by ${x[1]}.`);
- <form action="/addBook" method="post">
-     {}
-</form>
 }
 </script>
     <button onclick="hello()">add choice</button>
-</td>
+</td>-->
+      <td>
+<button id="myButton2" class="float-left submit-button" >Add a new book</button>
+
+<script type="text/javascript">
+    document.getElementById("myButton2").onclick = function () {
+        location.href = "/newBook";
+    };
+</script>
+      </td>
       <td>
 <button id="myButton5" class="float-left submit-button" >Log out</button>
 <script type="text/javascript">
@@ -63,5 +67,6 @@ function hello() {
     };
 </script>
      </td>
+
 </body>
 </html>
