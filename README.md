@@ -14,8 +14,9 @@ Execute the following command to install the necessary libraries:<br />
 `pip install -r requirements.txt`
 
 ## Features
-* user login, logout, delete account,and update user-information (
-* user can search for books by genre, read reviews, and write/delete comments
-* Enter the books you own
-* Store the book info, images
+* Users login, logout 
+* Users can search for current bestsellers books
+* Users can enter the books they own and write comments on the books they own/have read
+* Users can enter the books they wish to read
+
   
