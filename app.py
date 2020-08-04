@@ -135,9 +135,10 @@ def showmybooks():
     bookList = []
     for i in range(len(mybookList)):
        message = str(mybookList[i])[1:-1]
-       message2 = message.replace("'", "")
-       message3 = message2.replace(",", " by ")
-       bookList.append(message3)
+       print(message)
+       message2 = message.split("', ")
+       message2 = [item.replace("'", "") for item in message2]
+       bookList.append(message2)
     return render_template("mybooks.html", items=bookList)
 
 
@@ -161,13 +162,13 @@ def addBook():
     if request.method == "GET":
         return render_template("addBook.html")
     if request.method == "POST":
+
         title = str(request.form["title"])
         author = str(request.form["author"])
-        comment = str(request.form["comment"])
-        rating = str(request.form["rating"])
-        # image = request.form["image"]
+        comment = str(request.form.get("comment"))
+        rating = str(request.form.get("rating"))
         user_id = int(mybooks.user_id())
-        mybooks.newBook(title, author, comment,rating, user_id)
+        mybooks.newBook(title, author, comment, rating, user_id)
         db.session.commit()
         return redirect("/home")
     else:

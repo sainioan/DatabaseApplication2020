@@ -2,21 +2,22 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+       <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <title>My Books</title>
 </head>
 <body>
 <h2>My Books:</h2>
 <tr>
-      <script>
-        let choice =""
-        let s2 =""
-        let x=""
-    </script>
 <ol size ="small", type = "1" >
       {% for item in items %}
-  <li> {{item}}</li>
+    <li>  <b>Title:</b> {{item.0}} <br>
+          <b>Author:</b> {{item.1}}<br>
+          <b> Comment:</b> {{item.2}}<br>
+          <b> Rating </b> {{item.3}}<br>
+     </li>
      {% endfor %}
-</ol>
+    </ol>
 </tr>
 <p>
     <td>
@@ -29,7 +30,6 @@
      </td>
 <td>
 <button id="myButton" class="float-left submit-button" >Home</button>
-
 <script type="text/javascript">
     document.getElementById("myButton").onclick = function () {
         location.href = "/home";

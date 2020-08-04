@@ -17,7 +17,7 @@ def new(title, author, comment, rating, img, user_id):
     return True
 
 def show(user_id):
-    sql = "SELECT title,author, comment, rating, img  FROM mybooks WHERE user_id=:user_id"
+    sql = "SELECT title,author, comment, rating  FROM mybooks WHERE user_id=:user_id"
     result = db.session.execute(sql, {"user_id": user_id})
     db.session.commit()
     mybooklist = result.fetchall()
