@@ -1,21 +1,46 @@
 <!DOCTYPE html>
 <html lang="en">
+    <link rel='stylesheet' href="../static/css/base.css">
 <head>
     <meta charset="UTF-8">
     <title>Home</title>
 <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
       rel="stylesheet">
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+</head>
 <body>
 
-  <nav class="navbar navbar-expand-md navbar-dark bg-dark mb-4">
+  <nav class="navbar navbar-expand-md navbar-light bg-light mb-4">
+<div class="header">
 <H2>Book Database Application</H2>
+
 <H4>Welcome!</H4>
+</div>
+  </nav>
+       <div class="container">
+        <a class="navbar-brand" href="/">
+ <div class="content">
 <i size = "large" class="material-icons">book</i>
-      <p></p>
+
+<i size= "large" class="material-icons">local_library</i>
+        </div>
+        </a>
+
+       </div>
+
+      <div>
       <td>
 <button id="myButton4" class="float-left submit-button" >Current bestsellers</button>
-
-<script type="text/javascript">
+          <script type="text/javascript">
     document.getElementById("myButton4").onclick = function () {
         location.href = "/bestsellers";
     };
@@ -23,7 +48,6 @@
       </td>
       <td>
 <button id="myButton2" class="float-left submit-button" >Add a new book</button>
-
 <script type="text/javascript">
     document.getElementById("myButton2").onclick = function () {
         location.href = "/newBook";
@@ -38,9 +62,7 @@
         location.href = "/booksToReadList";
     };
 </script>
-     </td>
-<p></p>
-            <td>
+     </td><td>
 <button id="myButton5" class="float-left submit-button" >Log out</button>
 <script type="text/javascript">
     document.getElementById("myButton5").onclick = function () {
@@ -48,9 +70,9 @@
     };
 </script>
      </td>
-        <p></p>
-<i class="material-icons">local_library</i>
-      <p></p>
-  </nav>
+
+             </div>
+             </div>
+
 </body>
 </html>

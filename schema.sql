@@ -10,3 +10,12 @@ CREATE TABLE booksToRead (
     author      TEXT NOT NULL,
     user_id     INTEGER
 );
+CREATE TABLE myBooks (
+    book_id     SERIAL PRIMARY KEY,
+    title       TEXT NOT NULL,
+    author      TEXT NOT NULL,
+    comment     TEXT,
+    rating      TEXT,
+    img         bytea,
+    user_id     INTEGER
+);

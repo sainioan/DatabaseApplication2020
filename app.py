@@ -1,4 +1,4 @@
-from flask import Flask, jsonify, redirect, config
+from flask import Flask, jsonify, redirect, config,  url_for
 from flask import render_template, request, session
 import json
 import requests
@@ -123,7 +123,6 @@ def showBooks():
         message = str(myList[i])[1:-1]
         message2 = message.replace("'", "")
         message3 = message2.replace(",", " by ")
-        print(message3)
         bookList.append(message3)
     return render_template("booksToReadList.html", items=bookList)
 
