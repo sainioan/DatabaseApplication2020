@@ -7,6 +7,11 @@ Simple Book library application written on flask with PostgreSQL database.
 Published online: https://tsoha-bookdatabase.herokuapp.com/
 
 
+## Requirements:
+
+Execute the following command to install the necessary libraries:<br />
+
+`pip install -r requirements.txt`
 
 ## Features
 * user login, logout, delete account,and update user-information (
