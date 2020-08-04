@@ -1,4 +1,4 @@
-from flask import Flask, jsonify, redirect, config,  url_for
+from flask import Flask, jsonify, redirect, config, url_for
 from flask import render_template, request, session
 import json
 import requests
@@ -16,6 +16,7 @@ db = SQLAlchemy(app)
 
 import users
 import booksToRead
+import mybooks
 
 load_dotenv()
 
@@ -114,6 +115,7 @@ def home():
 def apiReview2():
     return (summary2)
 
+
 @app.route("/booksToReadList")
 def showBooks():
     user_id = booksToRead.user_id()
@@ -126,16 +128,46 @@ def showBooks():
         bookList.append(message3)
     return render_template("booksToReadList.html", items=bookList)
 
+@app.route("/myBooks")
+def showmybooks():
+    user_id = mybooks.user_id()
+    mybookList = mybooks.show(user_id)
+    bookList = []
+    for i in range(len(mybookList)):
+       message = str(mybookList[i])[1:-1]
+       message2 = message.replace("'", "")
+       message3 = message2.replace(",", " by ")
+       bookList.append(message3)
+    return render_template("mybooks.html", items=bookList)
+
+
 @app.route("/newBook", methods=["get", "post"])
 def add():
     if request.method == "GET":
-        return render_template("newBook.html", items=titles,)
+        return render_template("newBook.html", items=titles, )
     if request.method == "POST":
         title = str(request.form["title"])
         author = str(request.form["author"])
         user_id = int(booksToRead.user_id())
-        print(user_id)
         booksToRead.new(title, author, user_id)
+        db.session.commit()
+        return redirect("/home")
+    else:
+        return render_template("error.html", message="Error adding a book")
+
+
+@app.route("/addBook", methods=["get", "post"])
+def addBook():
+    if request.method == "GET":
+        return render_template("addBook.html")
+    if request.method == "POST":
+        title = str(request.form["title"])
+        author = str(request.form["author"])
+        comment = str(request.form["comment"])
+        rating = str(request.form["rating"])
+        # image = request.form["image"]
+        user_id = int(mybooks.user_id())
+        mybooks.newBook(title, author, comment,rating, user_id)
         db.session.commit()
         return redirect("/home")
     else:

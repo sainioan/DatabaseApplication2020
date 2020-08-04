@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+
+<body>
+<h2>Add a book to your own book list!</h2>
+
+<form action="/addBook" method="post">
+    Title: <input type="text" name="title">
+    <p></p>
+    Author: <input type="text" name="author">
+    <p></p>
+    Comment: <input type="text" name="comment">
+    <p></p>
+    Rating: <input type="text" name="rating">
+    <p></p>
+    Image: <input type="image" name="img">
+<input type="submit" value="Submit">
+</form>
+      <td>
+<button id="myButton" class="float-left submit-button" >Home</button>
+<script type="text/javascript">
+    document.getElementById("myButton").onclick = function () {
+        location.href = "/home";
+    };
+</script>
+     </td>
+      <td>
+<button id="myButton5" class="float-left submit-button" >Log out</button>
+<script type="text/javascript">
+    document.getElementById("myButton5").onclick = function () {
+        location.href = "/logout";
+    };
+</script>
+     </td>
+</body>
+</html>
