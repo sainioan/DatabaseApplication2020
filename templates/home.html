@@ -66,15 +66,23 @@
 </script>
       </td>
       <td>
-<button id="myButton2" class="float-left submit-button" >Add a new book</button>
+          <button id="myButton2" class="float-left submit-button" >Add a new book to your <b>reading</b> list </button>
 <script type="text/javascript">
     document.getElementById("myButton2").onclick = function () {
         location.href = "/newBook";
     };
 </script>
       </td>
+           <td>
+               <button id="myButton7" class="float-left submit-button" >Add a book to your <b>own</b> book list</button>
+<script type="text/javascript">
+    document.getElementById("myButton7").onclick = function () {
+        location.href = "/addBook";
+    };
+</script>
+     </td>
       <td>
-<button id="myButton3" class="float-left submit-button" >Books To Read</button>
+<button id="myButton3" class="float-left submit-button" >My Reading List</button>
 
 <script type="text/javascript">
     document.getElementById("myButton3").onclick = function () {

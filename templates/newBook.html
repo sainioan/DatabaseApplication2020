@@ -12,28 +12,15 @@
 <body>
 <h2>Add a book to your reading list!</h2>
 <p></p>
-<td>
-    <select name="item" >
-  <option size= "large", value="{{items[0]}}" selected>{{items[0]}}</option>
-        x = []
-  {% for item in items[:] %}
-    <option value="{{item}}">{{item}}</option>
-x = {{item}}.split(", "}}
-        print(x[0])
-    <script>
-<!--    add functionality to add books to "books to read" list-->
-choice = `${{item}}`
-s2 = choice.substr(1);
-x = s2.split(", ")
-console.log('full entry', x)
-console.log('Title: ', x[0])
-console.log('Author: ', x[1])
+<!--<td>-->
+<!--    <select name="item" >-->
+<!--  <option size= "large", value="{{items[0]}}" selected>{{items[0]}}</option>-->
+<!--  {% for item in items[:] %}-->
+<!--    <option value="{{item}}">{{item}}</option>-->
 
-</script>
-
-  {% endfor %}
-</select>
-</td>
+<!--  {% endfor %}-->
+<!--</select>-->
+<!--</td>-->
 <p></p>
 <form action="/newBook" method="post">
 Title: <input type="text" name="title">

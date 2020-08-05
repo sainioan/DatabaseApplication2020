@@ -75,7 +75,6 @@ def register():
 
 @app.route("/bestsellers")
 def bestsellers():
-
     for i in range(len(book_list)):
         message = book_list[i]['title'] + ", " + book_list[i]['author'] + ",  Description: " + book_list[i][
             'description'] + " "
@@ -90,7 +89,6 @@ def home():
 
 @app.route("/summary", methods=["get", "post"])
 def apiReview():
-
     if request.method == "GET":
         return render_template("searchByTitle.html", items=titles)
     if request.method == "POST":
@@ -100,7 +98,7 @@ def apiReview():
     data2 = response2.text
     parsed2 = json.loads(data2)
     results = parsed2["results"]
-    if(results):
+    if (results):
         length = len(results)
         print(results)
         list = []
@@ -115,36 +113,37 @@ def apiReview():
         return render_template("summaryByTitle.html", title=title, items=list, links=links)
 
     else:
-        return render_template("error_title.html", message= title + " not found")
+        return render_template("error_title.html", message=title + " not found")
 
 
 @app.route("/summary2", methods=["get", "post"])
 def apiReview2():
-
     if request.method == "GET":
         return render_template("searchByAuthor.html", items=titles)
     if request.method == "POST":
         firstname = str(request.form["firstname"])
         lastname = str(request.form["lastname"])
-        author = str(firstname+ "+"+ lastname)
+        author = str(firstname + "+" + lastname)
         authorname = str(firstname + " " + lastname)
         endpoint3 = "https://api.nytimes.com/svc/books/v3/reviews.json?author=" + author + "&api-key=" + API_KEY
         response3 = requests.get(endpoint3)
         data3 = response3.text
         parsed3 = json.loads(data3)
         results2 = parsed3["results"]
-        length = len(results2)
-        print(results2)
-        list = []
-        links = []
-        for i in range(length):
-            message = results2[i]['book_title'] + ": " + results2[i]['summary']
-            list.append(message)
-        for i in range(length):
-            message = results2[i]['url']
-            links.append(message)
-        print(links)
-        return  render_template("summaryByAuthor.html", author = authorname, items=list, links=links)
+        if results2:
+            length = len(results2)
+            list = []
+            links = []
+            for i in range(length):
+                message = results2[i]['book_title'] + ": " + results2[i]['summary']
+                list.append(message)
+            for i in range(length):
+                message = results2[i]['url']
+                links.append(message)
+            return render_template("summaryByAuthor.html", author=authorname, items=list, links=links)
+        else:
+            return render_template("error_title.html", message=authorname + " not found")
+
 
 @app.route("/booksToReadList")
 def showBooks():
@@ -158,24 +157,25 @@ def showBooks():
         bookList.append(message3)
     return render_template("booksToReadList.html", items=bookList)
 
+
 @app.route("/myBooks")
 def showmybooks():
     user_id = mybooks.user_id()
     mybookList = mybooks.show(user_id)
     bookList = []
     for i in range(len(mybookList)):
-       message = str(mybookList[i])[1:-1]
-       print(message)
-       message2 = message.split("', ")
-       message2 = [item.replace("'", "") for item in message2]
-       bookList.append(message2)
+        message = str(mybookList[i])[1:-1]
+        print(message)
+        message2 = message.split("', ")
+        message2 = [item.replace("'", "") for item in message2]
+        bookList.append(message2)
     return render_template("mybooks.html", items=bookList)
 
 
 @app.route("/newBook", methods=["get", "post"])
 def add():
     if request.method == "GET":
-        return render_template("newBook.html", items=titles )
+        return render_template("newBook.html", items=titles)
     if request.method == "POST":
         title = str(request.form["title"])
         author = str(request.form["author"])

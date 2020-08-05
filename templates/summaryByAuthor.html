@@ -29,8 +29,16 @@
     </ol>
     </tr>
 <p>
+      <td>
+          <button id="myButton2" class="float-left submit-button" >Add a new book to your <b>reading</b>list</button>
+<script type="text/javascript">
+    document.getElementById("myButton2").onclick = function () {
+        location.href = "/newBook";
+    };
+</script>
+      </td>
     <td>
-<button id="myButton7" class="float-left submit-button" >Add a book</button>
+<button id="myButton7" class="float-left submit-button" >Add a book to your <b>own</b> list</button>
 <script type="text/javascript">
     document.getElementById("myButton7").onclick = function () {
         location.href = "/addBook";
