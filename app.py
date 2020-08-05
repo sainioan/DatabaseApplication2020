@@ -29,6 +29,7 @@ parsed_results = parsed["results"]
 book_list = parsed_results.get('books')
 titles = []
 
+
 @app.route("/")
 def index():
     return render_template("index.html")
@@ -114,7 +115,7 @@ def apiReview():
         return render_template("summaryByTitle.html", title=title, items=list, links=links)
 
     else:
-        return render_template("error.html", message= title + " not found")
+        return render_template("error_title.html", message= title + " not found")
 
 
 @app.route("/summary2", methods=["get", "post"])
