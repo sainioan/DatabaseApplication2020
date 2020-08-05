@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Author</title>
+</head>
+<body>
+<h3>Search by author name</h3>
+<form action="/summary2" method="post">
+First Name: <input type="text" name="firstname">
+<p>
+Last Name: <input type="text" name="lastname">
+<p>
+<input type="submit" value="Submit">
+</form>
+
+      <td>
+<button id="myButton" class="float-left submit-button" >Home</button>
+<script type="text/javascript">
+    document.getElementById("myButton").onclick = function () {
+        location.href = "/home";
+    };
+</script>
+     </td>
+      <td>
+<button id="myButton5" class="float-left submit-button" >Log out</button>
+<script type="text/javascript">
+    document.getElementById("myButton5").onclick = function () {
+        location.href = "/logout";
+    };
+</script>
+     </td>
+</body>
+</html>

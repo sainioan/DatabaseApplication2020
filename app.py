@@ -21,37 +21,13 @@ import mybooks
 load_dotenv()
 
 API_KEY = os.environ['API_KEY']
-
-title = "Becoming"
-author = "Michelle+Obama"
-endPoint = "https://api.nytimes.com/svc/books/v3/lists/current/hardcover-fiction.json?api-key=" + API_KEY
-endpoint2 = "https://api.nytimes.com/svc/books/v3/reviews.json?title=" + title + "&api-key=" + API_KEY
-
-endpoint3 = "https://api.nytimes.com/svc/books/v3/reviews.json?author=" + author + "&api-key=" + API_KEY
-response = requests.get(endPoint)
-response2 = requests.get(endpoint2)
-response3 = requests.get(endpoint3)
-
+end_point = "https://api.nytimes.com/svc/books/v3/lists/current/hardcover-fiction.json?api-key=" + API_KEY
+response = requests.get(end_point)
 data = response.text
-data2 = response2.text
-data3 = response3.text
-
 parsed = json.loads(data)
-parsedResults = parsed["results"]
-bookList = parsedResults.get('books')
+parsed_results = parsed["results"]
+book_list = parsed_results.get('books')
 titles = []
-for i in range(len(bookList)):
-    message = bookList[i]['title'] + ", " + bookList[i]['author'] + ",  Description: " + bookList[i][
-        'description'] + " "
-    titles.append(message)
-
-parsed2 = json.loads(data2)
-parsed3 = json.loads(data3)
-results = parsed2["results"]
-results2 = parsed3["results"]
-summary = results[0].get('summary')
-summary2 = results2[0].get('summary')
-
 
 @app.route("/")
 def index():
@@ -98,12 +74,12 @@ def register():
 
 @app.route("/bestsellers")
 def bestsellers():
-    return render_template("books.html", message="Howdy!", items=titles)
 
-
-@app.route("/")
-def apiReview():
-    return (summary)
+    for i in range(len(book_list)):
+        message = book_list[i]['title'] + ", " + book_list[i]['author'] + ",  Description: " + book_list[i][
+            'description'] + " "
+        titles.append(message)
+    return render_template("books.html", message="Current Bestsellers:", items=titles)
 
 
 @app.route("/home")
@@ -111,10 +87,63 @@ def home():
     return render_template("home.html")
 
 
-@app.route("/apiReview_author")
-def apiReview2():
-    return (summary2)
+@app.route("/summary", methods=["get", "post"])
+def apiReview():
 
+    if request.method == "GET":
+        return render_template("searchByTitle.html", items=titles)
+    if request.method == "POST":
+        title = str(request.form["title"])
+    endpoint2 = "https://api.nytimes.com/svc/books/v3/reviews.json?title=" + title + "&api-key=" + API_KEY
+    response2 = requests.get(endpoint2)
+    data2 = response2.text
+    parsed2 = json.loads(data2)
+    results = parsed2["results"]
+    if(results):
+        length = len(results)
+        print(results)
+        list = []
+        links = []
+        for i in range(length):
+            message = results[i]['book_title'] + ": " + results[i]['summary']
+            list.append(message)
+        for i in range(length):
+            message = results[i]['url']
+            links.append(message)
+        print(links)
+        return render_template("summaryByTitle.html", title=title, items=list, links=links)
+
+    else:
+        return render_template("error.html", message= title + " not found")
+
+
+@app.route("/summary2", methods=["get", "post"])
+def apiReview2():
+
+    if request.method == "GET":
+        return render_template("searchByAuthor.html", items=titles)
+    if request.method == "POST":
+        firstname = str(request.form["firstname"])
+        lastname = str(request.form["lastname"])
+        author = str(firstname+ "+"+ lastname)
+        authorname = str(firstname + " " + lastname)
+        endpoint3 = "https://api.nytimes.com/svc/books/v3/reviews.json?author=" + author + "&api-key=" + API_KEY
+        response3 = requests.get(endpoint3)
+        data3 = response3.text
+        parsed3 = json.loads(data3)
+        results2 = parsed3["results"]
+        length = len(results2)
+        print(results2)
+        list = []
+        links = []
+        for i in range(length):
+            message = results2[i]['book_title'] + ": " + results2[i]['summary']
+            list.append(message)
+        for i in range(length):
+            message = results2[i]['url']
+            links.append(message)
+        print(links)
+        return  render_template("summaryByAuthor.html", author = authorname, items=list, links=links)
 
 @app.route("/booksToReadList")
 def showBooks():
@@ -145,7 +174,7 @@ def showmybooks():
 @app.route("/newBook", methods=["get", "post"])
 def add():
     if request.method == "GET":
-        return render_template("newBook.html", items=titles, )
+        return render_template("newBook.html", items=titles )
     if request.method == "POST":
         title = str(request.form["title"])
         author = str(request.form["author"])
