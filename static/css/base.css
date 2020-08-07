@@ -22,6 +22,7 @@ form {
     display: inline-block;
     /*float: right;*/
 }
+
 body{
     text-align: center;
     background-color: rgb(242, 243, 244);
@@ -80,7 +81,13 @@ nav .navbar-brand {
 .list-group-item{
     border-radius: 0px !important;
 }
-
+.header {
+  padding: 60px;
+  text-align: center;
+  background: #1abc9c;
+  color: white;
+  font-size: 30px;
+}
 .thumbnail {
     border-radius: 0px;
     box-shadow: 2px 2px 2px #D6DBDF;

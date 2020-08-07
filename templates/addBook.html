@@ -2,7 +2,6 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-
         <link href='//fonts.googleapis.com/css?family=Lobster&subset=latin,latin-ext' rel='stylesheet' type='text/css'>
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
@@ -10,8 +9,7 @@
 </head>
 
 <body>
-<h2>Add a book to your own book list!</h2>
-
+<h2>Add a book to your Books-Read List!</h2>
 <form action="/addBook" method="post">
     Title: <input type="text" name="title">
     <p></p>
@@ -19,8 +17,18 @@
     <p></p>
     Comment: <input type="text" name="comment">
     <p></p>
-    Rating: <input type="text" name="rating">
-    <p></p>
+<!--    Rating: <input type="text" name="rating">-->
+<!--    <p></p>-->
+
+    Choose rating
+<p>
+    <b>*****  5/5</b><input type="radio" name="rating" value="*****  5/5">
+    <b>****   4/5</b><input type="radio" name="rating" value="****   4/5">
+    <b>***    3/5</b><input type="radio" name="rating" value="***    3/5">
+    <b>**     2/5</b><input type="radio" name="rating" value="**     2/5">
+    <b>*      1/5</b><input type="radio" name="rating" value="*      1/5">
+
+</p>
 <input type="submit" value="Submit">
 </form>
       <td>

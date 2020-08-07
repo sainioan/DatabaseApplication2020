@@ -9,7 +9,7 @@
     <title>My Books</title>
 </head>
 <body>
-<h2>My Books:</h2>
+<h2>My Books-Read-List:</h2>
 <tr>
 <ol size ="small", type = "1" >
       {% for item in items %}
@@ -23,7 +23,7 @@
 </tr>
 <p>
     <td>
-<button id="myButton7" class="float-left submit-button" >Add a book to your own book list</button>
+<button id="myButton7" class="float-left submit-button" >Add a book to your Books-Read List</button>
 <script type="text/javascript">
     document.getElementById("myButton7").onclick = function () {
         location.href = "/addBook";

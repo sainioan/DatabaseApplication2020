@@ -248,7 +248,8 @@ def addBook():
         title = str(request.form["title"])
         author = str(request.form["author"])
         comment = str(request.form.get("comment"))
-        rating = str(request.form.get("rating"))
+        rating = request.form["rating"]
+        rating = str(rating)
         user_id = int(mybooks.user_id())
         mybooks.newBook(title, author, comment, rating, user_id)
         db.session.commit()
