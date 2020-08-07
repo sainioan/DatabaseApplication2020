@@ -1,5 +1,6 @@
-from db import db
 from flask import session
+
+from db import db
 
 
 def user_id():

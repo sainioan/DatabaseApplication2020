@@ -1,5 +1,7 @@
-from flask import Flask, jsonify, redirect, config, url_for
-from flask import render_template, request, session
+from functools import wraps
+from flask import Flask, jsonify, redirect, config, url_for, flash
+from flask import g, render_template, redirect, request, session
+# from django.contrib.auth.decorators import login_required
 import json
 import requests
 from flask_sqlalchemy import SQLAlchemy
@@ -7,16 +9,50 @@ import os
 from dotenv import load_dotenv
 from os import getenv
 
+from flask_login import LoginManager, current_user
+
 app = Flask(__name__)
 app.secret_key = os.getenv("SECRET_KEY")
+
+import booksToRead
+import mybooks
+import users
+
+login_manager = LoginManager()
+login_manager.init_app(app)
+from user_model import User
 
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 app.config["SQLALCHEMY_DATABASE_URI"] = getenv("DATABASE_URL")
 db = SQLAlchemy(app)
 
-import users
-import booksToRead
-import mybooks
+
+@login_manager.user_loader
+def load_user(user_id):
+    return User.get(user_id)
+
+
+@app.before_request
+def load_user():
+    if "user_id" in session:
+        user = User.query.filter_by(id=session["user_id"]).first()
+        g.user = user
+    else:
+        user = {"name": "Guest"}
+    g.user = user
+
+
+def login_required(f):
+    @wraps(f)
+    def decorated_function(*args, **kwargs):
+        if g.user is None:
+            return redirect(url_for('login', next=request.url))
+        if g.user == {"name": "Guest"}:
+            return redirect(url_for('login', next=request.url))
+        return f(*args, **kwargs)
+
+    return decorated_function
+
 
 load_dotenv()
 
@@ -45,10 +81,11 @@ def login():
         password = request.form["password"]
     try:
         if users.login(username, password):
+            if "user_id" in session:
+                flash(username + " logged in", "success")
             return redirect("/home")
-
         else:
-
+            flash("You are not logged in.", "danger")
             return render_template("error.html", message="Wrong username or password")
     except Exception as e:
         print(e)
@@ -56,7 +93,10 @@ def login():
 
 @app.route("/logout")
 def logout():
+    if "user_id" in session:
+        flash("You have been logged out", "info")
     users.logout()
+    session.pop('user_id', None)
     return redirect("/")
 
 
@@ -68,26 +108,33 @@ def register():
         username = request.form["username"]
         password = request.form["password"]
         if users.register(username, password):
+            flash("user created", "msg")
             return redirect("/")
         else:
             return render_template("error.html", message="Error signing up")
 
 
 @app.route("/bestsellers")
+@login_required
 def bestsellers():
-    for i in range(len(book_list)):
-        message = book_list[i]['title'] + ", " + book_list[i]['author'] + ",  Description: " + book_list[i][
-            'description'] + " "
-        titles.append(message)
-    return render_template("books.html", message="Current Bestsellers:", items=titles)
+    if g.user is None:
+        return redirect(url_for('index'))
+    else:
+        for i in range(len(book_list)):
+            message = book_list[i]['title'] + ", " + book_list[i]['author'] + ",  Description: " + book_list[i][
+                'description'] + " "
+            titles.append(message)
+        return render_template("books.html", message="Current Bestsellers:", items=titles)
 
 
 @app.route("/home")
+@login_required
 def home():
     return render_template("home.html")
 
 
 @app.route("/summary", methods=["get", "post"])
+@login_required
 def apiReview():
     if request.method == "GET":
         return render_template("searchByTitle.html", items=titles)
@@ -117,6 +164,7 @@ def apiReview():
 
 
 @app.route("/summary2", methods=["get", "post"])
+@login_required
 def apiReview2():
     if request.method == "GET":
         return render_template("searchByAuthor.html", items=titles)
@@ -146,6 +194,7 @@ def apiReview2():
 
 
 @app.route("/booksToReadList")
+@login_required
 def showBooks():
     user_id = booksToRead.user_id()
     myList = booksToRead.show(user_id)
@@ -159,6 +208,7 @@ def showBooks():
 
 
 @app.route("/myBooks")
+@login_required
 def showmybooks():
     user_id = mybooks.user_id()
     mybookList = mybooks.show(user_id)
@@ -173,6 +223,7 @@ def showmybooks():
 
 
 @app.route("/newBook", methods=["get", "post"])
+@login_required
 def add():
     if request.method == "GET":
         return render_template("newBook.html", items=titles)
@@ -188,6 +239,7 @@ def add():
 
 
 @app.route("/addBook", methods=["get", "post"])
+@login_required
 def addBook():
     if request.method == "GET":
         return render_template("addBook.html")
