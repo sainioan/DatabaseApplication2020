@@ -20,12 +20,12 @@ CREATE TABLE books_read (
 );
 
 CREATE TABLE books_currently_reading (
-    book_id     SERIAL PRIMARY KEY,
-    title       TEXT NOT NULL,
-    author      TEXT NOT NULL,
-    genre       TEXT,
+    book_id      SERIAL PRIMARY KEY,
+    title        TEXT NOT NULL,
+    author       TEXT NOT NULL,
+    genre        TEXT,
     plot_summary TEXT,
-    current_page      INT,
-    pages  INT,
-    user_id     INTEGER NOT NULL
+    current_page INTEGER,
+    pages        INTEGER,
+    user_id      INTEGER NOT NULL
 );

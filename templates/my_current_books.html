@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+
+        <link href='//fonts.googleapis.com/css?family=Lobster&subset=latin,latin-ext' rel='stylesheet' type='text/css'>
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+       <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <title>My Books</title>
+</head>
+<body>
+<h2>I'm reading the following titles...:</h2>
+<tr>
+<ol size ="small", type = "1" >
+      {% for item in items %}
+
+    <li>  <b>Title:</b> {{item.0}} <br>
+          <b>Author:</b> {{item.1}}<br>
+          <b> Genre:</b> {{item.2}}<br>
+          <b> Plot Summary: </b> {{item.3}}<br>
+            <b> Current Page, Number of Pages: </b> {{item.4}}<br>
+     </li>
+     {% endfor %}
+    </ol>
+
+</tr>
+<p>
+    <td>
+<button id="myButton7" class="float-left submit-button" >Add a book to your Books-Read List</button>
+<script type="text/javascript">
+    document.getElementById("myButton7").onclick = function () {
+        location.href = "/addBook";
+    };
+</script>
+     </td>
+<td>
+<button id="myButton" class="float-left submit-button" >Home</button>
+<script type="text/javascript">
+    document.getElementById("myButton").onclick = function () {
+        location.href = "/home";
+    };
+</script>
+</td>
+      <td>
+<button id="myButton5" class="float-left submit-button" >Log out</button>
+<script type="text/javascript">
+    document.getElementById("myButton5").onclick = function () {
+        location.href = "/logout";
+    };
+</script>
+     </td>
+
+</p>
+</body>
+</html>

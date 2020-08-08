@@ -15,6 +15,7 @@ app.secret_key = os.getenv("SECRET_KEY")
 import booksToRead
 import books_read
 import users
+import books_currently_reading
 
 login_manager = LoginManager()
 login_manager.init_app(app)
@@ -224,6 +225,21 @@ def showmybooks():
     return render_template("mybooks.html", items=bookList)
 
 
+@app.route("/my_current_books")
+@login_required
+def show_my_current_books():
+    user_id = books_currently_reading.user_id()
+    my_current_book_list = books_currently_reading.show(user_id)
+    bookList = []
+    for i in range(len(my_current_book_list )):
+        message = str(my_current_book_list [i])[1:-1]
+        print(message)
+        message2 = message.split("', ")
+        message2 = [item.replace("'", "") for item in message2]
+        bookList.append(message2)
+    return render_template("my_current_books.html", items=bookList)
+
+
 @app.route('/myBooks/delete/<int:id>')
 @login_required
 def delete(id):
@@ -271,14 +287,25 @@ def addBook():
         return render_template("error.html", message="Error adding a book")
 
 
-# @app.route("/books")
-# def apiBooks():
-#     return jsonify({'Book List': titles})
+@app.route("/add_current_book", methods=["get", "post"])
+@login_required
+def add_current_book():
+    if request.method == "GET":
+        return render_template("add_current_book.html")
+    if request.method == "POST":
+        title = str(request.form["title"])
+        author = str(request.form["author"])
+        plot_summary = str(request.form.get("plot_summary"))
+        genre = str(request.form.get("genre"))
+        current_page = int(request.form.get("current_page"))
+        pages = int(request.form.get("pages"))
+        user_id = int(books_currently_reading.user_id())
+        books_currently_reading.new_book(title, author, genre, plot_summary, current_page, pages, user_id)
+        db.session.commit()
+        return redirect("/home")
+    else:
+        return render_template("error.html", message="Error adding a book")
 
-
-#
-# def apiBooks():
-#     return (parsed)
 
 if __name__ == "__main__":
     app.run(debug=True)
