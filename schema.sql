@@ -10,12 +10,22 @@ CREATE TABLE booksToRead (
     author      TEXT NOT NULL,
     user_id     INTEGER
 );
-CREATE TABLE myBooks (
+CREATE TABLE books_read (
     book_id     SERIAL PRIMARY KEY,
     title       TEXT NOT NULL,
     author      TEXT NOT NULL,
     comment     TEXT,
     rating      TEXT,
-    img         bytea,
     user_id     INTEGER
+);
+
+CREATE TABLE books_currently_reading (
+    book_id     SERIAL PRIMARY KEY,
+    title       TEXT NOT NULL,
+    author      TEXT NOT NULL,
+    genre       TEXT,
+    plot_summary TEXT,
+    current_page      INT,
+    pages  INT,
+    user_id     INTEGER NOT NULL
 );

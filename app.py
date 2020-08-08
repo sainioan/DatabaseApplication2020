@@ -1,26 +1,26 @@
 from functools import wraps
 from flask import Flask, jsonify, redirect, config, url_for, flash
 from flask import g, render_template, redirect, request, session
-# from django.contrib.auth.decorators import login_required
 import json
 import requests
 from flask_sqlalchemy import SQLAlchemy
 import os
 from dotenv import load_dotenv
 from os import getenv
-
 from flask_login import LoginManager, current_user
 
 app = Flask(__name__)
 app.secret_key = os.getenv("SECRET_KEY")
 
 import booksToRead
-import mybooks
+import books_read
 import users
 
 login_manager = LoginManager()
 login_manager.init_app(app)
+
 from user_model import User
+from book_model import Book
 
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 app.config["SQLALCHEMY_DATABASE_URI"] = getenv("DATABASE_URL")
@@ -64,6 +64,7 @@ parsed = json.loads(data)
 parsed_results = parsed["results"]
 book_list = parsed_results.get('books')
 titles = []
+images = []
 
 
 @app.route("/")
@@ -124,7 +125,8 @@ def bestsellers():
             message = book_list[i]['title'] + ", " + book_list[i]['author'] + ",  Description: " + book_list[i][
                 'description'] + " "
             titles.append(message)
-        return render_template("books.html", message="Current Bestsellers:", items=titles)
+            images.append(book_list[i]['book_image'])
+        return render_template("books.html", message="Current Bestsellers:", items=titles, images=images)
 
 
 @app.route("/home")
@@ -210,8 +212,8 @@ def showBooks():
 @app.route("/myBooks")
 @login_required
 def showmybooks():
-    user_id = mybooks.user_id()
-    mybookList = mybooks.show(user_id)
+    user_id = books_read.user_id()
+    mybookList = books_read.show(user_id)
     bookList = []
     for i in range(len(mybookList)):
         message = str(mybookList[i])[1:-1]
@@ -220,6 +222,17 @@ def showmybooks():
         message2 = [item.replace("'", "") for item in message2]
         bookList.append(message2)
     return render_template("mybooks.html", items=bookList)
+
+
+@app.route('/myBooks/delete/<int:id>')
+@login_required
+def delete(id):
+    book_id = id
+    book = Book.query.get_or_404(book_id)
+    db.session.delete(book)
+    db.session.commit()
+    flash('delete done.')
+    return redirect(url_for('home'))
 
 
 @app.route("/newBook", methods=["get", "post"])
@@ -250,8 +263,8 @@ def addBook():
         comment = str(request.form.get("comment"))
         rating = request.form["rating"]
         rating = str(rating)
-        user_id = int(mybooks.user_id())
-        mybooks.newBook(title, author, comment, rating, user_id)
+        user_id = int(books_read.user_id())
+        books_read.new_book(title, author, comment, rating, user_id)
         db.session.commit()
         return redirect("/home")
     else:

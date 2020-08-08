@@ -23,6 +23,11 @@
      {% endfor %}
 </ol>
     </div>
+<div>
+       {% for image in images %}
+    <img src="{{image}}" alt="" width="150" height="200">
+     {% endfor %}
+</div>
 
 <!--<td>
     <select name="item" >
@@ -55,7 +60,7 @@ function hello() {
     <button onclick="hello()">add choice</button>
 </td>-->
       <td>
-<button id="myButton2" class="float-left submit-button" >Add a new book</button>
+<button id="myButton2" class="float-left submit-button" >Add a book your reading list!</button>
 
 <script type="text/javascript">
     document.getElementById("myButton2").onclick = function () {
