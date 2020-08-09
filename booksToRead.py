@@ -14,7 +14,7 @@ def new(title, author, user_id):
     return True
 
 def show(user_id):
-    sql = "SELECT title,author FROM bookstoread WHERE user_id=:user_id ORDER BY title ASC"
+    sql = "SELECT * FROM bookstoread WHERE user_id=:user_id ORDER BY title ASC"
     result = db.session.execute(sql, {"user_id": user_id})
     db.session.commit()
     bookList = result.fetchall()

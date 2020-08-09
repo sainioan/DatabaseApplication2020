@@ -16,7 +16,7 @@ def new_book(title, author, genre, plot_summary, current_page, pages, user_id):
 
 
 def show(user_id):
-    sql = "SELECT title,author, genre, plot_summary, current_page, pages  FROM books_currently_reading WHERE " \
+    sql = "SELECT * FROM books_currently_reading WHERE " \
           "user_id=:user_id ORDER BY title ASC "
     result = db.session.execute(sql, {"user_id": user_id})
     db.session.commit()

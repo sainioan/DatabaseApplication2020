@@ -201,13 +201,7 @@ def apiReview2():
 def showBooks():
     user_id = booksToRead.user_id()
     myList = booksToRead.show(user_id)
-    bookList = []
-    for i in range(len(myList)):
-        message = str(myList[i])[1:-1]
-        message2 = message.replace("'", "")
-        message3 = message2.replace(",", " by ")
-        bookList.append(message3)
-    return render_template("booksToReadList.html", items=bookList)
+    return render_template("booksToReadList.html", items=myList)
 
 
 @app.route("/myBooks")
@@ -215,14 +209,7 @@ def showBooks():
 def showmybooks():
     user_id = books_read.user_id()
     mybookList = books_read.show(user_id)
-    bookList = []
-    for i in range(len(mybookList)):
-        message = str(mybookList[i])[1:-1]
-        print(message)
-        message2 = message.split("', ")
-        message2 = [item.replace("'", "") for item in message2]
-        bookList.append(message2)
-    return render_template("mybooks.html", items=bookList)
+    return render_template("mybooks.html", items=mybookList)
 
 
 @app.route("/my_current_books")
@@ -230,14 +217,8 @@ def showmybooks():
 def show_my_current_books():
     user_id = books_currently_reading.user_id()
     my_current_book_list = books_currently_reading.show(user_id)
-    bookList = []
-    for i in range(len(my_current_book_list )):
-        message = str(my_current_book_list [i])[1:-1]
-        print(message)
-        message2 = message.split("', ")
-        message2 = [item.replace("'", "") for item in message2]
-        bookList.append(message2)
-    return render_template("my_current_books.html", items=bookList)
+    print(my_current_book_list)
+    return render_template("my_current_books.html", items=my_current_book_list)
 
 
 @app.route('/myBooks/delete/<int:id>')

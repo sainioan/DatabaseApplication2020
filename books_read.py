@@ -15,7 +15,7 @@ def new_book(title, author, comment, rating, user_id):
 
 
 def show(user_id):
-    sql = "SELECT title,author, comment, rating  FROM books_read WHERE user_id=:user_id ORDER BY rating DESC"
+    sql = "SELECT * FROM books_read WHERE user_id=:user_id ORDER BY rating DESC"
     result = db.session.execute(sql, {"user_id": user_id})
     db.session.commit()
     mybooklist = result.fetchall()
