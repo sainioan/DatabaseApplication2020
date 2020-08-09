@@ -288,5 +288,16 @@ def add_current_book():
         return render_template("error.html", message="Error adding a book")
 
 
+@app.route("/stats")
+@login_required
+def get_statistics():
+
+    sql ="SELECT username, user_id, count(user_id) FROM books_read LEFT JOIN users ON users.id = books_read.user_id GROUP BY books_read.user_id, users.username"
+    result = db.session.execute(sql)
+    count_list = result.fetchall()
+    print(count_list)
+    return render_template("statistics.html", items=count_list)
+
+
 if __name__ == "__main__":
     app.run(debug=True)
