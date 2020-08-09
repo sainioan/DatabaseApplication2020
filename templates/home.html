@@ -61,10 +61,9 @@
 
 {% block content %}{% endblock %}
       <div>
- <div class ="myButton4">
       <td>
 
-<button id="myButton4" class="float-left submit-button" >Current bestsellers</button>
+<button id="myButton4" style="background-color: slateblue" class="float-left submit-button" >Current bestsellers</button>
           <script type="text/javascript">
     document.getElementById("myButton4").onclick = function () {
         location.href = "/bestsellers";
@@ -72,20 +71,18 @@
 
 </script>
       </td>
-             </div> <div class ="myButton9">
                        <td>
 
-<button id="myButton9" class="float-left submit-button" >Summaries by book title</button>
+<button id="myButton9" style="background-color: darkolivegreen"class="float-left submit-button" >Summaries by book title</button>
           <script type="text/javascript">
     document.getElementById("myButton9").onclick = function () {
         location.href = "/summary";
     };
 </script>
       </td>
-      </div>
-                       </div> <div class ="myButton8">
+                       </div>
              <td>
-<button id="myButton8" class="float-left submit-button" >Summaries by author</button>
+<button id="myButton8" style="background-color: #66afe9" class="float-left submit-button" >Summaries by author</button>
           <script type="text/javascript">
     document.getElementById("myButton8").onclick = function () {
         location.href = "/summary2";
@@ -93,10 +90,8 @@
 </script>
       </td>
   </div>
-               </div> <div class ="myButton3">
                 <td>
-<button id="myButton3" class="float-left submit-button" >My Reading List</button>
-
+<button id="myButton3" style="background-color: lightgreen" class="float-left submit-button" >My Reading List</button>
 <script type="text/javascript">
     document.getElementById("myButton3").onclick = function () {
         location.href = "/booksToReadList";
@@ -104,76 +99,64 @@
 </script>
      </td>
       </div>
-               </div> <div class ="myButton6">
                 <td>
-<button id="myButton6" class="float-left submit-button" >Books-Read-List</button>
+<button id="myButton6" style="background-color:darkmagenta" class="float-left submit-button" >Books-Read-List</button>
           <script type="text/javascript">
     document.getElementById("myButton6").onclick = function () {
         location.href = "/myBooks";
     };
 </script>
       </td>
-  </div>
-             <div class ="myButton10">
+
                         <td>
-<button id="myButton10" class="float-left submit-button" >Books I'm currently reading</button>
+<button id="myButton10" style="background-color: #d9534f" class="float-left submit-button" >Books I'm currently reading</button>
           <script type="text/javascript">
     document.getElementById("myButton10").onclick = function () {
         location.href = "/my_current_books";
     };
 </script>
                         </td>
-             </div>
-              <div class ="myButton11">
           <td>
-<button id="myButton11" class="float-left submit-button" >Add to books you're currently reading</button>
+<button id="myButton11"  style="background-color: #a94442" class="float-left submit-button" >Add to books you're currently reading</button>
           <script type="text/javascript">
     document.getElementById("myButton11").onclick = function () {
         location.href = "/add_current_book";
     };
 </script>
       </td>
-              </div>
-    <div class ="myButton2">
       <td>
-          <button id="myButton2" class="float-left submit-button" >Add a new book to your <b>Reading</b> List </button>
+          <button id="myButton2"  style ="background-color: #e4b9c0"class="float-left submit-button" >Add a new book to your <b>Reading</b> List </button>
 <script type="text/javascript">
     document.getElementById("myButton2").onclick = function () {
         location.href = "/newBook";
     };
 </script>
       </td>
-    </div>
-    <div class ="myButton7">
            <td>
-               <button id="myButton7" class="float-left submit-button" >Add a book to your <b>Books-Read</b> List</button>
+               <button id="myButton7" style ="background-color: #faebcc" class="float-left submit-button" >Add a book to your <b>Books-Read</b> List</button>
 <script type="text/javascript">
     document.getElementById("myButton7").onclick = function () {
         location.href = "/addBook";
     };
 </script>
      </td>
-    </div>
-    <div class ="myButton12">
+
     <td>
-<button id="myButton12" class="float-left submit-button" >View Statistics</button>
+<button id="myButton12" style= "background-color: #67b168" class="float-left submit-button" >View Statistics</button>
           <script type="text/javascript">
     document.getElementById("myButton12").onclick = function () {
         location.href = "/stats";
     };
 </script>
       </td>
-    </div>
-    <div class ="myButton5">
           <td>
-<button id="myButton5" class="float-left submit-button" >Log out</button>
+<button id="myButton5"  style= "background-color: #1b6d85" class="float-left submit-button" >Log out</button>
 <script type="text/javascript">
     document.getElementById("myButton5").onclick = function () {
         location.href = "/logout";
     };
 </script>
      </td>
-    </div>
 
              </div>
              </div>
