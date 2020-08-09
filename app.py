@@ -226,11 +226,10 @@ def show_my_current_books():
 @app.route('/my_current_books/delete/<book_id>', methods =["GET"])
 @login_required
 def my_current_books_delete(book_id):
-    # stmt = text("DELETE FROM books_currently_reading WHERE books_currently_reading.book_id = book_id;")
     sql = "DELETE FROM books_currently_reading WHERE book_id=:book_id"
     db.session.execute(sql, {"book_id": book_id})
     db.session.commit()
-    flash('delete done.', 'success')
+    # flash('delete done.', 'success')
     return redirect(url_for('show_my_current_books'))
 
 
@@ -241,7 +240,7 @@ def my_reading_list_books_delete(book_id):
     sql = "DELETE FROM bookstoread WHERE book_id=:book_id"
     db.session.execute(sql, {"book_id": book_id})
     db.session.commit()
-    flash('delete done.', 'success')
+    # flash('delete done.', 'success')
     return redirect(url_for('showBooks'))
 
 
