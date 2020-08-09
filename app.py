@@ -231,7 +231,7 @@ def my_current_books_delete(book_id):
     db.session.execute(sql, {"book_id": book_id})
     db.session.commit()
     flash('delete done.', 'success')
-    return redirect(url_for('my_current_books'))
+    return redirect(url_for('show_my_current_books'))
 
 
 @app.route('/booksToReadList/delete/<book_id>', methods =["GET"])
@@ -242,7 +242,7 @@ def my_reading_list_books_delete(book_id):
     db.session.execute(sql, {"book_id": book_id})
     db.session.commit()
     flash('delete done.', 'success')
-    return redirect(url_for('booksToReadList'))
+    return redirect(url_for('showBooks'))
 
 
 @app.route("/newBook", methods=["get", "post"])

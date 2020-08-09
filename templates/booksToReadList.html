@@ -11,22 +11,15 @@
 <body>
 <h2>My Reading List:</h2>
 <tr>
-      <script>
-        let choice =""
-        let s2 =""
-        let x=""
-    </script>
-    <Table striped>
-        <tbody>
 <ol size ="small", type = "1" >
       {% for item in items %}
     <li>  <b>Title:</b> {{item.1}} <br>
           <b>Author:</b> {{item.2}}<br>
+          <td><form method="GET" action="{{url_for('my_reading_list_books_delete', book_id=item[0]) }}">
+          <input type="submit" value="Delete Book"/></form></td><br>
      </li>
      {% endfor %}
-</ol>
-        </tbody>
-        </Table>
+    </ol>
 </tr>
 <td>
 <button id="myButton" class="float-left submit-button" >Home</button>

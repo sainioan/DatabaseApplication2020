@@ -13,6 +13,7 @@ def new(title, author, user_id):
     db.session.commit()
     return True
 
+
 def show(user_id):
     sql = "SELECT * FROM bookstoread WHERE user_id=:user_id ORDER BY title ASC"
     result = db.session.execute(sql, {"user_id": user_id})
@@ -20,3 +21,12 @@ def show(user_id):
     bookList = result.fetchall()
     return bookList
 
+
+def get_book_id(title):
+
+    sql = "SELECT book_id FROM bookstoread WHERE " \
+          "title=:title"
+    result = db.session.execute(sql, {"title": title})
+    db.session.commit()
+    id = result.fetchone()
+    return id
