@@ -223,7 +223,7 @@ def show_my_current_books():
     return render_template("my_current_books.html", items=my_current_book_list)
 
 
-@app.route('/my_current_books/delete/<book_id>', methods =["GET"])
+@app.route('/my_current_books/delete/<book_id>', methods=["GET"])
 @login_required
 def my_current_books_delete(book_id):
     sql = "DELETE FROM books_currently_reading WHERE book_id=:book_id"
@@ -233,7 +233,7 @@ def my_current_books_delete(book_id):
     return redirect(url_for('show_my_current_books'))
 
 
-@app.route('/booksToReadList/delete/<book_id>', methods =["GET"])
+@app.route('/booksToReadList/delete/<book_id>', methods=["GET"])
 @login_required
 def my_reading_list_books_delete(book_id):
     # stmt = text("DELETE FROM books_currently_reading WHERE books_currently_reading.book_id = book_id;")
@@ -303,12 +303,20 @@ def add_current_book():
 @app.route("/stats")
 @login_required
 def get_statistics():
-
-    sql ="SELECT username, user_id, count(user_id) FROM books_read LEFT JOIN users ON users.id = books_read.user_id GROUP BY books_read.user_id, users.username"
+    sql = "SELECT username, user_id, count(user_id) FROM books_read LEFT JOIN users ON users.id = books_read.user_id " \
+          "GROUP BY books_read.user_id, users.username "
     result = db.session.execute(sql)
     count_list = result.fetchall()
-    print(count_list)
-    return render_template("statistics.html", items=count_list)
+    sql2 = "SELECT DISTINCT TITLE from books_currently_reading"
+    result2 = db.session.execute(sql2)
+    title_list = result2.fetchall()
+    b_list = []
+    for i in range(len(title_list)):
+        message = str(title_list[i])[1:-1]
+        message2 = message.replace("'", "")
+        message3 = message2.replace(",", "")
+        b_list.append(message3)
+    return render_template("statistics.html", items=count_list, books=b_list)
 
 
 if __name__ == "__main__":

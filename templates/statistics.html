@@ -23,6 +23,7 @@
     <h3>Statistics</h3>
         </div>
 <tr>
+    <h4> Book Count Per User: </h4>
 <ol size ="small", type = "1" >
       {% for item in items %}
     <li>  <b>Username:</b> {{item.0}} <br>
@@ -31,6 +32,14 @@
      {% endfor %}
     </ol>
 </tr>
+    <h4> Titles Currently Trending:</h4>
+<tr>
+    <ol size ="small", type = "1" >
+      {% for book in books %}
+   <li><i>{{book}}</i></li>
+     {% endfor %}
+         </ol>
+    </tr>
 
 <body>
 
