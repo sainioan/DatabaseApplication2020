@@ -242,6 +242,17 @@ def my_reading_list_books_delete(book_id):
     db.session.commit()
     # flash('delete done.', 'success')
     return redirect(url_for('showBooks'))
+# UPDATE song SET name=?, lyrics=? WHERE song.id = ?
+
+
+@app.route('/my_current_books/update/<book_id>', methods=["GET"])
+@login_required
+def my_current_books__update(book_id):
+    sql = "UPDATE books_currently_reading SET current_page=?  WHERE book_id=:book_id"
+    db.session.execute(sql, {"book_id": book_id})
+    db.session.commit()
+    # flash('delete done.', 'success')
+    return redirect(url_for('showBooks'))
 
 
 @app.route("/newBook", methods=["get", "post"])
@@ -303,6 +314,7 @@ def add_current_book():
 @app.route("/stats")
 @login_required
 def get_statistics():
+    user_count = User.query.count()
     sql = "SELECT username, user_id, count(user_id) FROM books_read LEFT JOIN users ON users.id = books_read.user_id " \
           "GROUP BY books_read.user_id, users.username "
     result = db.session.execute(sql)
@@ -316,7 +328,7 @@ def get_statistics():
         message2 = message.replace("'", "")
         message3 = message2.replace(",", "")
         b_list.append(message3)
-    return render_template("statistics.html", items=count_list, books=b_list)
+    return render_template("statistics.html", items=count_list, books=b_list, count= user_count )
 
 
 if __name__ == "__main__":

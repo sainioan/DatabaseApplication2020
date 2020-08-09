@@ -22,11 +22,15 @@
     <div class="header">
     <h3>Statistics</h3>
         </div>
-<tr>
+    <body>
+    <tr>
+     <h4> User Count:</h4>
+        <p><b>Number of app users:</b> {{count}}</p>
     <h4> Book Count Per User: </h4>
-<ol size ="small", type = "1" >
+     <ol size ="small", type = "1" >
       {% for item in items %}
-    <li>  <b>Username:</b> {{item.0}} <br>
+     <li>
+          <b>Username:</b> {{item.0}} <br>
           <b>Number of books read:</b> {{item.2}}<br>
      </li>
      {% endfor %}
@@ -36,12 +40,27 @@
 <tr>
     <ol size ="small", type = "1" >
       {% for book in books %}
-   <li><i>{{book}}</i></li>
+    <li>{{book}}</li>
      {% endfor %}
-         </ol>
-    </tr>
+    </ol>
+</tr>
 
-<body>
 
+<td>
+<button id="myButton" class="float-left submit-button" >Home</button>
+<script type="text/javascript">
+    document.getElementById("myButton").onclick = function () {
+        location.href = "/home";
+    };
+</script>
+</td>
+      <td>
+<button id="myButton5" class="float-left submit-button" >Log out</button>
+<script type="text/javascript">
+    document.getElementById("myButton5").onclick = function () {
+        location.href = "/logout";
+    };
+</script>
+     </td>
 </body>
 </html>
