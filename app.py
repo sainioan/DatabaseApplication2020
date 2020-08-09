@@ -8,6 +8,7 @@ import os
 from dotenv import load_dotenv
 from os import getenv
 from flask_login import LoginManager, current_user
+from sqlalchemy import text
 
 app = Flask(__name__)
 app.secret_key = os.getenv("SECRET_KEY")
@@ -22,6 +23,7 @@ login_manager.init_app(app)
 
 from user_model import User
 from book_model import Book
+from current_book__model import Current_Book
 
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 app.config["SQLALCHEMY_DATABASE_URI"] = getenv("DATABASE_URL")
@@ -221,15 +223,26 @@ def show_my_current_books():
     return render_template("my_current_books.html", items=my_current_book_list)
 
 
-@app.route('/myBooks/delete/<int:id>')
+@app.route('/my_current_books/delete/<book_id>', methods =["GET"])
 @login_required
-def delete(id):
-    book_id = id
-    book = Book.query.get_or_404(book_id)
-    db.session.delete(book)
+def my_current_books_delete(book_id):
+    # stmt = text("DELETE FROM books_currently_reading WHERE books_currently_reading.book_id = book_id;")
+    sql = "DELETE FROM books_currently_reading WHERE book_id=:book_id"
+    db.session.execute(sql, {"book_id": book_id})
     db.session.commit()
-    flash('delete done.')
-    return redirect(url_for('home'))
+    flash('delete done.', 'success')
+    return redirect(url_for('my_current_books'))
+
+
+@app.route('/booksToReadList/delete/<book_id>', methods =["GET"])
+@login_required
+def my_reading_list_books_delete(book_id):
+    # stmt = text("DELETE FROM books_currently_reading WHERE books_currently_reading.book_id = book_id;")
+    sql = "DELETE FROM bookstoread WHERE book_id=:book_id"
+    db.session.execute(sql, {"book_id": book_id})
+    db.session.commit()
+    flash('delete done.', 'success')
+    return redirect(url_for('booksToReadList'))
 
 
 @app.route("/newBook", methods=["get", "post"])
@@ -243,7 +256,7 @@ def add():
         user_id = int(booksToRead.user_id())
         booksToRead.new(title, author, user_id)
         db.session.commit()
-        return redirect("/home")
+        return redirect("/booksToReadList")
     else:
         return render_template("error.html", message="Error adding a book")
 
@@ -263,7 +276,7 @@ def addBook():
         user_id = int(books_read.user_id())
         books_read.new_book(title, author, comment, rating, user_id)
         db.session.commit()
-        return redirect("/home")
+        return redirect("/myBooks")
     else:
         return render_template("error.html", message="Error adding a book")
 
@@ -283,7 +296,7 @@ def add_current_book():
         user_id = int(books_currently_reading.user_id())
         books_currently_reading.new_book(title, author, genre, plot_summary, current_page, pages, user_id)
         db.session.commit()
-        return redirect("/home")
+        return redirect("/my_current_books")
     else:
         return render_template("error.html", message="Error adding a book")
 
