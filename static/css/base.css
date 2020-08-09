@@ -88,6 +88,18 @@ nav .navbar-brand {
   color: white;
   font-size: 30px;
 }
+.myButton1 {background-color: #4CAF50;} /* Green */
+.myButton2 {background-color: #008CBA;} /* Blue */
+.myButton3 {background-color: #f44336;} /* Red */
+.myButton4 {background-color: #e7e7e7; color: black;} /* Gray */
+.myButton5 {background-color: #555555;} /* Black */
+.myButton6 {background-color: #4CAF50;} /* Green */
+.myButton7 {background-color: #008CBA;} /* Blue */
+.myButton8 {background-color: #f44336;} /* Red */
+.myButton9 {background-color: #e7e7e7; color: black;} /* Gray */
+.myButton10 {background-color: #555555;} /* Black */
+.myButton11 {background-color: #4CAF50;} /* Green */
+.myButton12 {background-color: #008CBA;} /* Blue */
 .thumbnail {
     border-radius: 0px;
     box-shadow: 2px 2px 2px #D6DBDF;
