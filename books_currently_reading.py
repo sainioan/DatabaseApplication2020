@@ -23,14 +23,16 @@ def show(user_id):
     my_current_book_list = result.fetchall()
     return my_current_book_list
 
-def get_book_id(title):
 
+def get_book_id(title):
     sql = "SELECT book_id FROM books_currently_reading WHERE " \
           "title=:title"
     result = db.session.execute(sql, {"title": title})
     db.session.commit()
     id = result.fetchone()
     return id
+
+
 #
 # def show_percentage(user_id):
 #     sql = "SELECT current_page,pages, count(current_page)* 100/ pages as percentage  FROM books_currently_reading " \
@@ -42,7 +44,6 @@ def get_book_id(title):
 
 
 def update_pageNumber(user_id, current_page):
-
     sql = "UPDATE books_currently_reading SET current_page=? WHERE book_id = ?"
-    result = db.session.execute(sql, {"user_id": user_id, "current_page": current_page })
+    result = db.session.execute(sql, {"user_id": user_id, "current_page": current_page})
     db.session.commit()

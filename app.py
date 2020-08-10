@@ -236,23 +236,27 @@ def my_current_books_delete(book_id):
 @app.route('/booksToReadList/delete/<book_id>', methods=["GET"])
 @login_required
 def my_reading_list_books_delete(book_id):
-    # stmt = text("DELETE FROM books_currently_reading WHERE books_currently_reading.book_id = book_id;")
     sql = "DELETE FROM bookstoread WHERE book_id=:book_id"
     db.session.execute(sql, {"book_id": book_id})
     db.session.commit()
     # flash('delete done.', 'success')
     return redirect(url_for('showBooks'))
-# UPDATE song SET name=?, lyrics=? WHERE song.id = ?
 
 
-@app.route('/my_current_books/update/<book_id>', methods=["GET"])
+@app.route('/my_current_books/update/<book_id>', methods=["get", "post"])
 @login_required
-def my_current_books__update(book_id):
-    sql = "UPDATE books_currently_reading SET current_page=?  WHERE book_id=:book_id"
-    db.session.execute(sql, {"book_id": book_id})
-    db.session.commit()
-    # flash('delete done.', 'success')
-    return redirect(url_for('showBooks'))
+def my_current_books_update(book_id):
+
+    if request.method == "GET":
+        return render_template("current_page_update.html", id=book_id)
+    if request.method == "POST":
+        current_page = int(request.form.get("current_page"))
+        sql = "UPDATE books_currently_reading SET current_page=:current_page WHERE book_id=:book_id"
+        db.session.execute(sql, {"current_page": current_page, "book_id": book_id})
+        db.session.commit()
+        user_id = books_currently_reading.user_id()
+        my_current_book_list = books_currently_reading.show(user_id)
+        return render_template("my_current_books.html", items=my_current_book_list)
 
 
 @app.route("/newBook", methods=["get", "post"])
@@ -328,7 +332,7 @@ def get_statistics():
         message2 = message.replace("'", "")
         message3 = message2.replace(",", "")
         b_list.append(message3)
-    return render_template("statistics.html", items=count_list, books=b_list, count= user_count )
+    return render_template("statistics.html", items=count_list, books=b_list, count=user_count)
 
 
 if __name__ == "__main__":

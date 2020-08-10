@@ -19,6 +19,8 @@
           <b>Genre:</b> {{item.3}}<br>
           <b>Plot Summary/Content: </b> {{item.4}}<br>
           <b>Current Page: </b> {{item.5}}<br>
+        <td><form method="GET" action="{{url_for('my_current_books_update', book_id=item[0])}}">
+            <input type="submit" value="Update Current Page"/></form></td>
           <b>Number of Pages: </b> {{item.6}}<br>
         <td><form method="GET" action="{{url_for('my_current_books_delete', book_id=item[0]) }}">
             <input type="submit" value="Delete Book"/></form></td><br>
