@@ -18,15 +18,21 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     <title>Statistics</title>
+    <style>
+table, th, td {
+  border: 1px solid black;
+  border-collapse: collapse;
+}
+</style>
 </head>
     <div class="header">
     <h3>Statistics</h3>
         </div>
     <body>
     <tr>
-     <h4> User Count:</h4>
+     <h3 class="inline-headers h3"> User Count:</h3>
         <p><b>Number of app users:</b> {{count}}</p>
-    <h4> Book Count Per User: </h4>
+    <h3 class="inline-headers h3"> Book Count Per User: </h3>
      <ol size ="small", type = "1" >
       {% for item in items %}
      <li>
@@ -35,17 +41,15 @@
      </li>
      {% endfor %}
     </ol>
-</tr>
-    <h4> Titles Currently Trending:</h4>
-<tr>
-    <ol size ="small", type = "1" >
+
+    <h3 class="inline-headers h3"> Titles Currently Trending:</h3>
+<table>
       {% for book in books %}
-    <li>{{book}}</li>
+      <tr>
+          <th> {{ book }} </th>
+             </tr>
      {% endfor %}
-    </ol>
-</tr>
-
-
+</table>
 <td>
 <button id="myButton" class="float-left submit-button" >Home</button>
 <script type="text/javascript">
@@ -54,7 +58,7 @@
     };
 </script>
 </td>
-      <td>
+      <td td style="border:none;">
 <button id="myButton5" class="float-left submit-button" >Log out</button>
 <script type="text/javascript">
     document.getElementById("myButton5").onclick = function () {
@@ -62,5 +66,6 @@
     };
 </script>
      </td>
+
 </body>
 </html>

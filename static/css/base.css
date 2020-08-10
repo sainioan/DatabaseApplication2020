@@ -123,9 +123,17 @@ nav .navbar-brand {
 .inline-headers h3, .inline-headers h5 {
   display: inline-block;
   vertical-align: baseline;
+  background-color: lightskyblue;
 }
 
 .inline-p p {
   display: inline-block;
   vertical-align: baseline;
+}
+.table {
+  border: 1px solid black;
+}
+
+.th, .td {
+  border: 1px solid black;
 }
