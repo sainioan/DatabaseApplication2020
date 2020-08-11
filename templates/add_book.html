@@ -2,7 +2,7 @@
 <html lang="en">
 <style>
 input[type=text], select {
-  width: 40%;
+  width: 85%;
   padding: 8px 15px;
   margin: 8px 0;
   display: inline-block;
@@ -12,7 +12,7 @@ input[type=text], select {
 }
 
 input[type=submit] {
- width: 40%;
+ width: 85%;
   background-color: #4CAF50;
   color: white;
   padding: 5px 10px;
@@ -30,6 +30,11 @@ div {
   border-radius: 5px;
   background-color: #f2f2f2;
   padding: 5px;
+  width: 40%;
+  border-style: solid;
+  border-width: 3px;
+  border-color: black;
+
 }
 .form-style-6{
 	font: 95% Arial, Helvetica, sans-serif;
@@ -59,25 +64,28 @@ div {
 <body>
 <h2>Add a book to your Books-Read List!</h2>
 Enter the book title, book author, and a optional comment on the book that you have read.
+ <div class="box">
 <form action="/add_book" method="post">
-    Title: <input type="text" name="title" placeholder="Book Title *">
-    <p></p>
-    Author: <input type="text" name="author" placeholder="Book Author *">
-    <p></p>
-    Comment(optional): <input type="text" name="comment">
+
+    <label><b>Title:</b></label><br>
+    <input type="text" name="title" placeholder="Book Title *"><br>
+    <label><b>Author:</b></label><br>
+    <input type="text" name="author" placeholder="Author Name *"><br>
+     <label><b>Comment: </b>(optional)</label><br>
+    <input type="text" name="comment">
     <p></p>
 
-    Choose rating to describe your reading experience:
-<p>
-    <b>Excellent ***** 5/5</b><input type="radio" name="rating" value="*****  5/5">
-    <b>Good      ****  4/5</b><input type="radio" name="rating" value="****   4/5">
-    <b>Mediocre  ***   3/5</b><input type="radio" name="rating" value="***    3/5">
-    <b>Just okay **    2/5</b><input type="radio" name="rating" value="**     2/5">
-    <b>Poor      *     1/5</b><input type="radio" name="rating" value="*      1/5">
+    Choose rating to describe your reading experience:<br>
 
-</p>
+    <input type="radio" name="rating" value="*****  5"><b> Excellent ***** 5</b><br>
+    <input type="radio" name="rating" value="****   4"><b> Good      ****  4</b><br>
+    <input type="radio" name="rating" value="***    3"><b> Mediocre  ***   3</b><br>
+    <input type="radio" name="rating" value="**     2"><b> Just okay **    2</b><br>
+    <input type="radio" name="rating" value="*      1"><b> Poor      *     1</b><br>
+
 <input type="submit" value="Submit">
 </form>
+ </div>
       <td>
 <button id="myButton" class="float-left submit-button" >Home</button>
 <script type="text/javascript">

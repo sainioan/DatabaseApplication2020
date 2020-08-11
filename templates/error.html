@@ -11,6 +11,9 @@
 Error: {{ message }}
 </div>
 <p><a href="{{ url_for('index') }}">Log out</a></p>
+ {% if 'user_id' in session %}
+<p><a href="{{ url_for('home') }}">Home</a></p>
+ {% endif %}
  {% endblock %}
 </body>
 </html>
