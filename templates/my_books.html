@@ -2,46 +2,30 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-
         <link href='//fonts.googleapis.com/css?family=Lobster&subset=latin,latin-ext' rel='stylesheet' type='text/css'>
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <title>My Books</title>
 </head>
 <body>
-<h4>Summaries of books by {{author}}:</h4>
+<h2>My Books-Read-List:</h2>
 <tr>
 <ol size ="small", type = "1" >
       {% for item in items %}
-    <li>
-        {{item}}
+    <li>  <b>Title:</b> {{item.1}} <br>
+          <b>Author:</b> {{item.2}}<br>
+          <b> Comment:</b> {{item.3}}<br>
+          <b> Rating: </b> {{item.4}}<br>
      </li>
-          {% endfor %}
+     {% endfor %}
     </ol>
-
-    </tr>
-<h6>Reviews:</h6>
-<tr>
-<ol size ="small", type = "1" >
-       {% for link in links %}
-    <li><a href={{link}}>{{link}}</a></li>
-        {% endfor %}
-    </ol>
-    </tr>
+</tr>
 <p>
-      <td>
-          <button id="myButton2" class="float-left submit-button" >Add a new book to your <b>Reading</b> List</button>
-<script type="text/javascript">
-    document.getElementById("myButton2").onclick = function () {
-        location.href = "/newBook";
-    };
-</script>
-      </td>
     <td>
-<button id="myButton7" class="float-left submit-button" >Add a book to your <b>Books-Read</b> List</button>
+<button id="myButton7" class="float-left submit-button" >Add a book to your Books-Read List</button>
 <script type="text/javascript">
     document.getElementById("myButton7").onclick = function () {
-        location.href = "/addBook";
+        location.href = "/add_book";
     };
 </script>
      </td>

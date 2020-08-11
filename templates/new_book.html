@@ -12,20 +12,12 @@
 <body>
 <h2>Add a book to your reading list!</h2>
 <p></p>
-<!--<td>-->
-<!--    <select name="item" >-->
-<!--  <option size= "large", value="{{items[0]}}" selected>{{items[0]}}</option>-->
-<!--  {% for item in items[:] %}-->
-<!--    <option value="{{item}}">{{item}}</option>-->
-
-<!--  {% endfor %}-->
-<!--</select>-->
-<!--</td>-->
-<p></p>
-<form action="/newBook" method="post">
-Title: <input type="text" name="title">
+<form action="/new_book" method="post">
+    <label> Title: </label><br>
+ <input type="text" name="title" placeholder="Book Title *">
 <p>
-Author: <input type="text" name="author">
+       <label> Author: </label><br>
+ <input type="text" name="author" placeholder="Book Author *">
 <p>
 <input type="submit" value="Add a book">
 </form>

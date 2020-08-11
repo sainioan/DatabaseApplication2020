@@ -9,27 +9,49 @@
     <title>My Books</title>
 </head>
 <body>
-<h2>My Books-Read-List:</h2>
+<h4>Summaries of {{title}}:</h4>
 <tr>
 <ol size ="small", type = "1" >
       {% for item in items %}
-    <li>  <b>Title:</b> {{item.1}} <br>
-          <b>Author:</b> {{item.2}}<br>
-          <b> Comment:</b> {{item.3}}<br>
-          <b> Rating: </b> {{item.4}}<br>
+    <li>
+        {{item}}
      </li>
-     {% endfor %}
+          {% endfor %}
     </ol>
-</tr>
+
+    </tr>
+<h6>Reviews:</h6>
+<tr>
+<ol size ="small", type = "1" >
+       {% for link in links %}
+    <li class="list-group-item"><a href={{link}}>{{link}}</a></li>
+        {% endfor %}
+    </ol>
+    </tr>
 <p>
     <td>
-<button id="myButton7" class="float-left submit-button" >Add a book to your Books-Read List</button>
+    <button id="myButton7" class="float-left submit-button" >Add a book to your <b>Books-Read</b> List</button>
 <script type="text/javascript">
     document.getElementById("myButton7").onclick = function () {
-        location.href = "/addBook";
+        location.href = "/add_book";
     };
 </script>
      </td>
+      <td>
+          <button id="myButton2" class="float-left submit-button" >Add a new book to your <b>Reading</b> List</button>
+<script type="text/javascript">
+    document.getElementById("myButton2").onclick = function () {
+        location.href = "/new_book";
+    };
+</script>
+      </td>
+<td>
+<button id="myButton9" class="float-left submit-button" >Summaries by book title</button>
+          <script type="text/javascript">
+    document.getElementById("myButton9").onclick = function () {
+        location.href = "/summary";
+    };
+</script>
 <td>
 <button id="myButton" class="float-left submit-button" >Home</button>
 <script type="text/javascript">

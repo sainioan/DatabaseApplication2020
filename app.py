@@ -13,7 +13,7 @@ from sqlalchemy import text
 app = Flask(__name__)
 app.secret_key = os.getenv("SECRET_KEY")
 
-import booksToRead
+import books_to_read
 import books_read
 import users
 import books_currently_reading
@@ -104,7 +104,7 @@ def logout():
     return redirect("/")
 
 
-@app.route("/signUp", methods=["get", "post"])
+@app.route("/sign_up", methods=["get", "post"])
 def register():
     if request.method == "GET":
         return render_template("signup.html")
@@ -140,9 +140,9 @@ def home():
 
 @app.route("/summary", methods=["get", "post"])
 @login_required
-def apiReview():
+def api_review():
     if request.method == "GET":
-        return render_template("searchByTitle.html", items=titles)
+        return render_template("search_by_title.html", items=titles)
     if request.method == "POST":
         title = str(request.form["title"])
     endpoint2 = "https://api.nytimes.com/svc/books/v3/reviews.json?title=" + title + "&api-key=" + API_KEY
@@ -162,7 +162,7 @@ def apiReview():
             message = results[i]['url']
             links.append(message)
         print(links)
-        return render_template("summaryByTitle.html", title=title, items=list, links=links)
+        return render_template("summary_by_title.html", title=title, items=list, links=links)
 
     else:
         return render_template("error_title.html", message=title + " not found")
@@ -170,9 +170,9 @@ def apiReview():
 
 @app.route("/summary2", methods=["get", "post"])
 @login_required
-def apiReview2():
+def api_review2():
     if request.method == "GET":
-        return render_template("searchByAuthor.html", items=titles)
+        return render_template("search_by_author.html", items=titles)
     if request.method == "POST":
         firstname = str(request.form["firstname"])
         lastname = str(request.form["lastname"])
@@ -193,25 +193,25 @@ def apiReview2():
             for i in range(length):
                 message = results2[i]['url']
                 links.append(message)
-            return render_template("summaryByAuthor.html", author=authorname, items=list, links=links)
+            return render_template("summary_by_author.html", author=authorname, items=list, links=links)
         else:
             return render_template("error_title.html", message=authorname + " not found")
 
 
-@app.route("/booksToReadList")
+@app.route("/books_to_read_list")
 @login_required
-def showBooks():
-    user_id = booksToRead.user_id()
-    myList = booksToRead.show(user_id)
-    return render_template("booksToReadList.html", items=myList)
+def show_books():
+    user_id = books_to_read.user_id()
+    my_list = books_to_read.show(user_id)
+    return render_template("books_to_read_list.html", items=my_list)
 
 
-@app.route("/myBooks")
+@app.route("/my_books_read")
 @login_required
-def showmybooks():
+def show_my_books():
     user_id = books_read.user_id()
     mybookList = books_read.show(user_id)
-    return render_template("mybooks.html", items=mybookList)
+    return render_template("my_books.html", items=mybookList)
 
 
 @app.route("/my_current_books")
@@ -229,18 +229,16 @@ def my_current_books_delete(book_id):
     sql = "DELETE FROM books_currently_reading WHERE book_id=:book_id"
     db.session.execute(sql, {"book_id": book_id})
     db.session.commit()
-    # flash('delete done.', 'success')
     return redirect(url_for('show_my_current_books'))
 
 
-@app.route('/booksToReadList/delete/<book_id>', methods=["GET"])
+@app.route('/books_to_read_list/delete/<book_id>', methods=["GET"])
 @login_required
 def my_reading_list_books_delete(book_id):
     sql = "DELETE FROM bookstoread WHERE book_id=:book_id"
     db.session.execute(sql, {"book_id": book_id})
     db.session.commit()
-    # flash('delete done.', 'success')
-    return redirect(url_for('showBooks'))
+    return redirect(url_for('show_books'))
 
 
 @app.route('/my_current_books/update/<book_id>', methods=["get", "post"])
@@ -259,38 +257,48 @@ def my_current_books_update(book_id):
         return render_template("my_current_books.html", items=my_current_book_list)
 
 
-@app.route("/newBook", methods=["get", "post"])
+@app.route("/new_book", methods=["get", "post"])
 @login_required
 def add():
     if request.method == "GET":
-        return render_template("newBook.html", items=titles)
+        return render_template("new_book.html", items=titles)
     if request.method == "POST":
         title = str(request.form["title"])
         author = str(request.form["author"])
-        user_id = int(booksToRead.user_id())
-        booksToRead.new(title, author, user_id)
+        if not title:
+            return render_template("error.html", message="A required field (title or author) missing.")
+            author = str(request.form["author"])
+        if not author:
+            return render_template("error.html", message="A required field (title or author) missing.")
+        user_id = int(books_to_read.user_id())
+        books_to_read.new(title, author, user_id)
         db.session.commit()
-        return redirect("/booksToReadList")
+        return redirect("/books_to_read_list")
     else:
         return render_template("error.html", message="Error adding a book")
 
 
-@app.route("/addBook", methods=["get", "post"])
+@app.route("/add_book", methods=["get", "post"])
 @login_required
-def addBook():
+def add_book():
     if request.method == "GET":
-        return render_template("addBook.html")
+        return render_template("add_book.html")
     if request.method == "POST":
-
-        title = str(request.form["title"])
-        author = str(request.form["author"])
+        if request.method == "POST":
+            title = str(request.form["title"])
+            author = str(request.form["author"])
+            if not title:
+                return render_template("error.html", message="A required field (title or author) missing.")
+                author = str(request.form["author"])
+            if not author:
+                return render_template("error.html", message="A required field (title or author) missing.")
         comment = str(request.form.get("comment"))
         rating = request.form["rating"]
         rating = str(rating)
         user_id = int(books_read.user_id())
         books_read.new_book(title, author, comment, rating, user_id)
         db.session.commit()
-        return redirect("/myBooks")
+        return redirect("/my_books_read")
     else:
         return render_template("error.html", message="Error adding a book")
 
@@ -303,6 +311,11 @@ def add_current_book():
     if request.method == "POST":
         title = str(request.form["title"])
         author = str(request.form["author"])
+        if not title:
+            return render_template("error.html", message="A required field (title or author) missing.")
+            author = str(request.form["author"])
+        if not author:
+            return render_template("error.html", message="A required field (title or author) missing.")
         plot_summary = str(request.form.get("plot_summary"))
         genre = str(request.form.get("genre"))
         current_page = int(request.form.get("current_page"))

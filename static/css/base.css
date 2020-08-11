@@ -75,7 +75,13 @@ nav .navbar-brand {
     max-width:50px;
     border-top: 2px solid #2E3134;
 }
-
+.box{
+margin:0 auto;
+width:300px;
+padding:20px;
+/*background:#f9f9f9;*/
+border:2px solid #333;
+}
 
 /* ===================================== Profile styles ======================================== */
 .list-group-item{
@@ -117,7 +123,7 @@ nav .navbar-brand {
 .flask-pagedown-preview::before {
     content: "Preview:";
     font-weight: bold;
-    font-size: 18;
+    font-size: 18pt;
 }
 
 .inline-headers h3, .inline-headers h5 {
