@@ -257,6 +257,18 @@ def my_current_books_update(book_id):
         return render_template("my_current_books.html", items=my_current_book_list)
 
 
+@app.route('/my_current_books/completed/<book_id>', methods=["get"])
+@login_required
+def my_current_books_completed(book_id):
+
+    sql = "INSERT INTO books_read (title, author, user_id) SELECT title, author, user_id FROM books_currently_reading " \
+          "WHERE book_id =:book_id "
+    db.session.execute(sql, {"book_id": book_id})
+    db.session.commit()
+
+    return redirect("/my_books_read")
+
+
 @app.route("/new_book", methods=["get", "post"])
 @login_required
 def add():
@@ -312,14 +324,15 @@ def add_current_book():
         title = str(request.form["title"])
         author = str(request.form["author"])
         if not title:
-            return render_template("error.html", message="A required field (title or author) missing.")
-            author = str(request.form["author"])
+            return render_template("error.html", message="A required field missing.")
         if not author:
-            return render_template("error.html", message="A required field (title or author) missing.")
+            return render_template("error.html", message="A required field missing.")
         plot_summary = str(request.form.get("plot_summary"))
         genre = str(request.form.get("genre"))
-        current_page = int(request.form.get("current_page"))
-        pages = int(request.form.get("pages"))
+        current_page = request.form.get("current_page")
+        pages = request.form["pages"]
+        if not pages:
+            return render_template("error.html", message="A required field missing.")
         user_id = int(books_currently_reading.user_id())
         books_currently_reading.new_book(title, author, genre, plot_summary, current_page, pages, user_id)
         db.session.commit()
@@ -345,7 +358,17 @@ def get_statistics():
         message2 = message.replace("'", "")
         message3 = message2.replace(",", "")
         b_list.append(message3)
-    return render_template("statistics.html", items=count_list, books=b_list, count=user_count)
+
+    sql3 = "SELECT DISTINCT TITLE from books_read"
+    result3 = db.session.execute(sql3)
+    read_books = result3.fetchall()
+    readb_list = []
+    for i in range(len(read_books)):
+        message = str(read_books[i])[1:-1]
+        message2 = message.replace("'", "")
+        message3 = message2.replace(",", "")
+        readb_list.append(message3)
+    return render_template("statistics.html", items=count_list, books=b_list, read_books =readb_list, count=user_count)
 
 
 if __name__ == "__main__":

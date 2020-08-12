@@ -23,6 +23,8 @@
           <b>Number of Pages: </b> {{item.6}}<br>
         <td><form method="GET" action="{{url_for('my_current_books_delete', book_id=item[0]) }}">
             <input type="submit" value="Delete Book"/></form></td><br>
+        <td><form   method ="get" action="{{url_for('my_current_books_completed', book_id=item[0]) }}">
+         <input type="submit" value="Add to Books-Read list"/></form></td><br>
      </li>
      {% endfor %}
     </ol>

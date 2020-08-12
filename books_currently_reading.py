@@ -33,6 +33,14 @@ def get_book_id(title):
     return id
 
 
+def transfer_to_books_read(user_id, book_id):
+    sql= "INSERT INTO books_read (title, author, user_id) SELECT title, author, user_id FROM books_currently_reading WHERE " \
+         "books_currently_reading.book_id=:book_id"
+    db.session.execute(sql, {"user_id": user_id, "book_id": book_id })
+    db.session.commit()
+    return True
+
+
 #
 # def show_percentage(user_id):
 #     sql = "SELECT current_page,pages, count(current_page)* 100/ pages as percentage  FROM books_currently_reading " \

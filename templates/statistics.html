@@ -51,6 +51,15 @@ table, th, td {
      {% endfor %}
 </table>
 <td>
+      <h3 class="inline-headers h3"> Titles Read By App Users:</h3>
+<table>
+      {% for book in read_books %}
+             <tr>
+          <th> {{ book }} </th>
+             </tr>
+     {% endfor %}
+</table>
+<td>
 <button id="myButton" class="float-left submit-button" >Home</button>
 <script type="text/javascript">
     document.getElementById("myButton").onclick = function () {
