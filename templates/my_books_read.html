@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+        <link href='//fonts.googleapis.com/css?family=Lobster&subset=latin,latin-ext' rel='stylesheet' type='text/css'>
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    {% with messages = get_flashed_messages(with_categories=true) %}
+  {% if messages %}
+    {% for category, message in messages %}
+      <div class="alert alert-{{ category }} alert-dismissible" role="alert">
+      <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+ {{ message }}
+   {% endfor %}
+  {% endif %}
+{% endwith %}
+
+{% if error %}
+
+      <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+  <div class="alert alert-danger">{{error}}</div>
+{% endif %}
+
+{% if msg %}
+
+      <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+  <div class="alert alert-success">{{msg}}</div>
+{% endif %}
+	{% block body %}{% endblock %}
+      </div></div>
+    <title>My Books</title>
+
+</head>
+<body>
+<h2>My Books-Read-List:</h2>
+<tr>
+<ol size ="small", type = "1" >
+      {% for item in items %}
+    <li>  <b>Title:</b> {{item.1}} <br>
+          <b>Author:</b> {{item.2}}<br>
+          <b> Comment:</b> {{item.3}}<br>
+          <b> Rating: </b> {{item.4}}<br>
+
+        <td><form method="GET" action="{{url_for('my_books_read_update_comment', book_id=item[0])}}">
+            <input type="submit" value="Update Comment"/></form></td>
+
+        <td><form method="GET" action="{{url_for('my_books_read_update_rating', book_id=item[0])}}">
+            <input type="submit" value="Update Rating"/></form></td>
+          </li>
+        {% endfor %}
+    </ol>
+</tr>
+
+<p>
+    <td>
+<button id="myButton7" class="float-left submit-button" >Add a book to your Books-Read List</button>
+<script type="text/javascript">
+    document.getElementById("myButton7").onclick = function () {
+        location.href = "/add_book";
+    };
+</script>
+     </td>
+<td>
+<button id="myButton" class="float-left submit-button" >Home</button>
+<script type="text/javascript">
+    document.getElementById("myButton").onclick = function () {
+        location.href = "/home";
+    };
+</script>
+</td>
+      <td>
+<button id="myButton5" class="float-left submit-button" >Log out</button>
+<script type="text/javascript">
+    document.getElementById("myButton5").onclick = function () {
+        location.href = "/logout";
+    };
+</script>
+     </td>
+
+</p>
+</body>
+</html>

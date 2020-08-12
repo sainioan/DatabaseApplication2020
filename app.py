@@ -211,7 +211,7 @@ def show_books():
 def show_my_books():
     user_id = books_read.user_id()
     mybookList = books_read.show(user_id)
-    return render_template("my_books.html", items=mybookList)
+    return render_template("my_books_read.html", items=mybookList)
 
 
 @app.route("/my_current_books")
@@ -257,13 +257,45 @@ def my_current_books_update(book_id):
         return render_template("my_current_books.html", items=my_current_book_list)
 
 
+@app.route('/my_books_read/update_comment/<book_id>', methods=["get", "post"])
+@login_required
+def my_books_read_update_comment(book_id):
+
+    if request.method == "GET":
+        return render_template("comment_update.html", id=book_id)
+    if request.method == "POST":
+        comment = request.form.get("comment")
+        sql = "UPDATE books_read SET comment=:comment WHERE book_id=:book_id"
+        db.session.execute(sql, {"comment": comment, "book_id": book_id})
+        db.session.commit()
+        return redirect('/my_books_read')
+
+
+@app.route('/my_books_read/update_rating/<book_id>', methods=["get", "post"])
+@login_required
+def my_books_read_update_rating(book_id):
+
+    if request.method == "GET":
+        return render_template("rating_update.html", id=book_id)
+    if request.method == "POST":
+        rating = request.form.get("rating")
+        sql = "UPDATE books_read SET rating=:rating WHERE book_id=:book_id"
+        db.session.execute(sql, {"rating": rating, "book_id": book_id})
+        db.session.commit()
+        return redirect('/my_books_read')
+
+
 @app.route('/my_current_books/completed/<book_id>', methods=["get"])
 @login_required
 def my_current_books_completed(book_id):
 
     sql = "INSERT INTO books_read (title, author, user_id) SELECT title, author, user_id FROM books_currently_reading " \
           "WHERE book_id =:book_id "
+    db.session.commit()
     db.session.execute(sql, {"book_id": book_id})
+    sql_delete = "DELETE FROM books_currently_reading WHERE book_id =:book_id"
+    db.session.execute(sql_delete, {"book_id": book_id})
+    flash("item successfully deleted from your currently reading list.", "success")
     db.session.commit()
 
     return redirect("/my_books_read")
