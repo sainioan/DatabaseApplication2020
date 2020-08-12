@@ -15,7 +15,9 @@ def new_book(title, author, comment, rating, user_id):
 
 
 def show(user_id):
-    sql = "SELECT book_id, title, author, comment, rating, user_id  FROM books_read WHERE user_id=:user_id ORDER BY rating DESC NULLS LAST"
+    sql = "SELECT book_id, title, author, comment, rating, user_id  FROM books_read WHERE user_id=:user_id  " \
+         " ORDER BY rating NULLS LAST"
+          # "CASE when rating  IS NULL THEN 1 ELSE 0 END, rating desc "
     result = db.session.execute(sql, {"user_id": user_id})
     db.session.commit()
     mybooklist = result.fetchall()

@@ -244,7 +244,6 @@ def my_reading_list_books_delete(book_id):
 @app.route('/my_current_books/update/<book_id>', methods=["get", "post"])
 @login_required
 def my_current_books_update(book_id):
-
     if request.method == "GET":
         return render_template("current_page_update.html", id=book_id)
     if request.method == "POST":
@@ -260,7 +259,6 @@ def my_current_books_update(book_id):
 @app.route('/my_books_read/update_comment/<book_id>', methods=["get", "post"])
 @login_required
 def my_books_read_update_comment(book_id):
-
     if request.method == "GET":
         return render_template("comment_update.html", id=book_id)
     if request.method == "POST":
@@ -274,7 +272,6 @@ def my_books_read_update_comment(book_id):
 @app.route('/my_books_read/update_rating/<book_id>', methods=["get", "post"])
 @login_required
 def my_books_read_update_rating(book_id):
-
     if request.method == "GET":
         return render_template("rating_update.html", id=book_id)
     if request.method == "POST":
@@ -288,7 +285,6 @@ def my_books_read_update_rating(book_id):
 @app.route('/my_current_books/completed/<book_id>', methods=["get"])
 @login_required
 def my_current_books_completed(book_id):
-
     sql = "INSERT INTO books_read (title, author, user_id) SELECT title, author, user_id FROM books_currently_reading " \
           "WHERE book_id =:book_id "
     db.session.commit()
@@ -328,17 +324,16 @@ def add_book():
     if request.method == "GET":
         return render_template("add_book.html")
     if request.method == "POST":
-        if request.method == "POST":
-            title = str(request.form["title"])
-            author = str(request.form["author"])
-            if not title:
-                return render_template("error.html", message="A required field (title or author) missing.")
-                author = str(request.form["author"])
-            if not author:
-                return render_template("error.html", message="A required field (title or author) missing.")
+        title = str(request.form["title"])
+        author = str(request.form["author"])
         comment = str(request.form.get("comment"))
-        rating = request.form["rating"]
-        rating = str(rating)
+        rating = request.form.get("rating")
+        if not title:
+            return render_template("error.html", message="A required field missing.")
+        if not author:
+            return render_template("error.html", message="A required field missing.")
+        if not rating:
+            return render_template("error.html", message="A required field missing.")
         user_id = int(books_read.user_id())
         books_read.new_book(title, author, comment, rating, user_id)
         db.session.commit()
@@ -362,6 +357,8 @@ def add_current_book():
         plot_summary = str(request.form.get("plot_summary"))
         genre = str(request.form.get("genre"))
         current_page = request.form.get("current_page")
+        if not current_page:
+            return render_template("error.html", message="A required field missing.")
         pages = request.form["pages"]
         if not pages:
             return render_template("error.html", message="A required field missing.")
@@ -400,7 +397,7 @@ def get_statistics():
         message2 = message.replace("'", "")
         message3 = message2.replace(",", "")
         readb_list.append(message3)
-    return render_template("statistics.html", items=count_list, books=b_list, read_books =readb_list, count=user_count)
+    return render_template("statistics.html", items=count_list, books=b_list, read_books=readb_list, count=user_count)
 
 
 if __name__ == "__main__":
