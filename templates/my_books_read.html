@@ -122,9 +122,8 @@
              </div>
              </div>
     </nav>
-</head>
-<body>
-    {% with messages = get_flashed_messages(with_categories=true) %}
+    <nav>
+        {% with messages = get_flashed_messages(with_categories=true) %}
   {% if messages %}
     {% for category, message in messages %}
       <div class="alert alert-{{ category }} alert-dismissible" role="alert">
@@ -146,6 +145,10 @@
   <div class="alert alert-success">{{msg}}</div>
 {% endif %}
 	{% block body %}{% endblock %}
+          </nav>
+</head>
+<body>
+
 <h2>My Books-Read-List:</h2>
 <tr>
 <ol size ="small", type = "1" >

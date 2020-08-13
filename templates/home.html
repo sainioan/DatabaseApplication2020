@@ -34,6 +34,7 @@
         </div>
         </a>
        </div>
+      <nav>
       {% with messages = get_flashed_messages(with_categories=true) %}
   {% if messages %}
     {% for category, message in messages %}
@@ -58,7 +59,7 @@
 	{% block body %}{% endblock %}
       </div></div>
 
-
+</nav>
 {% block content %}{% endblock %}
           </nav>
     <nav class="navbar navbar-expand-md navbar-light bg-light mb-4">
@@ -122,7 +123,7 @@
     </nav>
         <nav class="navbar navbar-expand-md navbar-light bg-light mb-4">
           <td>
-<button id="myButton11"  style="background-color: #afd9ee"  class="float-left submit-button" > Add to books you're currently reading</button>
+              <button id="myButton11"  style="background-color: #afd9ee"  class="float-left submit-button" > Add to your <b>Current Reading List</b></button>
           <script type="text/javascript">
     document.getElementById("myButton11").onclick = function () {
         location.href = "/add_current_book";

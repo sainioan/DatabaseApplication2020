@@ -6,35 +6,24 @@
      <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" />
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
        <title>Error</title>
 </head>
+<body>
 <body>  {% block content %}
-<!--<div class="alert alert-danger">-->
-<!--Error: {{ message }}-->
+ <div class="alert alert-danger alert-dismissible" role="alert">
+      <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+Error: {{ message }}
 
-{% with messages = get_flashed_messages(with_categories=true) %}
-  {% if messages %}
-    {% for category, message in messages %}
-      <div class="alert alert-{{ category }} alert-dismissible" role="alert">
-      <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
- {{ message }}
-   {% endfor %}
-  {% endif %}
-{% endwith %}
-{% if error %}
-      <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
   <div class="alert alert-danger">{{error}}</div>
-{% endif %}
-{% if msg %}
-      <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-  <div class="alert alert-success">{{msg}}</div>
-{% endif %}
-	{% block body %}{% endblock %}
 </div>
 <p><a href="{{ url_for('index') }}">Front Page</a></p>
-<!--{% if 'username' in session %}-->
-<!--<p><a href="{{ url_for('home') }}">Home</a></p>-->
-<!-- {% endif %}-->
+
  {% endblock %}
+<form>
+ <input type="button" value="Back" onclick="history.back()">
+</form>
+</body>
+
 </body>
 </html>

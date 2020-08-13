@@ -302,7 +302,7 @@ def my_current_books_completed(book_id):
     db.session.execute(sql, {"book_id": book_id})
     sql_delete = "DELETE FROM books_currently_reading WHERE book_id =:book_id"
     db.session.execute(sql_delete, {"book_id": book_id})
-    flash("item successfully deleted from your currently reading list.", "success")
+    flash("item successfully moved to Books-Read List and deleted from your Current Reading List.", "success")
     db.session.commit()
 
     return redirect("/my_books_read")
