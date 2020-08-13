@@ -134,10 +134,13 @@
           <b>Plot Summary/Content: </b> {{item.4}}
         <td><form method="GET" action="{{url_for('my_current_books_update_summary', book_id=item[0])}}">
             <input type="submit" value="Update Plot Summary/Content"/></form></td>
-          <b>Current Page: </b> {{item.5}}
+          <b>Current Page: </b> {{item.5}}<br>
+         You've read: {{item.8*100}} percent of the book.
         <td><form method="GET" action="{{url_for('my_current_books_update', book_id=item[0])}}">
             <input type="submit" value="Update Current Page"/></form></td>
-          <b>Number of Pages: </b> {{item.6}}<br>
+          <b>Number of Pages: </b> {{item.6}}
+
+        <br>
        <i>Done with the book? Move the book to your books-read list by clicking the button below:</i>
         <td><form   method ="get" action="{{url_for('my_current_books_completed', book_id=item[0]) }}">
          <input type="submit" value="Add to Books-Read list"/></form></td>
