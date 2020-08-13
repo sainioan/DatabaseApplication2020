@@ -21,6 +21,8 @@ Execute the following command to install the necessary libraries:<br />
 * Users can enter the books they wish to read to their personal reading list
 * Users can enter the books they are currently reading to their currently reading list.
 * Users can update the current page number of the books they are currently reading.
+* Users can update Plot Summary/Content.
 * Users can delete books from their (books-to-read) reading list as well as from their current reading list.
+* Users can move a book from their currently-reading list to books-read list.
 * Users can view data about how many books various app users have read.
   
