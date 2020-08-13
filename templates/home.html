@@ -25,7 +25,7 @@
 
 <H4>Welcome!</H4>
 </div>
-  </nav>
+
        <div class="container">
         <a class="navbar-brand" href="/">
  <div class="content">
@@ -60,7 +60,10 @@
 
 
 {% block content %}{% endblock %}
+          </nav>
+    <nav class="navbar navbar-expand-md navbar-light bg-light mb-4">
       <div>
+
       <td>
 
 <button id="myButton4" style="background-color: slateblue" class="float-left submit-button" >Current bestsellers</button>
@@ -89,7 +92,7 @@
     };
 </script>
       </td>
-  </div>
+
                 <td>
 <button id="myButton3" style="background-color: lightgreen" class="float-left submit-button" >My Reading List</button>
 <script type="text/javascript">
@@ -99,7 +102,16 @@
 </script>
      </td>
       </div>
-                <td>
+
+                        <td>
+<button id="myButton10" style="background-color: deepskyblue" class="float-left submit-button" >Currently Reading List</button>
+          <script type="text/javascript">
+    document.getElementById("myButton10").onclick = function () {
+        location.href = "/my_current_books";
+    };
+</script>
+                        </td>
+                        <td>
 <button id="myButton6" style="background-color:aquamarine" class="float-left submit-button" >Books-Read List</button>
           <script type="text/javascript">
     document.getElementById("myButton6").onclick = function () {
@@ -107,15 +119,8 @@
     };
 </script>
       </td>
-
-                        <td>
-<button id="myButton10" style="background-color: deepskyblue" class="float-left submit-button" >Books I'm currently reading</button>
-          <script type="text/javascript">
-    document.getElementById("myButton10").onclick = function () {
-        location.href = "/my_current_books";
-    };
-</script>
-                        </td>
+    </nav>
+        <nav class="navbar navbar-expand-md navbar-light bg-light mb-4">
           <td>
 <button id="myButton11"  style="background-color: #afd9ee"  class="float-left submit-button" > Add to books you're currently reading</button>
           <script type="text/javascript">
@@ -157,8 +162,42 @@
     };
 </script>
      </td>
+  </div>
              </div>
              </div>
-
+    </nav>
+  <div></div><br>
+     <h3 style="text-align:-webkit-center">Instructions:</h3>
+<div class="container">
+   <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12"><div class ="infobox">
+    <p>  <a href = "{{ url_for('show_books') }}">  <b>My Future Reading List </b></a> Add books that you would like read to your reading list. To get ideas for great reads, search for summaries of many famous books<br>
+        <a href = "{{ url_for('api_review') }}">  <b>summaries by author </b></a>
+        <br>
+         <a href = "{{ url_for('api_review2') }}">
+          <b>summaries by title</b></a></p>
+          or check out the current New York Times bestseller list    <a href = "{{ url_for('bestsellers') }}"> <b>bestseller list </b></a>
+</div>
+  <br>
+<div class ="infobox">
+    <p> <a href = "{{ url_for('show_my_current_books') }}">  <b>My Current Reading List </b></a>Add books that you're currently reading. Keep track of
+        the current page you're on as well as story summary. Once you're done with the book, you can add
+        it to your books-read list. In addition, you can delete books you're not longer reading.<br>
+</div>
+  <br>
+   </div>
+       <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+<div class="infobox">
+    <p><a href = "{{ url_for('show_my_books') }}">  <b>My Books-Read List </b></a> Add books to your books-read list to keep track of books you have completed. You can comment on and rate
+        these books.<br>
+</div>
+  <br>
+<div class="infobox">
+    <p><a href = "{{ url_for('get_statistics') }}">  <b>View Statistics </b></a> AddYou can view various data about app users' reading habit, such
+        as book count, books they are reading, books they have finished, etc.<br>
+</div>
+   </div>
+<div>
+</div>
+</div>
 </body>
 </html>

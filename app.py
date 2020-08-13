@@ -251,9 +251,20 @@ def my_current_books_update(book_id):
         sql = "UPDATE books_currently_reading SET current_page=:current_page WHERE book_id=:book_id"
         db.session.execute(sql, {"current_page": current_page, "book_id": book_id})
         db.session.commit()
-        user_id = books_currently_reading.user_id()
-        my_current_book_list = books_currently_reading.show(user_id)
-        return render_template("my_current_books.html", items=my_current_book_list)
+        return redirect("/my_current_books")
+
+
+@app.route('/my_current_books/update_summary/<book_id>', methods=["get", "post"])
+@login_required
+def my_current_books_update_summary(book_id):
+    if request.method == "GET":
+        return render_template("summary_update.html", id=book_id)
+    if request.method == "POST":
+        summary = str(request.form.get("summary"))
+        sql = "UPDATE books_currently_reading SET plot_summary=:plot_summary WHERE book_id=:book_id"
+        db.session.execute(sql, {"plot_summary": summary, "book_id": book_id})
+        db.session.commit()
+        return redirect("/my_current_books")
 
 
 @app.route('/my_books_read/update_comment/<book_id>', methods=["get", "post"])

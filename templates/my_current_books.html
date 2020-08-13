@@ -7,29 +7,148 @@
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <title>My Books</title>
+    <nav class="navbar navbar-expand-md navbar-light bg-light mb-4">
+      <div>
+
+      <td>
+
+<button id="myButton4" style="background-color: slateblue" class="float-left submit-button" >Current bestsellers</button>
+          <script type="text/javascript">
+    document.getElementById("myButton4").onclick = function () {
+        location.href = "/bestsellers";
+    };
+
+</script>
+      </td>
+                       <td>
+
+<button id="myButton9" style="background-color: darkolivegreen"class="float-left submit-button" >Summaries by book title</button>
+          <script type="text/javascript">
+    document.getElementById("myButton9").onclick = function () {
+        location.href = "/summary";
+    };
+</script>
+      </td>
+                       </div>
+             <td>
+<button id="myButton8" style="background-color: #66afe9" class="float-left submit-button" >Summaries by author</button>
+          <script type="text/javascript">
+    document.getElementById("myButton8").onclick = function () {
+        location.href = "/summary2";
+    };
+</script>
+      </td>
+
+                <td>
+<button id="myButton3" style="background-color: lightgreen" class="float-left submit-button" >My Reading List</button>
+<script type="text/javascript">
+    document.getElementById("myButton3").onclick = function () {
+        location.href = "/books_to_read_list";
+    };
+</script>
+     </td>
+      </div>
+
+                        <td>
+<button id="myButton10" style="background-color: deepskyblue" class="float-left submit-button" >Currently Reading List</button>
+          <script type="text/javascript">
+    document.getElementById("myButton10").onclick = function () {
+        location.href = "/my_current_books";
+    };
+</script>
+                        </td>
+                        <td>
+<button id="myButton6" style="background-color:aquamarine" class="float-left submit-button" >Books-Read List</button>
+          <script type="text/javascript">
+    document.getElementById("myButton6").onclick = function () {
+        location.href = "/my_books_read";
+    };
+</script>
+      </td>
+    </nav>
+        <nav class="navbar navbar-expand-md navbar-light bg-light mb-4">
+          <td>
+<button id="myButton11"  style="background-color: #afd9ee"  class="float-left submit-button" > Add to books you're currently reading</button>
+          <script type="text/javascript">
+    document.getElementById("myButton11").onclick = function () {
+        location.href = "/add_current_book";
+    };
+</script>
+      </td>
+      <td>
+          <button id="myButton2"  style ="background-color: #e4b9c0"class="float-left submit-button" >Add a new book to your <b>Reading</b> List </button>
+<script type="text/javascript">
+    document.getElementById("myButton2").onclick = function () {
+        location.href = "/new_book";
+    };
+</script>
+      </td>
+           <td>
+               <button id="myButton7" style ="background-color: #faebcc" class="float-left submit-button" >Add a book to your <b>Books-Read</b> List</button>
+<script type="text/javascript">
+    document.getElementById("myButton7").onclick = function () {
+        location.href = "/add_book";
+    };
+</script>
+     </td>
+
+    <td>
+<button id="myButton12" style= "background-color: #67b168" class="float-left submit-button" >View Statistics</button>
+          <script type="text/javascript">
+    document.getElementById("myButton12").onclick = function () {
+        location.href = "/stats";
+    };
+</script>
+      </td>
+          <td>
+<button id="myButton5"  style= "background-color: #1b6d85" class="float-left submit-button" >Log out</button>
+<script type="text/javascript">
+    document.getElementById("myButton5").onclick = function () {
+        location.href = "/logout";
+    };
+</script>
+     </td>
+                  <td>
+<button id="myButton" class="float-left submit-button" >Home</button>
+<script type="text/javascript">
+    document.getElementById("myButton").onclick = function () {
+        location.href = "/home";
+    };
+</script>
+     </td>
+  </div>
+             </div>
+             </div>
+    </nav>
 </head>
 <body>
-<h2>I'm reading the following books:</h2>
+<h2>My Current Reading List:</h2>
 <tr>
 <ol size ="small", type = "1" >
       {% for item in items %}
-    <li>  <b>Title:</b> {{item.1}} <br>
+
+    <li>
+        <b>Title:</b> {{item.1}} <br>
           <b>Author:</b> {{item.2}}<br>
           <b>Genre:</b> {{item.3}}<br>
-          <b>Plot Summary/Content: </b> {{item.4}}<br>
-          <b>Current Page: </b> {{item.5}}<br>
+          <b>Plot Summary/Content: </b> {{item.4}}
+        <td><form method="GET" action="{{url_for('my_current_books_update_summary', book_id=item[0])}}">
+            <input type="submit" value="Update Plot Summary/Content"/></form></td>
+          <b>Current Page: </b> {{item.5}}
         <td><form method="GET" action="{{url_for('my_current_books_update', book_id=item[0])}}">
             <input type="submit" value="Update Current Page"/></form></td>
           <b>Number of Pages: </b> {{item.6}}<br>
-        <td><form method="GET" action="{{url_for('my_current_books_delete', book_id=item[0]) }}">
-            <input type="submit" value="Delete Book"/></form></td><br>
+       <i>Done with the book? Move the book to your books-read list by clicking the button below:</i>
         <td><form   method ="get" action="{{url_for('my_current_books_completed', book_id=item[0]) }}">
-         <input type="submit" value="Add to Books-Read list"/></form></td><br>
+         <input type="submit" value="Add to Books-Read list"/></form></td>
+        <i>No longer reading the book? You can safely delete it by clicking the button below:</i>
+        <td><form method="GET" action="{{url_for('my_current_books_delete', book_id=item[0]) }}">
+            <input type="submit" value="Delete Book"/></form></td>
      </li>
      {% endfor %}
     </ol>
 </tr>
-<p>
+<!--<p>
          <td>
 <button id="myButton11" class="float-left submit-button" >Add to books you're currently reading</button>
           <script type="text/javascript">
@@ -55,6 +174,6 @@
 </script>
      </td>
 
-</p>
+</p>-->
 </body>
 </html>
