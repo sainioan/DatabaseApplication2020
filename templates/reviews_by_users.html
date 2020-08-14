@@ -1,63 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
-<style>
-input[type=text], select {
-  width: 85%;
-  padding: 8px 15px;
-  margin: 8px 0;
-  display: inline-block;
-  border: 1px solid #ccc;
-  border-radius: 1px;
-  box-sizing: border-box;
-}
-
-input[type=submit] {
- width: 85%;
-  background-color: #4CAF50;
-  color: white;
-  padding: 5px 10px;
-  margin: 4px 0;
-  border: none;
-  border-radius: 4px;
-  cursor: pointer;
-}
-
-input[type=submit]:hover {
-  background-color: #45a049;
-}
-
-div {
-  border-radius: 5px;
-  background-color: #f2f2f2;
-  padding: 5px;
-  width: 40%;
-  border-style: solid;
-  border-width: 3px;
-  border-color: black;
-
-}
-.form-style-6{
-	font: 95% Arial, Helvetica, sans-serif;
-	max-width: 400px;
-	margin: 10px auto;
-	padding: 16px;
-	background: #F7F7F7;
-}
-.form-style-6 h1{
-	background: #43D1AF;
-	padding: 20px 0;
-	font-size: 140%;
-	font-weight: 300;
-	text-align: center;
-	color: #fff;
-	margin: -16px -16px 16px -16px;
-}
-</style>
 <head>
     <meta charset="UTF-8">
-        <link href='//fonts.googleapis.com/css?family=Lobster&subset=latin,latin-ext' rel='stylesheet' type='text/css'>
-        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-       <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <title>Title</title>
         <nav class="navbar navbar-expand-md navbar-light bg-light mb-4">
       <div>
@@ -90,7 +34,8 @@ div {
     };
 </script>
       </td>
-      <td>
+
+                <td>
 <button id="myButton3" style="background-color: lightgreen" class="float-left submit-button" >My Reading List</button>
 <script type="text/javascript">
     document.getElementById("myButton3").onclick = function () {
@@ -118,19 +63,19 @@ div {
       </td>
     </nav>
         <nav class="navbar navbar-expand-md navbar-light bg-light mb-4">
-          <td>
-<button id="myButton11"  style="background-color: #afd9ee"  class="float-left submit-button" > Add to books your <b>Current Reading</b> List</button>
-          <script type="text/javascript">
-    document.getElementById("myButton11").onclick = function () {
-        location.href = "/add_current_book";
-    };
-</script>
-      </td>
-      <td>
+              <td>
           <button id="myButton2"  style ="background-color: #e4b9c0"class="float-left submit-button" >Add a new book to your <b>Reading</b> List </button>
 <script type="text/javascript">
     document.getElementById("myButton2").onclick = function () {
         location.href = "/new_book";
+    };
+</script>
+      </td>
+          <td>
+              <button id="myButton11"  style="background-color: #afd9ee"  class="float-left submit-button" > Add to your <b>Current Reading List</b></button>
+          <script type="text/javascript">
+    document.getElementById("myButton11").onclick = function () {
+        location.href = "/add_current_book";
     };
 </script>
       </td>
@@ -166,44 +111,30 @@ div {
     };
 </script>
      </td>
-                  <td>
-<button id="myButton" class="float-left submit-button" >Home</button>
-<script type="text/javascript">
-    document.getElementById("myButton").onclick = function () {
-        location.href = "/home";
-    };
-</script>
-     </td>
   </div>
              </div>
              </div>
     </nav>
 </head>
-
 <body>
-<h2>Add a book to your Books-Read List!</h2>
-Enter the book title, book author, and a optional comment on the book that you have read.
- <div class="box">
-<form action="/add_book" method="post">
-
-    <label><b>Title:</b></label><br>
-    <input type="text" name="title" placeholder="Book Title *"><br>
-    <label><b>Author:</b></label><br>
-    <input type="text" name="author" placeholder="Author Name *"><br>
-     <label><b>Comment: </b>(optional)</label><br>
-    <input type="text" name="comment">
-    <p></p>
-
-    Choose rating to describe your reading experience: <br>
-
-    <input type="radio" name="rating" value="5"><b> Excellent ***** 5</b><br>
-    <input type="radio" name="rating" value="4"><b> Good      ****  4</b><br>
-    <input type="radio" name="rating" value="3"><b> Mediocre  ***   3</b><br>
-    <input type="radio" name="rating" value="2"><b> Just okay **    2</b><br>
-    <input type="radio" name="rating" value="1"><b> Poor      *     1</b><br>
-
-<input type="submit" value="Submit">
-</form>
- </div>
+<ol size ="small", type = "1" >
+      {% for item in items %}
+    <li>  <b>Title:</b> {{item.0}} <br>
+          <b> Comment:</b> {{item.1}}
+       <br>
+        <b>Rating: </b> {{item.2}}<br>
+        review given by {{item.3}}
+          </li>
+        {% endfor %}
+    </ol>
+<!--<ol size ="small", type = "1" >-->
+<!--      {% for list_item in review_list %}-->
+<!--    <li>  <b>Comment:</b> {{list_item.0}} <br>-->
+<!--          <b> Rating:</b> {{list_item.1}}-->
+<!--       <br>-->
+<!--        review given by {{list_item.2}}-->
+<!--          </li>-->
+<!--        {% endfor %}-->
+<!--    </ol>-->
 </body>
 </html>

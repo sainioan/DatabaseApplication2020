@@ -108,13 +108,14 @@ table, th, td {
     };
 </script>
      </td>
-
-    <td>
-<button id="myButton12" style= "background-color: #67b168" class="float-left submit-button" >View Statistics</button>
-          <script type="text/javascript">
-    document.getElementById("myButton12").onclick = function () {
-        location.href = "/stats";
+                      <td>
+               <button id="myButton13" style ="background-color: thistle" class="float-left submit-button" > Reviews by App Users</button>
+<script type="text/javascript">
+    document.getElementById("myButton13").onclick = function () {
+        location.href = "/user_reviews";
     };
+</script>
+     </td>
 </script>
       </td>
           <td>
@@ -172,24 +173,15 @@ table, th, td {
              </tr>
      {% endfor %}
 </table>
-<!--
-<td>
-<button id="myButton" class="float-left submit-button" >Home</button>
-<script type="text/javascript">
-    document.getElementById("myButton").onclick = function () {
-        location.href = "/home";
-    };
-</script>
-</td>
-      <td td style="border:none;">
-<button id="myButton5" class="float-left submit-button" >Log out</button>
-<script type="text/javascript">
-    document.getElementById("myButton5").onclick = function () {
-        location.href = "/logout";
-    };
-</script>
-     </td>
--->
-
+<ol size ="small", type = "1" >
+      {% for review in reviews %}
+    <li>  <b>Title:</b> {{review.0}} <br>
+          <b> Comment:</b> {{review.1}}
+       <br>
+        <b>Rating: </b> {{review.2}}<br>
+        review given by {{review.3}}
+          </li>
+        {% endfor %}
+    </ol>
 </body>
 </html>

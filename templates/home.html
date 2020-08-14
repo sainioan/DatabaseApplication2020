@@ -28,7 +28,8 @@
 
        <div class="container">
         <a class="navbar-brand" href="/">
- <div class="content">
+ <div class="content"><img src="../static/images/books.jpg" style="width:350px;height:150px; alt="books">
+
 <i size = "large" class="material-icons">book</i>
 <i size= "large" class="material-icons">local_library</i>
         </div>
@@ -146,6 +147,14 @@
     };
 </script>
      </td>
+                      <td>
+               <button id="myButton13" style ="background-color: thistle" class="float-left submit-button" > Reviews by App Users</button>
+<script type="text/javascript">
+    document.getElementById("myButton13").onclick = function () {
+        location.href = "/user_reviews";
+    };
+</script>
+     </td>
 
     <td>
 <button id="myButton12" style= "background-color: #67b168" class="float-left submit-button" >View Statistics</button>
@@ -171,7 +180,8 @@
      <h3 style="text-align:-webkit-center">Instructions:</h3>
 <div class="container">
    <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12"><div class ="infobox">
-    <p>  <a href = "{{ url_for('show_books') }}">  <b>My Future Reading List </b></a> Add books that you would like read to your reading list. To get ideas for great reads, search for summaries of many famous books<br>
+    <p>  <a href = "{{ url_for('show_books') }}">  <b>My Future Reading List </b></a> Add books that you would like read to your reading list.
+        To get ideas for great reads, search for summaries of many famous books<br>
         <a href = "{{ url_for('api_review') }}">  <b>summaries by author </b></a>
         <br>
          <a href = "{{ url_for('api_review2') }}">
