@@ -108,7 +108,7 @@
 </script>
      </td>
                         <form>
- <input type="button" value="Back" onclick="history.back()">
+ <input type="button" class="float-left submit-button" value="Back" onclick="history.back()">
 </form>
   </div>
              </div>
@@ -133,14 +133,20 @@
           <b>Page Count: </b> {{item.6}}<br>
         You've read: <u> <b>{{item.8}}</b></u> % of the book.
         <p></p>
-        <progress max="100" value="{{item.8}}"></progress>
-
+        <progress max="100" value="{{item.8}}"></progress><p></p>
        <i>Done with the book? Move the book to your books-read list by clicking the button below:</i>
         <td><form   method ="get" action="{{url_for('my_current_books_completed', book_id=item[0]) }}">
          <input type="submit" value="Add to Books-Read list"/></form></td>
         <i>No longer reading the book? You can safely delete it by clicking the button below:</i>
         <td><form method="GET" action="{{url_for('my_current_books_delete', book_id=item[0]) }}">
-            <input type="submit" value="Delete Book"/></form></td>
+            <input type="submit"  onclick="return clicked();" value="Delete Book"/></form>
+<script type="text/javascript">
+    function clicked() {
+  return confirm('Are you sure you want to delete the book?');
+    }
+</script>
+</td>
+
      </li><br>
      {% endfor %}
     </ol>

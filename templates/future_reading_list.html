@@ -126,7 +126,12 @@
     <li>  <b>Title:</b> {{item.1}} <br>
           <b>Author:</b> {{item.2}}<br>
           <td><form method="GET" action="{{url_for('my_reading_list_books_delete', book_id=item[0]) }}">
-          <input type="submit" value="Delete Book"/></form></td><br>
+                     <input type="submit"  onclick="return clicked();" value="Delete Book"/></form>
+<script type="text/javascript">
+    function clicked() {
+  return confirm('Are you sure you want to delete the book?');
+    }
+</script></td><br>
      </li>
      {% endfor %}
     </ol>
