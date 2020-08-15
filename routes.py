@@ -1,5 +1,5 @@
 from functools import wraps
-from flask import Flask, jsonify, redirect, config, url_for, flash
+from flask import url_for, flash
 from flask import g, render_template, redirect, request, session
 import json
 import requests
@@ -7,8 +7,7 @@ from flask_sqlalchemy import SQLAlchemy
 import os
 from dotenv import load_dotenv
 from os import getenv
-from flask_login import LoginManager, current_user
-from sqlalchemy import text
+from flask_login import LoginManager
 from app import app
 
 app.secret_key = os.getenv("SECRET_KEY")
@@ -185,7 +184,6 @@ def user_reviews():
     result = db.session.execute(sql)
     db.session.commit()
     read_books_comments = result.fetchall()
-    print(read_books_comments)
     return render_template("reviews_by_users.html", items=read_books_comments)
 
 

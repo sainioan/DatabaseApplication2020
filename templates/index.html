@@ -14,23 +14,7 @@
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     <title>Index</title>
 </head>
-<!--<header>
-	<div class="navbar-header">
-      <a class="navbar-brand" href="/">
-	  </a>
-    </div>
 
-
-	<div class = "container-fluid">
-
-	<ul class="nav navbar-nav navbar-right">
-		  <div style="margin-right: 10px; margin-left: 15px; margin-top: 5px; margin-bottom: 5px;"  class="container-fluid">
-
-	  </div>
-      </ul>
-	</div>
-
-</header>-->
 <body>
 <H2>Book Database Application</H2>
 <H4>Welcome!</H4>
@@ -39,8 +23,9 @@
     {% with messages = get_flashed_messages(with_categories=true) %}
   {% if messages %}
     {% for category, message in messages %}
- <div class="alert alert-{{ category }} alert-dismissible" role="alert">
-      <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+    <div class="alert alert-{{ category }} alert-dismissible" role="alert">
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span
+                aria-hidden="true">&times;</span></button>
       {{ message }}
      {% endfor %}
   {% endif %}
