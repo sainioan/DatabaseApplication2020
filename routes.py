@@ -129,7 +129,7 @@ def bestsellers():
                 'description'] + " "
             titles.append(message)
             images.append(book_list[i]['book_image'])
-        return render_template("books.html", message="Current Bestsellers:", items=titles, images=images)
+        return render_template("bestseller_list.html", message="Current Bestsellers:", items=titles, images=images)
 
 
 @app.route("/home")
@@ -224,7 +224,7 @@ def api_review2():
 def show_books():
     user_id = books_to_read.user_id()
     my_list = books_to_read.show(user_id)
-    return render_template("books_to_read_list.html", items=my_list)
+    return render_template("future_reading_list.html", items=my_list)
 
 
 @app.route("/my_books_read")
@@ -332,7 +332,7 @@ def my_current_books_completed(book_id):
 @login_required
 def add():
     if request.method == "GET":
-        return render_template("new_book.html", items=titles)
+        return render_template("add_future_book.html", items=titles)
     if request.method == "POST":
         title = str(request.form["title"])
         author = str(request.form["author"])
@@ -353,7 +353,7 @@ def add():
 @login_required
 def add_book():
     if request.method == "GET":
-        return render_template("add_book.html")
+        return render_template("add_read_book.html")
     if request.method == "POST":
         title = str(request.form["title"])
         author = str(request.form["author"])

@@ -48,7 +48,7 @@ table, th, td {
       </td>
                        </div>
              <td>
-<button id="myButton8" style="background-color: #66afe9" class="float-left submit-button" >Summaries by author</button>
+<button id="myButton8" style="background-color: #66afe9" class="float-left submit-button">Summaries by author</button>
           <script type="text/javascript">
     document.getElementById("myButton8").onclick = function () {
         location.href = "/summary2";
@@ -57,7 +57,7 @@ table, th, td {
       </td>
 
                 <td>
-<button id="myButton3" style="background-color: lightgreen" class="float-left submit-button" >My Reading List</button>
+<button id="myButton3" style="background-color: lightgreen" class="float-left submit-button">My Future Reading List</button>
 <script type="text/javascript">
     document.getElementById("myButton3").onclick = function () {
         location.href = "/books_to_read_list";
@@ -67,7 +67,7 @@ table, th, td {
       </div>
 
                         <td>
-<button id="myButton10" style="background-color: deepskyblue" class="float-left submit-button" >Currently Reading List</button>
+<button id="myButton10" style="background-color: deepskyblue" class="float-left submit-button">My Currently-Reading List</button>
           <script type="text/javascript">
     document.getElementById("myButton10").onclick = function () {
         location.href = "/my_current_books";
@@ -75,7 +75,7 @@ table, th, td {
 </script>
                         </td>
                         <td>
-<button id="myButton6" style="background-color:aquamarine" class="float-left submit-button" >Books-Read List</button>
+<button id="myButton6" style="background-color:aquamarine" class="float-left submit-button">My Books-Read List</button>
           <script type="text/javascript">
     document.getElementById("myButton6").onclick = function () {
         location.href = "/my_books_read";
@@ -84,40 +84,30 @@ table, th, td {
       </td>
     </nav>
         <nav class="navbar navbar-expand-md navbar-light bg-light mb-4">
-          <td>
-<button id="myButton11"  style="background-color: #afd9ee"  class="float-left submit-button" > Add to books your <b>Current Reading</b> List</button>
-          <script type="text/javascript">
-    document.getElementById("myButton11").onclick = function () {
-        location.href = "/add_current_book";
-    };
-</script>
-      </td>
-      <td>
-          <button id="myButton2"  style ="background-color: #e4b9c0"class="float-left submit-button" >Add a new book to your <b>Reading</b> List </button>
+                  <td>
+          <button id="myButton2"  style ="background-color: #e4b9c0"class="float-left submit-button">Add a new book to your Future <b>Reading</b> List </button>
 <script type="text/javascript">
     document.getElementById("myButton2").onclick = function () {
         location.href = "/new_book";
     };
 </script>
       </td>
+          <td>
+<button id="myButton11"  style="background-color: #afd9ee"  class="float-left submit-button">Add a book to your <b>Currently-Reading </b>List</button>
+          <script type="text/javascript">
+    document.getElementById("myButton11").onclick = function () {
+        location.href = "/add_current_book";
+    };
+</script>
+      </td>
            <td>
-               <button id="myButton7" style ="background-color: #faebcc" class="float-left submit-button" >Add a book to your <b>Books-Read</b> List</button>
+               <button id="myButton7" style ="background-color: #faebcc" class="float-left submit-button">Add a new book to your <b>Books-Read</b> List</button>
 <script type="text/javascript">
     document.getElementById("myButton7").onclick = function () {
         location.href = "/add_book";
     };
 </script>
      </td>
-                      <td>
-               <button id="myButton13" style ="background-color: thistle" class="float-left submit-button" > Reviews by App Users</button>
-<script type="text/javascript">
-    document.getElementById("myButton13").onclick = function () {
-        location.href = "/user_reviews";
-    };
-</script>
-     </td>
-</script>
-      </td>
           <td>
 <button id="myButton5"  style= "background-color: #1b6d85" class="float-left submit-button" >Log out</button>
 <script type="text/javascript">
@@ -134,6 +124,9 @@ table, th, td {
     };
 </script>
      </td>
+                        <form>
+ <input type="button" value="Back" onclick="history.back()">
+</form>
   </div>
              </div>
              </div>
