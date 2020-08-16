@@ -57,7 +57,8 @@
 </style>
 <head>
     <meta charset="UTF-8">
-       <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=yes">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=yes">
+    <link rel="shortcut icon" href="data:image/x-icon;," type="image/x-icon">
     <link href='//fonts.googleapis.com/css?family=Lobster&subset=latin,latin-ext' rel='stylesheet' type='text/css'>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
           integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
@@ -65,32 +66,26 @@
           integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <title>Add a Read Book</title>
     <nav class="navbar navbar-expand-md navbar-light bg-light mb-4">
-        <div>
-
-            <td>
-
-                <button id="myButton4" style="background-color: slateblue" class="float-left submit-button">Current
-                    bestsellers
-                </button>
-                <script type="text/javascript">
-                    document.getElementById("myButton4").onclick = function () {
-                        location.href = "/bestsellers";
-                    };
-
-                </script>
-            </td>
-            <td>
-
-                <button id="myButton9" style="background-color: darkolivegreen" class="float-left submit-button">
-                    Summaries by book title
-                </button>
-                <script type="text/javascript">
-                    document.getElementById("myButton9").onclick = function () {
-                        location.href = "/summary";
-                    };
-                </script>
-            </td>
-        </div>
+        <td>
+            <button id="myButton4" style="background-color: slateblue" class="float-left submit-button">Current
+                bestsellers
+            </button>
+            <script type="text/javascript">
+                document.getElementById("myButton4").onclick = function () {
+                    location.href = "/bestsellers";
+                };
+            </script>
+        </td>
+        <td>
+            <button id="myButton9" style="background-color: darkolivegreen" class="float-left submit-button">
+                Summaries by book title
+            </button>
+            <script type="text/javascript">
+                document.getElementById("myButton9").onclick = function () {
+                    location.href = "/summary";
+                };
+            </script>
+        </td>
         <td>
             <button id="myButton8" style="background-color: #66afe9" class="float-left submit-button">Summaries by
                 author
@@ -220,7 +215,58 @@ Enter the book title, book author, and a optional comment on the book that you h
         <input type="radio" name="rating" value="3"><b> Mediocre *** 3</b><br>
         <input type="radio" name="rating" value="2"><b> Just okay ** 2</b><br>
         <input type="radio" name="rating" value="1"><b> Poor * 1</b><br>
+        <label><b>Genre:</b></label><br>
+        <!--        <input type="text" name="genre" placeholder="Book Category (thriller, programming...)"><br>-->
+        <select name="genre" id="genre">
 
+            <option value="Action">Action</option>
+            <option value="Astronomy">Astronomy</option>
+            <option value="Autobiography">Autobiography</option>
+            <option value="Biography">Biography</option>
+            <option value="Children's Literature">Children's Literature</option>
+            <option value="Cinematography">Cinematography</option>
+            <option value="Commentary">Commentary</option>
+            <option value="Computer Science">Computer Science</option>
+            <option value="Crime">Historical Fiction</option>
+            <option value="Drama">Drama</option>
+            <option value="Essay">Essay</option>
+            <option value="Fable">Fable</option>
+            <option value="Fantasy">Fantasy</option>
+            <option value="Folklore">Folklore</option>
+            <option value="Historical Fiction">Historical Fiction</option>
+            <option value="History">History</option>
+            <option value="Hobbies">Hobbies</option>
+            <option value="Horror">Horror</option>
+            <option value="Humor">Humor</option>
+            <option value="Journalism">Journalism</option>
+            <option value="Law">Law</option>
+            <option value="Legend">Legend</option>
+            <option value="Mathematics">Mathematics</option>
+            <option value="Medicine">Medicine</option>
+            <option value="Memoir">Memoir</option>
+            <option value="Mystery">Mystery</option>
+            <option value="Mythology">Mythology</option>
+            <option value="Poetry">Poetry</option>
+            <option value="Politics">Politics</option>
+            <option value="Professional Development">Professional Development</option>
+            <option value="Realistic Fiction">Realistic Fiction</option>
+            <option value="Religion">Religion</option>
+            <option value="Romance">Romance</option>
+            <option value="Self Help">Self Help</option>
+            <option value="Science Fiction">Science Fiction</option>
+            <option value="Scientific Writing">Scientific Writing</option>
+            <option value="Short Story">Short Story</option>
+            <option value="Society">Society</option>
+            <option value="Speech">Speech</option>
+            <option value="Sports">Sports</option>
+            <option value="Tall Tale">Tall Tale</option>
+            <option value="Thriller">Thriller</option>
+            <option value="Travel">Travel</option>
+            <option value="Young Adult Fiction">Young Adult Fiction</option>
+            <option value="Other">Other</option>
+        </select>
+        <label><b>Page Count:</b></label><br>
+        <input type="number" name="pages" placeholder="Total page count *"><br>
         <input type="submit" value="Submit">
     </form>
 </div>

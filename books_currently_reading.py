@@ -35,7 +35,7 @@ def get_book_id(title):
 
 
 def transfer_to_books_read(user_id, book_id):
-    sql = "INSERT INTO books_read (title, author, user_id) SELECT title, author, user_id FROM books_currently_reading WHERE " \
+    sql = "INSERT INTO books_read (title, author, user_id, genre, pages) SELECT title, author, user_id,genre, pages FROM books_currently_reading WHERE " \
           "books_currently_reading.book_id=:book_id"
     db.session.execute(sql, {"user_id": user_id, "book_id": book_id})
     db.session.commit()

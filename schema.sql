@@ -16,7 +16,10 @@ CREATE TABLE books_read (
     author      TEXT NOT NULL,
     comment     TEXT,
     rating      TEXT,
-    user_id     INTEGER
+    user_id     INTEGER,
+    genre       TEXT,
+    pages       INTEGER
+
 );
 
 CREATE TABLE books_currently_reading (

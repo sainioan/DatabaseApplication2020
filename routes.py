@@ -225,20 +225,20 @@ def show_books():
     return render_template("future_reading_list.html", items=my_list)
 
 
-@app.route("/my_books_read")
-@login_required
-def show_my_books():
-    user_id = books_read.user_id()
-    mybook_list = books_read.show(user_id)
-    return render_template("my_books_read.html", items=mybook_list)
-
-
 @app.route("/my_current_books")
 @login_required
 def show_my_current_books():
     user_id = books_currently_reading.user_id()
     my_current_book_list = books_currently_reading.show(user_id)
     return render_template("my_current_books.html", items=my_current_book_list)
+
+
+@app.route("/my_books_read")
+@login_required
+def show_my_books():
+    user_id = books_read.user_id()
+    my_book_list = books_read.show(user_id)
+    return render_template("my_books_read.html", items=my_book_list)
 
 
 @app.route('/my_current_books/delete/<book_id>', methods=["GET"])
@@ -298,6 +298,19 @@ def my_books_read_update_comment(book_id):
         return redirect('/my_books_read')
 
 
+@app.route('/my_books_read/update_genre/<book_id>', methods=["get", "post"])
+@login_required
+def my_books_read_update_genre(book_id):
+    if request.method == "GET":
+        return render_template("genre_update.html", id=book_id)
+    if request.method == "POST":
+        genre = request.form.get("genre")
+        sql = "UPDATE books_read SET genre=:genre WHERE book_id=:book_id"
+        db.session.execute(sql, {"genre": genre, "book_id": book_id})
+        db.session.commit()
+        return redirect('/my_books_read')
+
+
 @app.route('/my_books_read/update_rating/<book_id>', methods=["get", "post"])
 @login_required
 def my_books_read_update_rating(book_id):
@@ -314,7 +327,8 @@ def my_books_read_update_rating(book_id):
 @app.route('/my_current_books/completed/<book_id>', methods=["get"])
 @login_required
 def my_current_books_completed(book_id):
-    sql = "INSERT INTO books_read (title, author, user_id) SELECT title, author, user_id FROM books_currently_reading " \
+    sql = "INSERT INTO books_read (title, author, user_id, genre, pages) SELECT title, author, user_id, genre, " \
+          "pages FROM books_currently_reading " \
           "WHERE book_id =:book_id "
     db.session.commit()
     db.session.execute(sql, {"book_id": book_id})
@@ -357,14 +371,19 @@ def add_book():
         author = str(request.form["author"])
         comment = str(request.form.get("comment"))
         rating = request.form.get("rating")
+        genre = str(request.form.get("comment"))
+        pages = request.form.get("pages")
         if not title:
             return render_template("error.html", message="A required field missing.")
         if not author:
             return render_template("error.html", message="A required field missing.")
-        if not rating:
+        if not pages:
             return render_template("error.html", message="A required field missing.")
+        # if not rating:
+        #     return render_template("error.html", message="A required field missing.")
+
         user_id = int(books_read.user_id())
-        books_read.new_book(title, author, comment, rating, user_id)
+        books_read.new_book(title, author, comment, rating, user_id, genre, pages)
         db.session.commit()
         return redirect("/my_books_read")
     else:
