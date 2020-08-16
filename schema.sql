@@ -21,7 +21,6 @@ CREATE TABLE books_read (
     pages       INTEGER
 
 );
-
 CREATE TABLE books_currently_reading (
     book_id      SERIAL PRIMARY KEY,
     title        TEXT NOT NULL,
