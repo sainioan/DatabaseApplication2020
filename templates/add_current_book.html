@@ -66,27 +66,27 @@
           integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <title>Title</title>
     <nav class="navbar navbar-expand-md navbar-light bg-light mb-4">
-            <td>
-                <button id="myButton4" style="background-color: slateblue" class="float-left submit-button">Current
-                    bestsellers
-                </button>
-                <script type="text/javascript">
-                    document.getElementById("myButton4").onclick = function () {
-                        location.href = "/bestsellers";
-                    };
-                </script>
-            </td>
-            <td>
+        <td>
+            <button id="myButton4" style="background-color: slateblue" class="float-left submit-button">Current
+                bestsellers
+            </button>
+            <script type="text/javascript">
+                document.getElementById("myButton4").onclick = function () {
+                    location.href = "/bestsellers";
+                };
+            </script>
+        </td>
+        <td>
 
-                <button id="myButton9" style="background-color: darkolivegreen" class="float-left submit-button">
-                    Summaries by book title
-                </button>
-                <script type="text/javascript">
-                    document.getElementById("myButton9").onclick = function () {
-                        location.href = "/summary";
-                    };
-                </script>
-            </td>
+            <button id="myButton9" style="background-color: darkolivegreen" class="float-left submit-button">
+                Summaries by book title
+            </button>
+            <script type="text/javascript">
+                document.getElementById("myButton9").onclick = function () {
+                    location.href = "/summary";
+                };
+            </script>
+        </td>
         <td>
             <button id="myButton8" style="background-color: #66afe9" class="float-left submit-button">Summaries by
                 author
@@ -138,6 +138,18 @@
                 };
             </script>
         </td>
+        <td>
+            <button id="myButton16" style="background-color: #66afe9 " class="float-left submit-button">Useful Links
+            </button>
+            <script type="text/javascript">
+                document.getElementById("myButton16").onclick = function () {
+                    location.href = "/links";
+                };
+            </script>
+        </td>
+        <form>
+            <input type="button" value="Back" class="float-left submit-button" onclick="history.back()">
+        </form>
     </nav>
     <nav class="navbar navbar-expand-md navbar-light bg-light mb-4">
         <td>
@@ -172,6 +184,15 @@
             </script>
         </td>
         <td>
+            <button id="myButton15" style="background-color: #9999ff" class="float-left submit-button">Add a Useful Link
+            </button>
+            <script type="text/javascript">
+                document.getElementById("myButton15").onclick = function () {
+                    location.href = "/add_link";
+                };
+            </script>
+        </td>
+        <td>
             <button id="myButton13" style="background-color: thistle" class="float-left submit-button">Reviews by App
                 Users
             </button>
@@ -198,9 +219,6 @@
                 };
             </script>
         </td>
-        <form>
-            <input type="button" value="Back" class="float-left submit-button" onclick="history.back()">
-        </form>
         </div>
         </div>
         </div>

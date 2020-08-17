@@ -9,12 +9,10 @@
           integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
           integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-    <link href='//fonts.googleapis.com/css?family=Lobster&subset=latin,latin-ext' rel='stylesheet' type='text/css'>
-    <title>Search by Author</title>
+    <title>Links</title>
     <nav class="navbar navbar-expand-md navbar-light bg-light mb-4">
         <div>
             <td>
-
                 <button id="myButton4" style="background-color: slateblue" class="float-left submit-button">Current
                     bestsellers
                 </button>
@@ -22,12 +20,10 @@
                     document.getElementById("myButton4").onclick = function () {
                         location.href = "/bestsellers";
                     };
-
                 </script>
             </td>
             <td>
-
-                <button id="myButton9" style="background-color: darkolivegreen" class="float-left submit-button">
+                <button id="myButton9" style="background-color: #e4b9c0" class="float-left submit-button">
                     Summaries by book title
                 </button>
                 <script type="text/javascript">
@@ -47,19 +43,17 @@
                 };
             </script>
         </td>
-
+        </div>
         <td>
-            <button id="myButton3" style="background-color: lightgreen" class="float-left submit-button">My Future
-                Reading List
+            <button id="myButton13" style="background-color: thistle" class="float-left submit-button"> Reviews by App
+                Users
             </button>
             <script type="text/javascript">
-                document.getElementById("myButton3").onclick = function () {
-                    location.href = "/books_to_read_list";
+                document.getElementById("myButton13").onclick = function () {
+                    location.href = "/user_reviews";
                 };
             </script>
         </td>
-        </div>
-
         <td>
             <button id="myButton10" style="background-color: deepskyblue" class="float-left submit-button">My
                 Currently-Reading List
@@ -81,15 +75,6 @@
             </script>
         </td>
         <td>
-            <button id="myButton16" style="background-color: #66afe9 " class="float-left submit-button">Useful Links
-            </button>
-            <script type="text/javascript">
-                document.getElementById("myButton16").onclick = function () {
-                    location.href = "/links";
-                };
-            </script>
-        </td>
-        <td>
             <button id="myButton" class="float-left submit-button">Home</button>
             <script type="text/javascript">
                 document.getElementById("myButton").onclick = function () {
@@ -98,7 +83,7 @@
             </script>
         </td>
         <form>
-            <input type="button" value="Back" onclick="history.back()">
+            <input type="button" value="Back" class="float-left submit-button" onclick="history.back()">
         </form>
     </nav>
     <nav class="navbar navbar-expand-md navbar-light bg-light mb-4">
@@ -113,8 +98,8 @@
             </script>
         </td>
         <td>
-            <button id="myButton11" style="background-color: #afd9ee" class="float-left submit-button">Add a new book to
-                your <b>Currently-Reading</b> List
+            <button id="myButton11" style="background-color: #afd9ee" class="float-left submit-button"> Add a new book
+                to your <b>Currently-Reading</b> List
             </button>
             <script type="text/javascript">
                 document.getElementById("myButton11").onclick = function () {
@@ -122,6 +107,7 @@
                 };
             </script>
         </td>
+
         <td>
             <button id="myButton7" style="background-color: #faebcc" class="float-left submit-button">Add a new book to
                 your <b>Books-Read</b> List
@@ -138,16 +124,6 @@
             <script type="text/javascript">
                 document.getElementById("myButton15").onclick = function () {
                     location.href = "/add_link";
-                };
-            </script>
-        </td>
-        <td>
-            <button id="myButton13" style="background-color: thistle" class="float-left submit-button"> Reviews by App
-                Users
-            </button>
-            <script type="text/javascript">
-                document.getElementById("myButton13").onclick = function () {
-                    location.href = "/user_reviews";
                 };
             </script>
         </td>
@@ -174,13 +150,16 @@
     </nav>
 </head>
 <body>
-<h3>Search by Author Name</h3>
-<form action="/summary2" method="post">
-    First Name: <input type="text" name="firstname">
-    <p>
-        Last Name: <input type="text" name="lastname">
-    <p>
-        <input type="submit" value="Submit">
-</form>
+<h2>Useful Links</h2>
+<table class="table">
+    <tbody>
+    {% for link in links %}
+    <tr>
+        <td><b>{{link.0}}</b></td>
+        <td><a href={{link.1}}> {{link.1}}</a></td>
+    </tr>
+    {% endfor %}
+    </tbody>
+</table>
 </body>
 </html>

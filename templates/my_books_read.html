@@ -67,7 +67,16 @@
                 };
             </script>
         </td>
-                  <td>
+        <td>
+            <button id="myButton16" style="background-color: #66afe9 " class="float-left submit-button">Useful Links
+            </button>
+            <script type="text/javascript">
+                document.getElementById("myButton16").onclick = function () {
+                    location.href = "/links";
+                };
+            </script>
+        </td>
+        <td>
             <button id="myButton" class="float-left submit-button">Home</button>
             <script type="text/javascript">
                 document.getElementById("myButton").onclick = function () {
@@ -75,7 +84,7 @@
                 };
             </script>
         </td>
-              <form>
+        <form>
             <input type="button" value="Back" class="float-left submit-button" onclick="history.back()">
         </form>
     </nav>
@@ -110,7 +119,15 @@
                 };
             </script>
         </td>
-
+        <td>
+            <button id="myButton15" style="background-color: #9999ff" class="float-left submit-button">Add a Useful Link
+            </button>
+            <script type="text/javascript">
+                document.getElementById("myButton15").onclick = function () {
+                    location.href = "/add_link";
+                };
+            </script>
+        </td>
         <td>
             <button id="myButton12" style="background-color: #67b168" class="float-left submit-button">View Statistics
             </button>
@@ -175,10 +192,10 @@
             <b> Pages: </b> {{item.7}}<br>
             <td>
                 <form method="GET" action="{{url_for('my_books_read_update_comment', book_id=item[0])}}">
-                    <input type="submit" name="comment"  onClick = "return clicked();" value="Update Comment"/></form>
+                    <input type="submit" name="comment" onClick="return clicked();" value="Update Comment"/></form>
                 <script type="text/javascript">
                     function clicked(form) {
-                        if(form.comment) {
+                        if (form.comment) {
                             console.log(form.comment)
                             return alert("Comment updated!")
                         }
@@ -192,7 +209,7 @@
                     <input type="submit" name="rating" onclick="return clicked2();" value="Update Rating"/></form>
                 <script type="text/javascript">
                     function clicked2(form) {
-                        if(form.rating) {
+                        if (form.rating) {
                             console.log(form.rating)
                             return alert("Rating updated!")
                         }
@@ -200,7 +217,7 @@
 
                 </script>
             </td>
-                   <td>
+            <td>
                 <form method="GET" action="{{url_for('my_books_read_update_genre', book_id=item[0])}}">
                     <input type="submit" value="Update Genre"/></form>
             </td>

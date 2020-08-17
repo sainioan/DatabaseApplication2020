@@ -75,6 +75,26 @@
                 };
             </script>
         </td>
+        <td>
+            <button id="myButton16" style="background-color: #66afe9 " class="float-left submit-button">Useful Links
+            </button>
+            <script type="text/javascript">
+                document.getElementById("myButton16").onclick = function () {
+                    location.href = "/links";
+                };
+            </script>
+        </td>
+        <td>
+            <button id="myButton" class="float-left submit-button">Home</button>
+            <script type="text/javascript">
+                document.getElementById("myButton").onclick = function () {
+                    location.href = "/home";
+                };
+            </script>
+        </td>
+        <form>
+            <input type="button" value="Back" onclick="history.back()">
+        </form>
     </nav>
     <nav class="navbar navbar-expand-md navbar-light bg-light mb-4">
         <td>
@@ -108,6 +128,15 @@
             </script>
         </td>
         <td>
+            <button id="myButton15" style="background-color: #9999ff" class="float-left submit-button">Add a Useful Link
+            </button>
+            <script type="text/javascript">
+                document.getElementById("myButton15").onclick = function () {
+                    location.href = "/add_link";
+                };
+            </script>
+        </td>
+        <td>
             <button id="myButton13" style="background-color: thistle" class="float-left submit-button"> Reviews by App
                 Users
             </button>
@@ -131,14 +160,6 @@
             <script type="text/javascript">
                 document.getElementById("myButton5").onclick = function () {
                     location.href = "/logout";
-                };
-            </script>
-        </td>
-        <td>
-            <button id="myButton" class="float-left submit-button">Home</button>
-            <script type="text/javascript">
-                document.getElementById("myButton").onclick = function () {
-                    location.href = "/home";
                 };
             </script>
         </td>
@@ -167,40 +188,5 @@
         {% endfor %}
     </ol>
 </tr>
-<!--<p>
-      <td>
-          <button id="myButton2" class="float-left submit-button" >Add a new book to your <b>Reading</b> List</button>
-<script type="text/javascript">
-    document.getElementById("myButton2").onclick = function () {
-        location.href = "/new_book";
-    };
-</script>
-      </td>
-    <td>
-<button id="myButton7" class="float-left submit-button" >Add a book to your <b>Books-Read</b> List</button>
-<script type="text/javascript">
-    document.getElementById("myButton7").onclick = function () {
-        location.href = "/add_book";
-    };
-</script>
-     </td>
-<td>
-<button id="myButton" class="float-left submit-button" >Home</button>
-<script type="text/javascript">
-    document.getElementById("myButton").onclick = function () {
-        location.href = "/home";
-    };
-</script>
-</td>
-      <td>
-<button id="myButton5" class="float-left submit-button" >Log out</button>
-<script type="text/javascript">
-    document.getElementById("myButton5").onclick = function () {
-        location.href = "/logout";
-    };
-</script>
-     </td>
-
-</p>-->
 </body>
 </html>

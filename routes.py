@@ -334,7 +334,7 @@ def my_current_books_completed(book_id):
     db.session.execute(sql, {"book_id": book_id})
     sql_delete = "DELETE FROM books_currently_reading WHERE book_id =:book_id"
     db.session.execute(sql_delete, {"book_id": book_id})
-    flash("item successfully moved to Books-Read List and deleted from your Current Reading List.", "success")
+    flash("Item successfully moved to Books-Read List and deleted from your Current Reading List.", "success")
     db.session.commit()
 
     return redirect("/my_books_read")
@@ -342,17 +342,17 @@ def my_current_books_completed(book_id):
 
 @app.route("/new_book", methods=["get", "post"])
 @login_required
-def add():
+def add_future_book():
     if request.method == "GET":
         return render_template("add_future_book.html", items=titles)
     if request.method == "POST":
         title = str(request.form["title"])
         author = str(request.form["author"])
         if not title:
-            return render_template("error.html", message="A required field (title or author) missing.")
+            return render_template("error.html", message="Title missing.")
             author = str(request.form["author"])
         if not author:
-            return render_template("error.html", message="A required field (title or author) missing.")
+            return render_template("error.html", message="Author missing.")
         user_id = int(books_to_read.user_id())
         books_to_read.new(title, author, user_id)
         db.session.commit()
@@ -363,7 +363,7 @@ def add():
 
 @app.route("/add_book", methods=["get", "post"])
 @login_required
-def add_book():
+def add_read_book():
     if request.method == "GET":
         return render_template("add_read_book.html")
     if request.method == "POST":
@@ -374,14 +374,11 @@ def add_book():
         genre = str(request.form.get("comment"))
         pages = request.form.get("pages")
         if not title:
-            return render_template("error.html", message="A required field missing.")
+            return render_template("error.html", message="'Title' missing.")
         if not author:
-            return render_template("error.html", message="A required field missing.")
+            return render_template("error.html", message="'Author' missing.")
         if not pages:
-            return render_template("error.html", message="A required field missing.")
-        # if not rating:
-        #     return render_template("error.html", message="A required field missing.")
-
+            return render_template("error.html", message="'Pages' missing.")
         user_id = int(books_read.user_id())
         books_read.new_book(title, author, comment, rating, user_id, genre, pages)
         db.session.commit()
@@ -399,23 +396,51 @@ def add_current_book():
         title = str(request.form["title"])
         author = str(request.form["author"])
         if not title:
-            return render_template("error.html", message="A required field missing.")
+            return render_template("error.html", message="Title missing.")
         if not author:
-            return render_template("error.html", message="A required field missing.")
+            return render_template("error.html", message="Author missing.")
         plot_summary = str(request.form.get("plot_summary"))
         genre = str(request.form.get("genre"))
         current_page = request.form.get("current_page")
         if not current_page:
-            return render_template("error.html", message="A required field missing.")
+            return render_template("error.html", message="Current Page missing.")
         pages = request.form["pages"]
         if not pages:
-            return render_template("error.html", message="A required field missing.")
+            return render_template("error.html", message="Page Count missing.")
         user_id = int(books_currently_reading.user_id())
         books_currently_reading.new_book(title, author, genre, plot_summary, current_page, pages, user_id)
         db.session.commit()
         return redirect("/my_current_books")
     else:
         return render_template("error.html", message="Error adding a book")
+
+
+@app.route("/add_link", methods=["get", "post"])
+@login_required
+def add_link():
+    if request.method == "GET":
+        return render_template("add_link.html")
+    if request.method == "POST":
+        title = str(request.form.get("title"))
+        url = str(request.form.get("url"))
+        if not title:
+            return render_template("error.html", message="Title missing.")
+        if not url:
+            return render_template("error.html", message="Url missing.")
+        sql = "INSERT into links(title, url) VALUES (:title,:url)"
+        db.session.execute(sql, {"title": title, "url": url})
+        db.session.commit()
+        return redirect("/home")
+
+
+@app.route("/links")
+@login_required
+def show_links():
+    sql = "SELECT title, url from links"
+    result = db.session.execute(sql)
+    link_list = result.fetchall()
+    print(link_list)
+    return render_template("links.html", links=link_list)
 
 
 @app.route("/stats")

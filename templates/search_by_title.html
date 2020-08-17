@@ -79,6 +79,26 @@
                 };
             </script>
         </td>
+        <td>
+            <button id="myButton16" style="background-color: #66afe9 " class="float-left submit-button">Useful Links
+            </button>
+            <script type="text/javascript">
+                document.getElementById("myButton16").onclick = function () {
+                    location.href = "/links";
+                };
+            </script>
+        </td>
+        <td>
+            <button id="myButton" class="float-left submit-button">Home</button>
+            <script type="text/javascript">
+                document.getElementById("myButton").onclick = function () {
+                    location.href = "/home";
+                };
+            </script>
+        </td>
+        <form>
+            <input type="button" value="Back" onclick="history.back()">
+        </form>
     </nav>
     <nav class="navbar navbar-expand-md navbar-light bg-light mb-4">
         <td>
@@ -112,6 +132,15 @@
             </script>
         </td>
         <td>
+            <button id="myButton15" style="background-color: #9999ff" class="float-left submit-button">Add a Useful Link
+            </button>
+            <script type="text/javascript">
+                document.getElementById("myButton15").onclick = function () {
+                    location.href = "/add_link";
+                };
+            </script>
+        </td>
+        <td>
             <button id="myButton13" style="background-color: thistle" class="float-left submit-button">Reviews by App
                 Users
             </button>
@@ -138,17 +167,6 @@
                 };
             </script>
         </td>
-        <td>
-            <button id="myButton" class="float-left submit-button">Home</button>
-            <script type="text/javascript">
-                document.getElementById("myButton").onclick = function () {
-                    location.href = "/home";
-                };
-            </script>
-        </td>
-        <form>
-            <input type="button" value="Back" onclick="history.back()">
-        </form>
         </div>
         </div>
         </div>

@@ -23,8 +23,7 @@
                 </script>
             </td>
             <td>
-
-                <button id="myButton9" style="background-color: darkolivegreen" class="float-left submit-button">
+                <button id="myButton9" style="background-color: #e4b9c0" class="float-left submit-button">
                     Summaries by book title
                 </button>
                 <script type="text/javascript">
@@ -45,7 +44,7 @@
             </script>
         </td>
         </div>
-    <td>
+        <td>
             <button id="myButton13" style="background-color: thistle" class="float-left submit-button"> Reviews by App
                 Users
             </button>
@@ -75,6 +74,17 @@
                 };
             </script>
         </td>
+        <td>
+            <button id="myButton" class="float-left submit-button">Home</button>
+            <script type="text/javascript">
+                document.getElementById("myButton").onclick = function () {
+                    location.href = "/home";
+                };
+            </script>
+        </td>
+        <form>
+            <input type="button" value="Back" class="float-left submit-button" onclick="history.back()">
+        </form>
     </nav>
     <nav class="navbar navbar-expand-md navbar-light bg-light mb-4">
         <td>
@@ -109,6 +119,15 @@
             </script>
         </td>
         <td>
+            <button id="myButton15" style="background-color: #9999ff" class="float-left submit-button">Add a Useful Link
+            </button>
+            <script type="text/javascript">
+                document.getElementById("myButton15").onclick = function () {
+                    location.href = "/add_link";
+                };
+            </script>
+        </td>
+        <td>
             <button id="myButton12" style="background-color: #67b168" class="float-left submit-button">View Statistics
             </button>
             <script type="text/javascript">
@@ -122,14 +141,6 @@
             <script type="text/javascript">
                 document.getElementById("myButton5").onclick = function () {
                     location.href = "/logout";
-                };
-            </script>
-        </td>
-        <td>
-            <button id="myButton" class="float-left submit-button">Home</button>
-            <script type="text/javascript">
-                document.getElementById("myButton").onclick = function () {
-                    location.href = "/home";
                 };
             </script>
         </td>
