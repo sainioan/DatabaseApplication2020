@@ -165,26 +165,17 @@ def api_review():
         return render_template("error_title.html", message=title + " not found")
 
 
-@app.route("/user_reviews", methods=["get", "post"])
-@login_required
-def user_reviews():
-    # if request.method == "GET":
-    #     return render_template("search_title.html")
-    # if request.method == "POST":
-    #     title = str(request.form["title"])
-    #     sql5 = "SELECT comment, rating, username, user_id FROM books_read LEFT JOIN users ON users.id = " \
-    #            "books_read.user_id WHERE title=:title "
-    #     result5 = db.session.execute(sql5, {"title": title})
-    #     db.session.commit()
-    #     review_list = result5.fetchall()
-
-    sql = "SELECT title, string_agg(comment, ', 'ORDER BY comment) AS comment_list, rating, username, " \
-          "user_id FROM books_read LEFT JOIN users ON users.id = books_read.user_id GROUP BY 1, users.username, " \
-          "books_read.user_id, books_read.rating "
-    result = db.session.execute(sql)
-    db.session.commit()
-    read_books_comments = result.fetchall()
-    return render_template("reviews_by_users.html", items=read_books_comments)
+# @app.route("/user_reviews")
+# @login_required
+# def user_reviews():
+#
+#     sql = "SELECT title, string_agg(comment, ', 'ORDER BY comment) AS comment_list, rating, username, " \
+#           "user_id FROM books_read LEFT JOIN users ON users.id = books_read.user_id GROUP BY 1, users.username, " \
+#           "books_read.user_id, books_read.rating "
+#     result = db.session.execute(sql)
+#     db.session.commit()
+#     read_books_comments = result.fetchall()
+#     return render_template("reviews_by_users.html", items=read_books_comments)
 
 
 @app.route("/summary2", methods=["get", "post"])
@@ -445,7 +436,7 @@ def show_links():
 
 @app.route("/stats")
 @login_required
-def get_statistics():
+def community():
     user_count = User.query.count()
     sql = "SELECT username, user_id, count(user_id) FROM books_read LEFT JOIN users ON users.id = books_read.user_id " \
           "GROUP BY books_read.user_id, users.username "
@@ -471,7 +462,19 @@ def get_statistics():
         message3 = message2.replace(",", "")
         readb_list.append(message3)
 
-    return render_template("statistics.html", items=count_list, books=b_list, read_books=readb_list, count=user_count)
+    sql4 = "SELECT title, url from links"
+    result4 = db.session.execute(sql4)
+    link_list = result4.fetchall()
+
+
+    sql5 = "SELECT title, string_agg(comment, ', 'ORDER BY comment) AS comment_list, rating, username, " \
+          "user_id FROM books_read LEFT JOIN users ON users.id = books_read.user_id GROUP BY 1, users.username, " \
+          "books_read.user_id, books_read.rating "
+    result5 = db.session.execute(sql5)
+    db.session.commit()
+    read_books_comments = result5.fetchall()
+
+    return render_template("community.html", items=count_list, books=b_list, read_books=readb_list, count=user_count, links=link_list, comments=read_books_comments)
 
 
 if __name__ == "__main__":

@@ -82,11 +82,10 @@ padding:20px;
 border:2px solid #333;
 }
 .infobox{
-  /*width: 300px;*/
-  /*border: 1px solid #AED6F1;*/
       border: 1px solid black;
   padding: 3px; margin: 3px;
 }
+
 
 
 /* ===================================== Profile styles ======================================== */

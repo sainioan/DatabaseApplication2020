@@ -28,9 +28,7 @@
         <H4>Welcome!</H4>
         <div class="content"><img src="../static/images/books.jpg" style="width:350px;height:150px;" alt=" books">
         </div>
-        <div class="container">
             <a class="navbar-brand" href="/">
-
                 <i size="large" class="material-icons">book</i>
                 <i size="large" class="material-icons">local_library</i>
             </a></div>
@@ -100,17 +98,6 @@
             };
         </script>
     </td>
-    <td>
-        <button id="myButton13" style="background-color: thistle" class="float-left submit-button"> Reviews by App
-            Users
-        </button>
-        <script type="text/javascript">
-            document.getElementById("myButton13").onclick = function () {
-                location.href = "/user_reviews";
-            };
-        </script>
-    </td>
-
     <td>
         <button id="myButton3" style="background-color: lightgreen" class="float-left submit-button">My Future Reading
             List
@@ -192,7 +179,7 @@
         </script>
     </td>
     <td>
-        <button id="myButton12" style="background-color: #67b168" class="float-left submit-button">View Statistics
+        <button id="myButton12" style="background-color: #67b168" class="float-left submit-button">Community
         </button>
         <script type="text/javascript">
             document.getElementById("myButton12").onclick = function () {
@@ -245,9 +232,11 @@
         </div>
         <br>
         <div class="infobox">
-            <p><a href="{{ url_for('get_statistics') }}"> <b>View Statistics </b></a> AddYou can view various data about
-                app users' reading habit, such
-                as book count, books they are reading, books they have finished, etc.<br>
+            <p><a href="{{ url_for('community') }}"> <b>Community </b></a>
+                You can view various data about
+                app users' reading habits, such
+                as book count, books they are reading, books they have finished, comments and ratings, etc.<br>
+                In addition, community contains useful links.
         </div>
     </div>
     <div>

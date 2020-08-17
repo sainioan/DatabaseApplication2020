@@ -27,6 +27,7 @@
             border-collapse: collapse;
         }
     </style>
+
     <nav class="navbar navbar-expand-md navbar-light bg-light mb-4">
         <td>
             <button id="myButton4" style="background-color: slateblue" class="float-left submit-button">Current
@@ -55,16 +56,6 @@
             <script type="text/javascript">
                 document.getElementById("myButton8").onclick = function () {
                     location.href = "/summary2";
-                };
-            </script>
-        </td>
-        <td>
-            <button id="myButton13" style="background-color: thistle" class="float-left submit-button"> Reviews by App
-                Users
-            </button>
-            <script type="text/javascript">
-                document.getElementById("myButton13").onclick = function () {
-                    location.href = "/user_reviews";
                 };
             </script>
         </td>
@@ -169,14 +160,34 @@
             </script>
         </td>
         </div>
-        </div>
-        </div>
     </nav>
+
 </head>
-<div class="header">
-    <h3>Statistics</h3>
+ <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+<div>
+    <h3>Community</h3>
+    <div align ="left">
+
+            <img src="../static/images/Seuss.jpg" style="width:350px;height:250px;" alt="Quote">
+
 </div>
-<body>
+    <div class="infobox">
+<table align="right" class="table">
+     <h4>Useful Links:</h4>
+    <tbody>
+    {% for link in links %}
+    <tr>
+        <td><b>{{link.0}}</b></td>
+        <td><a href={{link.1}}> {{link.1}}</a></td>
+    </tr>
+    {% endfor %}
+    </tbody>
+</table>
+</aside>
+</div>
+
+
+<div class="infobox">
 <div>
     <tr>
         <h3 class="inline-headers h3"> User Count:</h3>
@@ -185,17 +196,16 @@
         <ol size="small" , type="1">
             {% for item in items %}
             <li>
-                <b>Username:</b> {{item.0}} <br>
-                <b>Number of books read:</b> {{item.2}}<br>
+                <b>Username:</b> {{item.0}}  <b>Number of books read:</b> {{item.2}}<br>
             </li>
             {% endfor %}
         </ol>
     </tr>
 </div>
 <tr>
-    <div>
-        <h3 class="inline-headers h3"> Titles Currently Trending:</h3>
+    <div class="infobox" >
         <table>
+        <h3 class="inline-headers h3"> Titles Currently Trending:</h3>
             {% for book in books %}
             <tr>
                 <th> {{ book }}</th>
@@ -203,17 +213,9 @@
             {% endfor %}
         </table>
         <td>
-            <h3 class="inline-headers h3"> Titles Read By App Users:</h3>
-            <table>
-                {% for book in read_books %}
-                <tr>
-                    <th> {{ book }}</th>
-                </tr>
-                {% endfor %}
-            </table>
             <ol size="small" , type="1">
                 {% for review in reviews %}
-                <li><b>Title:</b> {{review.0}} <br>
+                <li> {{review.0}} <br>
                     <b> Comment:</b> {{review.1}}
                     <br>
                     <b>Rating: </b> {{review.2}}<br>
@@ -223,5 +225,37 @@
             </ol>
     </div>
 </tr>
+</div>
+
+</tr>
+</div>
+</div>
+ <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+<div class ="infobox">
+
+    <h3 class="inline-headers h3"> Titles Read By App Users:</h3>
+    <table class="table">
+    <thead>
+    <tr>
+        <th scope="col">Title</th>
+        <th scope="col">Comment</th>
+        <th scope="col">Rating</th>
+        <th scope="col">User</th>
+    </tr>
+    </thead>
+    <tbody>
+    {% for comment in comments %}
+    <tr>
+        <td> <b>{{comment.0}}</b></td>
+        <td>{{comment.1}}</td>
+        <td>{{comment.2}}</td>
+        <td> Reviewed by {{comment.3}}</td>
+    </tr>
+    {% endfor %}
+    </tbody>
+</table>
+</div>
+</div>
+</div>
 </body>
 </html>
