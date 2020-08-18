@@ -192,41 +192,21 @@
             <b> Pages: </b> {{item.7}}<br>
             <td>
                 <form method="GET" action="{{url_for('my_books_read_update_comment', book_id=item[0])}}">
-<!--                    <input type="submit" name="comment" onClick="return clicked();" value="Update Comment"/></form>-->
-                    <input type="submit"value="Update Comment"/></form>
-<!--
-     <script type="text/javascript">-->
-<!--                    function clicked(form) {-->
-<!--                        if (form.comment) {-->
-<!--                            console.log(form.comment)-->
-<!--                            return alert("Comment updated!")-->
-<!--                        }-->
-<!--                    }-->
-<!--                </script>-->
+                    <input type="submit" value="Update Comment"/></form>
 
             </td>
 
 
             <td>
                 <form method="GET" action="{{url_for('my_books_read_update_rating', book_id=item[0])}}">
-<!--                    <input type="submit" name="rating" onclick="return clicked2();" value="Update Rating"/></form>-->
-                    <input type="submit"  value="Update Rating"/></form>
-                <!--
-  <script type="text/javascript">-->
-<!--                    function clicked2(form) {-->
-<!--                        if (form.rating) {-->
-<!--                            console.log(form.rating)-->
-<!--                            return alert("Rating updated!")-->
-<!--                        }-->
-<!--                    }-->
+                    <input type="submit" value="Update Rating"/></form>
 
-<!--                </script>-->
             </td>
             <td>
                 <form method="GET" action="{{url_for('my_books_read_update_genre', book_id=item[0])}}">
                     <input type="submit" value="Update Genre"/></form>
             </td>
-               <i>Share your reading experience with the book app community by clicking the button below:</i>
+            <i>Share your reading experience with the book app community by clicking the button below:</i>
             <td>
                 <form method="get" action="{{url_for('my_books_read_share', book_id=item[0]) }}">
                     <input type="submit" value="Share with community"/></form>

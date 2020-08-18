@@ -17,7 +17,7 @@ def new_book(title, author, comment, rating, user_id, genre, pages):
 
 
 def show(user_id):
-    sql = "SELECT book_id, title, author, comment, rating, user_id FROM books_read WHERE " \
+    sql = "SELECT book_id, title, author, comment, rating, user_id, genre, pages FROM books_read WHERE " \
           "user_id=:user_id  " \
           "ORDER BY (rating IS NULL), rating DESC"
     result = db.session.execute(sql, {"user_id": user_id})
