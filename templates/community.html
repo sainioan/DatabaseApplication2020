@@ -1,173 +1,15 @@
-<!DOCTYPE html>
-<html lang="en">
-<link rel='stylesheet' href="../static/css/base.css">
-<head>
-    <meta charset="UTF-8">
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <link rel="shortcut icon" href="data:image/x-icon;," type="image/x-icon">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=yes">
-    <title>Home</title>
-    <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
-          rel="stylesheet">
-    <link href='//fonts.googleapis.com/css?family=Lobster&subset=latin,latin-ext' rel='stylesheet' type='text/css'>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
-          integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
-          integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet"/>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-    <title>Statistics</title>
-    <style>
-        table, th, td {
-            border: 1px solid black;
-            border-collapse: collapse;
-        }
-    </style>
-
-    <nav class="navbar navbar-expand-md navbar-light bg-light mb-4">
-        <td>
-            <button id="myButton4" style="background-color: slateblue" class="float-left submit-button">Current
-                bestsellers
-            </button>
-            <script type="text/javascript">
-                document.getElementById("myButton4").onclick = function () {
-                    location.href = "/bestsellers";
-                };
-            </script>
-        </td>
-        <td>
-            <button id="myButton9" style="background-color: darkolivegreen" class="float-left submit-button">
-                Summaries by book title
-            </button>
-            <script type="text/javascript">
-                document.getElementById("myButton9").onclick = function () {
-                    location.href = "/summary";
-                };
-            </script>
-        </td>
-        <td>
-            <button id="myButton8" style="background-color: #66afe9" class="float-left submit-button">Summaries by
-                author
-            </button>
-            <script type="text/javascript">
-                document.getElementById("myButton8").onclick = function () {
-                    location.href = "/summary2";
-                };
-            </script>
-        </td>
-        <td>
-            <button id="myButton3" style="background-color: lightgreen" class="float-left submit-button">My Future
-                Reading List
-            </button>
-            <script type="text/javascript">
-                document.getElementById("myButton3").onclick = function () {
-                    location.href = "/books_to_read_list";
-                };
-            </script>
-        </td>
-        </div>
-        <td>
-            <button id="myButton10" style="background-color: deepskyblue" class="float-left submit-button">My
-                Currently-Reading List
-            </button>
-            <script type="text/javascript">
-                document.getElementById("myButton10").onclick = function () {
-                    location.href = "/my_current_books";
-                };
-            </script>
-        </td>
-        <td>
-            <button id="myButton6" style="background-color:aquamarine" class="float-left submit-button">My Books-Read
-                List
-            </button>
-            <script type="text/javascript">
-                document.getElementById("myButton6").onclick = function () {
-                    location.href = "/my_books_read";
-                };
-            </script>
-        </td>
-        <td>
-            <button id="myButton16" style="background-color: #66afe9 " class="float-left submit-button">Useful Links
-            </button>
-            <script type="text/javascript">
-                document.getElementById("myButton16").onclick = function () {
-                    location.href = "/links";
-                };
-            </script>
-        </td>
-        <form>
-            <input type="button" value="Back" onclick="history.back()">
-        </form>
-    </nav>
-    <nav class="navbar navbar-expand-md navbar-light bg-light mb-4">
-        <td>
-            <button id="myButton2" style="background-color: #e4b9c0" class="float-left submit-button">Add a new book to
-                your Future <b>Reading</b> List
-            </button>
-            <script type="text/javascript">
-                document.getElementById("myButton2").onclick = function () {
-                    location.href = "/new_book";
-                };
-            </script>
-        </td>
-        <td>
-            <button id="myButton11" style="background-color: #afd9ee" class="float-left submit-button">Add a book to
-                your <b>Currently-Reading </b>List
-            </button>
-            <script type="text/javascript">
-                document.getElementById("myButton11").onclick = function () {
-                    location.href = "/add_current_book";
-                };
-            </script>
-        </td>
-        <td>
-            <button id="myButton7" style="background-color: #faebcc" class="float-left submit-button">Add a new book to
-                your <b>Books-Read</b> List
-            </button>
-            <script type="text/javascript">
-                document.getElementById("myButton7").onclick = function () {
-                    location.href = "/add_book";
-                };
-            </script>
-        </td>
-        <td>
-            <button id="myButton15" style="background-color: #9999ff" class="float-left submit-button">Add a Useful Link
-            </button>
-            <script type="text/javascript">
-                document.getElementById("myButton15").onclick = function () {
-                    location.href = "/add_link";
-                };
-            </script>
-        </td>
-        <td>
-            <button id="myButton" class="float-left submit-button">Home</button>
-            <script type="text/javascript">
-                document.getElementById("myButton").onclick = function () {
-                    location.href = "/home";
-                };
-            </script>
-        </td>
-        <td>
-            <button id="myButton5" style="background-color: #1b6d85" class="float-left submit-button">Log out</button>
-            <script type="text/javascript">
-                document.getElementById("myButton5").onclick = function () {
-                    location.href = "/logout";
-                };
-            </script>
-        </td>
-        </div>
-    </nav>
-
-</head>
+{% extends "layout.html" %}
+<title>Community</title>
+{% block content %}
+<body>
+{{ super() }}
 <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
     <div>
         <h2>Community</h2>
         <div align="left">
             <img src="../static/images/Seuss.jpg" style="width:350px;height:250px;" alt="Quote">
+            <p></p>
+            <p></p>
         </div>
         <div class="infobox">
             <h3><u>Useful Links:</u></h3>
@@ -184,9 +26,9 @@
         <div class="infobox">
             <div>
                 <tr>
-                    <h3 class="inline-headers h3"><u>User Count:</u> </h3>
+                    <h3 class="inline-headers h3"><u>User Count:</u></h3>
                     <p><b>Number of app users:</b> {{count}}</p>
-                    <h3 class="inline-headers h3"> Book Count Per User: </h3>
+                    <h3 class="inline-headers h3"><u>Book Count Per User:</u></h3>
                     <table class="table">
                         <thead>
                         <tr>
@@ -207,7 +49,7 @@
             <tr>
                 <div class="infobox">
                     <ul>
-                        <h3 class="inline-headers h3"><u>Titles Currently Trending:</u> </h3>
+                        <h3 class="inline-headers h3"><u>Titles Currently Trending:</u></h3>
                         {% for book in books %}
                         <li>
                             <th> {{ book }}</th>
@@ -257,4 +99,5 @@
 </div>
 </div>
 </body>
-</html>
+
+{% endblock %}

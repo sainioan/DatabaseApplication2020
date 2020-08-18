@@ -1,8 +1,7 @@
-<!DOCTYPE html>
-<html lang="en">
+<title>Add to Read Book List</title>
 <style>
     input[type=text], select {
-        width: 85%;
+        width: 100%;
         padding: 8px 15px;
         margin: 8px 0;
         display: inline-block;
@@ -12,7 +11,7 @@
     }
 
     input[type=submit] {
-        width: 85%;
+        width: 100%;
         background-color: #4CAF50;
         color: white;
         padding: 5px 10px;
@@ -30,7 +29,7 @@
         border-radius: 5px;
         background-color: #f2f2f2;
         padding: 5px;
-        width: 40%;
+        width: 100%;
         border-style: solid;
         border-width: 3px;
         border-color: black;
@@ -39,7 +38,7 @@
 
     .form-style-6 {
         font: 95% Arial, Helvetica, sans-serif;
-        max-width: 400px;
+        max-width: 800px;
         margin: 10px auto;
         padding: 16px;
         background: #F7F7F7;
@@ -55,156 +54,9 @@
         margin: -16px -16px 16px -16px;
     }
 </style>
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=yes">
-    <link rel="shortcut icon" href="data:image/x-icon;," type="image/x-icon">
-    <link href='//fonts.googleapis.com/css?family=Lobster&subset=latin,latin-ext' rel='stylesheet' type='text/css'>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
-          integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
-          integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-    <title>Add a Read Book</title>
-    <nav class="navbar navbar-expand-md navbar-light bg-light mb-4">
-        <td>
-            <button id="myButton4" style="background-color: slateblue" class="float-left submit-button">Current
-                bestsellers
-            </button>
-            <script type="text/javascript">
-                document.getElementById("myButton4").onclick = function () {
-                    location.href = "/bestsellers";
-                };
-            </script>
-        </td>
-        <td>
-            <button id="myButton9" style="background-color: darkolivegreen" class="float-left submit-button">
-                Summaries by book title
-            </button>
-            <script type="text/javascript">
-                document.getElementById("myButton9").onclick = function () {
-                    location.href = "/summary";
-                };
-            </script>
-        </td>
-        <td>
-            <button id="myButton8" style="background-color: #66afe9" class="float-left submit-button">Summaries by
-                author
-            </button>
-            <script type="text/javascript">
-                document.getElementById("myButton8").onclick = function () {
-                    location.href = "/summary2";
-                };
-            </script>
-        </td>
-        <td>
-            <button id="myButton3" style="background-color: lightgreen" class="float-left submit-button">My Future
-                Reading List
-            </button>
-            <script type="text/javascript">
-                document.getElementById("myButton3").onclick = function () {
-                    location.href = "/books_to_read_list";
-                };
-            </script>
-        </td>
-        </div>
-
-        <td>
-            <button id="myButton10" style="background-color: deepskyblue" class="float-left submit-button">My Currently
-                Reading List
-            </button>
-            <script type="text/javascript">
-                document.getElementById("myButton10").onclick = function () {
-                    location.href = "/my_current_books";
-                };
-            </script>
-        </td>
-        <td>
-            <button id="myButton6" style="background-color:aquamarine" class="float-left submit-button">My Books-Read
-                List
-            </button>
-            <script type="text/javascript">
-                document.getElementById("myButton6").onclick = function () {
-                    location.href = "/my_books_read";
-                };
-            </script>
-        </td>
-        <td>
-            <button id="myButton16" style="background-color: #66afe9 " class="float-left submit-button">Useful Links
-            </button>
-            <script type="text/javascript">
-                document.getElementById("myButton16").onclick = function () {
-                    location.href = "/links";
-                };
-            </script>
-        </td>
-        <td>
-            <button id="myButton" class="float-left submit-button">Home</button>
-            <script type="text/javascript">
-                document.getElementById("myButton").onclick = function () {
-                    location.href = "/home";
-                };
-            </script>
-        </td>
-        <form>
-            <input type="button" value="Back" onclick="history.back()">
-        </form>
-    </nav>
-    <nav class="navbar navbar-expand-md navbar-light bg-light mb-4">
-        <td>
-            <button id="myButton2" style="background-color: #e4b9c0" class="float-left submit-button">Add a new book to
-                your Future <b>Reading</b> List
-            </button>
-            <script type="text/javascript">
-                document.getElementById("myButton2").onclick = function () {
-                    location.href = "/new_book";
-                };
-            </script>
-        </td>
-        <td>
-            <button id="myButton11" style="background-color: #afd9ee" class="float-left submit-button"> Add a new book
-                to your <b>Currently Reading</b> List
-            </button>
-            <script type="text/javascript">
-                document.getElementById("myButton11").onclick = function () {
-                    location.href = "/add_current_book";
-                };
-            </script>
-        </td>
-        <td>
-            <button id="myButton15" style="background-color: #9999ff" class="float-left submit-button">Add a Useful Link
-            </button>
-            <script type="text/javascript">
-                document.getElementById("myButton15").onclick = function () {
-                    location.href = "/add_link";
-                };
-            </script>
-        </td>
-        <td>
-            <button id="myButton12" style="background-color: #67b168" class="float-left submit-button">Community
-            </button>
-            <script type="text/javascript">
-                document.getElementById("myButton12").onclick = function () {
-                    location.href = "/stats";
-                };
-            </script>
-        </td>
-        <td>
-            <button id="myButton5" style="background-color: #1b6d85" class="float-left submit-button">Log out</button>
-            <script type="text/javascript">
-                document.getElementById("myButton5").onclick = function () {
-                    location.href = "/logout";
-                };
-            </script>
-        </td>
-        </div>
-        </div>
-        </div>
-    </nav>
-</head>
 
 <body>
-<h2>Add a book to your Books-Read List!</h2>
-Enter the book title, book author, and a optional comment on the book that you have read.
+<h2 align ="center ">Add a Book to Your Books-Read List!</h2>
 <div class="box">
     <form action="/add_book" method="post">
 
@@ -212,6 +64,7 @@ Enter the book title, book author, and a optional comment on the book that you h
         <input type="text" name="title" placeholder="Book Title *"><br>
         <label><b>Author:</b></label><br>
         <input type="text" name="author" placeholder="Author Name *"><br>
+        How was the book? Summarize or comment on the book's content.
         <label><b>Comment: </b>(optional)</label><br>
         <input type="text" name="comment">
         <p></p>
@@ -279,4 +132,7 @@ Enter the book title, book author, and a optional comment on the book that you h
     </form>
 </div>
 </body>
-</html>
+{% extends "layout.html" %}
+{% block content %}
+{{ super() }}
+{% endblock %}

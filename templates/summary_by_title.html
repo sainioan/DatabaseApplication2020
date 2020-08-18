@@ -1,162 +1,4 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <link rel="shortcut icon" href="data:image/x-icon;," type="image/x-icon">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=yes">
-    <link href='//fonts.googleapis.com/css?family=Lobster&subset=latin,latin-ext' rel='stylesheet' type='text/css'>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
-          integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
-          integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-    <title>Summaries by Title</title>
-    <nav class="navbar navbar-expand-md navbar-light bg-light mb-4">
-        <div>
-            <td>
-                <button id="myButton4" style="background-color: slateblue" class="float-left submit-button">Current
-                    bestsellers
-                </button>
-                <script type="text/javascript">
-                    document.getElementById("myButton4").onclick = function () {
-                        location.href = "/bestsellers";
-                    };
-                </script>
-            </td>
-            <td>
-                <button id="myButton9" style="background-color: darkolivegreen" class="float-left submit-button">
-                    Summaries by book title
-                </button>
-                <script type="text/javascript">
-                    document.getElementById("myButton9").onclick = function () {
-                        location.href = "/summary";
-                    };
-                </script>
-            </td>
-        </div>
-        <td>
-            <button id="myButton8" style="background-color: #66afe9" class="float-left submit-button">Summaries by
-                author
-            </button>
-            <script type="text/javascript">
-                document.getElementById("myButton8").onclick = function () {
-                    location.href = "/summary2";
-                };
-            </script>
-        </td>
-        <td>
-            <button id="myButton3" style="background-color: lightgreen" class="float-left submit-button">My Reading
-                List
-            </button>
-            <script type="text/javascript">
-                document.getElementById("myButton3").onclick = function () {
-                    location.href = "/books_to_read_list";
-                };
-            </script>
-        </td>
-        </div>
-        <td>
-            <button id="myButton10" style="background-color: deepskyblue" class="float-left submit-button">Currently
-                Reading List
-            </button>
-            <script type="text/javascript">
-                document.getElementById("myButton10").onclick = function () {
-                    location.href = "/my_current_books";
-                };
-            </script>
-        </td>
-        <td>
-            <button id="myButton6" style="background-color:aquamarine" class="float-left submit-button">Books-Read
-                List
-            </button>
-            <script type="text/javascript">
-                document.getElementById("myButton6").onclick = function () {
-                    location.href = "/my_books_read";
-                };
-            </script>
-        </td>
-        <td>
-            <button id="myButton16" style="background-color: #66afe9 " class="float-left submit-button">Useful Links
-            </button>
-            <script type="text/javascript">
-                document.getElementById("myButton16").onclick = function () {
-                    location.href = "/links";
-                };
-            </script>
-        </td>
-        <td>
-            <button id="myButton" class="float-left submit-button">Home</button>
-            <script type="text/javascript">
-                document.getElementById("myButton").onclick = function () {
-                    location.href = "/home";
-                };
-            </script>
-        </td>
-        <form>
-            <input type="button" value="Back" onclick="history.back()">
-        </form>
-    </nav>
-    <nav class="navbar navbar-expand-md navbar-light bg-light mb-4">
-        <td>
-            <button id="myButton11" style="background-color: #afd9ee" class="float-left submit-button"> Add to books
-                your <b>Current Reading</b> List
-            </button>
-            <script type="text/javascript">
-                document.getElementById("myButton11").onclick = function () {
-                    location.href = "/add_current_book";
-                };
-            </script>
-        </td>
-        <td>
-            <button id="myButton2" style="background-color: #e4b9c0" class="float-left submit-button">Add a new book to
-                your <b>Reading</b> List
-            </button>
-            <script type="text/javascript">
-                document.getElementById("myButton2").onclick = function () {
-                    location.href = "/new_book";
-                };
-            </script>
-        </td>
-        <td>
-            <button id="myButton7" style="background-color: #faebcc" class="float-left submit-button">Add a book to your
-                <b>Books-Read</b> List
-            </button>
-            <script type="text/javascript">
-                document.getElementById("myButton7").onclick = function () {
-                    location.href = "/add_book";
-                };
-            </script>
-        </td>
-        <td>
-            <button id="myButton15" style="background-color: #9999ff" class="float-left submit-button">Add a Useful Link
-            </button>
-            <script type="text/javascript">
-                document.getElementById("myButton15").onclick = function () {
-                    location.href = "/add_link";
-                };
-            </script>
-        </td>
-        <td>
-            <button id="myButton12" style="background-color: #67b168" class="float-left submit-button">Community
-            </button>
-            <script type="text/javascript">
-                document.getElementById("myButton12").onclick = function () {
-                    location.href = "/stats";
-                };
-            </script>
-        </td>
-        <td>
-            <button id="myButton5" style="background-color: #1b6d85" class="float-left submit-button">Log out</button>
-            <script type="text/javascript">
-                document.getElementById("myButton5").onclick = function () {
-                    location.href = "/logout";
-                };
-            </script>
-        </td>
-        </div>
-        </div>
-        </div>
-    </nav>
-</head>
+<title>Summaries by Title</title>
 <body>
 <h4>Summaries of {{title}}:</h4>
 <tr>
@@ -169,7 +11,7 @@
     </ol>
 
 </tr>
-<h6>Reviews:</h6>
+<h4>Links to Reviews:</h4>
 <tr>
     <ol size="small" , type="1">
         {% for link in links %}
@@ -179,4 +21,7 @@
 </tr>
 
 </body>
-</html>
+{% extends "layout.html" %}
+{% block content %}
+{{ super() }}
+{% endblock %}

@@ -1,190 +1,44 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <link rel="shortcut icon" href="data:image/x-icon;," type="image/x-icon">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=yes">
-    <link href='//fonts.googleapis.com/css?family=Lobster&subset=latin,latin-ext' rel='stylesheet' type='text/css'>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
-          integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet"/>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-    </div></div>
-    <title>Books Read List</title>
-    <nav class="navbar navbar-expand-md navbar-light bg-light mb-4">
-        <div>
-            <td>
-                <button id="myButton4" style="background-color: slateblue" class="float-left submit-button">Current
-                    bestsellers
-                </button>
-                <script type="text/javascript">
-                    document.getElementById("myButton4").onclick = function () {
-                        location.href = "/bestsellers";
-                    };
-                </script>
-            </td>
-            <td>
-                <button id="myButton9" style="background-color: #e4b9c0" class="float-left submit-button">
-                    Summaries by book title
-                </button>
-                <script type="text/javascript">
-                    document.getElementById("myButton9").onclick = function () {
-                        location.href = "/summary";
-                    };
-                </script>
-            </td>
-        </div>
-        <td>
-            <button id="myButton8" style="background-color: #66afe9" class="float-left submit-button">Summaries by
-                author
-            </button>
-            <script type="text/javascript">
-                document.getElementById("myButton8").onclick = function () {
-                    location.href = "/summary2";
-                };
-            </script>
-        </td>
 
-        <td>
-            <button id="myButton3" style="background-color: lightgreen" class="float-left submit-button">My Future
-                Reading List
-            </button>
-            <script type="text/javascript">
-                document.getElementById("myButton3").onclick = function () {
-                    location.href = "/books_to_read_list";
-                };
-            </script>
-        </td>
-        </div>
-        <td>
-            <button id="myButton10" style="background-color: deepskyblue" class="float-left submit-button">My
-                Currently-Reading List
-            </button>
-            <script type="text/javascript">
-                document.getElementById("myButton10").onclick = function () {
-                    location.href = "/my_current_books";
-                };
-            </script>
-        </td>
-        <td>
-            <button id="myButton16" style="background-color: #66afe9 " class="float-left submit-button">Useful Links
-            </button>
-            <script type="text/javascript">
-                document.getElementById("myButton16").onclick = function () {
-                    location.href = "/links";
-                };
-            </script>
-        </td>
-        <td>
-            <button id="myButton" class="float-left submit-button">Home</button>
-            <script type="text/javascript">
-                document.getElementById("myButton").onclick = function () {
-                    location.href = "/home";
-                };
-            </script>
-        </td>
-        <form>
-            <input type="button" value="Back" class="float-left submit-button" onclick="history.back()">
-        </form>
-    </nav>
-    <nav class="navbar navbar-expand-md navbar-light bg-light mb-4">
-        <td>
-            <button id="myButton2" style="background-color: #e4b9c0" class="float-left submit-button">Add a new book to
-                your Future <b>Reading</b> List
-            </button>
-            <script type="text/javascript">
-                document.getElementById("myButton2").onclick = function () {
-                    location.href = "/new_book";
-                };
-            </script>
-        </td>
-        <td>
-            <button id="myButton11" style="background-color: #afd9ee" class="float-left submit-button"> Add a book to
-                your <b>Currently-Reading</b> List
-            </button>
-            <script type="text/javascript">
-                document.getElementById("myButton11").onclick = function () {
-                    location.href = "/add_current_book";
-                };
-            </script>
-        </td>
-        <td>
-            <button id="myButton7" style="background-color: #faebcc" class="float-left submit-button">Add a book to your
-                <b>Books-Read</b> List
-            </button>
-            <script type="text/javascript">
-                document.getElementById("myButton7").onclick = function () {
-                    location.href = "/add_book";
-                };
-            </script>
-        </td>
-        <td>
-            <button id="myButton15" style="background-color: #9999ff" class="float-left submit-button">Add a Useful Link
-            </button>
-            <script type="text/javascript">
-                document.getElementById("myButton15").onclick = function () {
-                    location.href = "/add_link";
-                };
-            </script>
-        </td>
-        <td>
-            <button id="myButton12" style="background-color: #67b168" class="float-left submit-button">Community
-            </button>
-            <script type="text/javascript">
-                document.getElementById("myButton12").onclick = function () {
-                    location.href = "/stats";
-                };
-            </script>
-        </td>
-        <td>
-            <button id="myButton5" style="background-color: #66afe9" class="float-left submit-button">Log out</button>
-            <script type="text/javascript">
-                document.getElementById("myButton5").onclick = function () {
-                    location.href = "/logout";
-                };
-            </script>
-        </td>
-        </div>
-        </div>
-        </div>
-    </nav>
-    <nav>
-        {% with messages = get_flashed_messages(with_categories=true) %}
-        {% if messages %}
-        {% for category, message in messages %}
-        <div class="alert alert-{{ category }} alert-dismissible" role="alert">
-            <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span
-                    aria-hidden="true">&times;</span></button>
-            {{ message }}
-            {% endfor %}
-            {% endif %}
-            {% endwith %}
+<title>Books Read List</title>
+<nav>
+    {% with messages = get_flashed_messages(with_categories=true) %}
+    {% if messages %}
+    {% for category, message in messages %}
+    <div class="alert alert-{{ category }} alert-dismissible" role="alert">
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span
+                aria-hidden="true">&times;</span></button>
+        {{ message }}
+        {% endfor %}
+        {% endif %}
+        {% endwith %}
 
-            {% if error %}
+        {% if error %}
 
-            <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span
-                    aria-hidden="true">&times;</span></button>
-            <div class="alert alert-danger">{{error}}</div>
-            {% endif %}
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span
+                aria-hidden="true">&times;</span></button>
+        <div class="alert alert-danger">{{error}}</div>
+        {% endif %}
 
-            {% if msg %}
+        {% if msg %}
 
-            <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span
-                    aria-hidden="true">&times;</span></button>
-            <div class="alert alert-success">{{msg}}</div>
-            {% endif %}
-            {% block body %}{% endblock %}
-        </div>
-    </nav>
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span
+                aria-hidden="true">&times;</span></button>
+        <div class="alert alert-success">{{msg}}</div>
+        {% endif %}
+        {% block body %}{% endblock %}
+    </div>
+</nav>
 </head>
+{% extends "layout.html" %}
+{% block content %}
 <body>
 
 <h2>My Books-Read-List:</h2>
 <tr>
     <ol size="small" , type="1">
         {% for item in items %}
-        <li><b>Title:</b> {{item.1}} <br>
+        <li  style = "background-color: #f9f9f9">
+            <b>Title:</b> {{item.1}} <br>
             <b>Author:</b> {{item.2}}<br>
             <b> Comment:</b> {{item.3}}<br>
             <b> Rating: </b> {{item.4}}<br>
@@ -206,7 +60,9 @@
                 <form method="GET" action="{{url_for('my_books_read_update_genre', book_id=item[0])}}">
                     <input type="submit" value="Update Genre"/></form>
             </td>
+            <p></p>
             <i>Share your reading experience with the book app community by clicking the button below:</i>
+            <p></p>
             <td>
                 <form method="get" action="{{url_for('my_books_read_share', book_id=item[0]) }}">
                     <input type="submit" value="Share with community"/></form>
@@ -218,4 +74,5 @@
 
 </p>
 </body>
-</html>
+{{ super() }}
+{% endblock %}

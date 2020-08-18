@@ -97,6 +97,7 @@ border:2px solid #333;
   text-align: center;
   background: #AED6F1;
   color: white;
+  width: 100%;
   font-size: 30px;
 }
 .thumbnail {
