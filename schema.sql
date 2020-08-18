@@ -32,6 +32,15 @@ CREATE TABLE books_currently_reading (
     user_id      INTEGER NOT NULL
 );
 
+CREATE TABLE public_books_read (
+    book_id SERIAL PRIMARY KEY,
+    title TEXT NOT NULL,
+    author TEXT NOT NULL,
+    comment TEXT,
+    rating TEXT,
+    user_id INTEGER
+);
+
 CREATE TABLE links (
    link_id serial PRIMARY KEY,
    title VARCHAR (512) NOT NULL,

@@ -331,6 +331,14 @@ def my_current_books_completed(book_id):
     return redirect("/my_books_read")
 
 
+@app.route('/my_books_read/share/<book_id>', methods=["get"])
+@login_required
+def my_books_read_share(book_id):
+    books_read.share(book_id)
+    flash("Book successfully shared with the community!", "success")
+    return redirect("/my_books_read")
+
+
 @app.route("/new_book", methods=["get", "post"])
 @login_required
 def add_future_book():
@@ -468,8 +476,8 @@ def community():
 
 
     sql5 = "SELECT title, string_agg(comment, ', 'ORDER BY comment) AS comment_list, rating, username, " \
-          "user_id FROM books_read LEFT JOIN users ON users.id = books_read.user_id GROUP BY 1, users.username, " \
-          "books_read.user_id, books_read.rating "
+          "user_id FROM public_books_read LEFT JOIN users ON users.id = public_books_read.user_id GROUP BY 1, users.username, " \
+          "public_books_read.user_id, public_books_read.rating "
     result5 = db.session.execute(sql5)
     db.session.commit()
     read_books_comments = result5.fetchall()
