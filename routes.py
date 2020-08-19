@@ -89,7 +89,7 @@ def login():
                 flash(username + " logged in", "success")
                 admin = users.is_admin(users.user_id())
                 if admin:
-                   return redirect(url_for("home_admin"))
+                    return redirect(url_for("home_admin"))
                 else:
                     return redirect("/home")
         else:
@@ -147,7 +147,7 @@ def home():
 def home_admin():
     user_list = users.get_users()
     admin = users.is_admin(users.user_id())
-    return render_template("home_admin.html", user_list =user_list, admin= admin)
+    return render_template("home_admin.html", user_list=user_list, admin=admin)
 
 
 @app.route("/summary", methods=["get", "post"])
@@ -257,6 +257,24 @@ def delete_user(id):
     db.session.execute(sql, {"id": id})
     db.session.commit()
     return redirect(url_for("home_admin"))
+
+
+@app.route('/delete_link/<id>', methods=["GET"])
+@login_required
+def delete_link(id):
+    sql = "DELETE FROM links WHERE link_id=:id"
+    db.session.execute(sql, {"link_id": id})
+    db.session.commit()
+    return redirect(url_for("community"))
+
+
+@app.route('/delete_review/<book_id>', methods=["GET"])
+@login_required
+def delete_review(book_id):
+    sql = "DELETE FROM public_books_read WHERE book_id=:book_id"
+    db.session.execute(sql, {"book_id": book_id})
+    db.session.commit()
+    return redirect(url_for("community"))
 
 
 @app.route('/my_current_books/update/<book_id>', methods=["get", "post"])
@@ -454,6 +472,7 @@ def show_links():
 @app.route("/stats")
 @login_required
 def community():
+    admin = users.is_admin(users.user_id())
     user_count = User.query.count()
     sql = "SELECT username, user_id, count(user_id) FROM books_read LEFT JOIN users ON users.id = books_read.user_id " \
           "GROUP BY books_read.user_id, users.username "
@@ -483,14 +502,15 @@ def community():
     result4 = db.session.execute(sql4)
     link_list = result4.fetchall()
 
-    sql5 = "SELECT title, string_agg(comment, ', 'ORDER BY comment) AS comment_list, rating, username, " \
+    sql5 = "SELECT book_id, title, string_agg(comment, ', 'ORDER BY comment) AS comment_list, rating, username, " \
            "user_id FROM public_books_read LEFT JOIN users ON users.id = public_books_read.user_id GROUP BY 1, users.username, " \
-           "public_books_read.user_id, public_books_read.rating "
+           "public_books_read.user_id, public_books_read.rating, public_books_read.book_id"
     result5 = db.session.execute(sql5)
     db.session.commit()
     read_books_comments = result5.fetchall()
 
-    return render_template("community.html", items=count_list, books=b_list, read_books=readb_list, count=user_count,
+    return render_template("community.html", admin=admin, items=count_list, books=b_list, read_books=readb_list,
+                           count=user_count,
                            links=link_list, comments=read_books_comments)
 
 
