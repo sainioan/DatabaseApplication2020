@@ -170,6 +170,9 @@
                     };
                 </script>
             </td>
+                {% if session.username %}
+            <p><b>{{ session.username }}</b> logged in </p>
+            {% endif %}
         </div>
     </nav>
 </head>

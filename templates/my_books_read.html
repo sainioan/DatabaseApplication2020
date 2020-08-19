@@ -33,7 +33,7 @@
 {% block content %}
 <body>
 
-<h2>My Books-Read-List:</h2>
+<h2> {{ session.username }}'s Books-Read-List:</h2>
 <tr>
     <ol size="small" , type="1">
         {% for item in items %}

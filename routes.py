@@ -1,6 +1,7 @@
 from functools import wraps
 from flask import url_for, flash
 from flask import g, render_template, redirect, request, session
+from flask_login import current_user
 import json
 import requests
 from flask_sqlalchemy import SQLAlchemy
@@ -86,7 +87,11 @@ def login():
         if users.login(username, password):
             if "user_id" in session:
                 flash(username + " logged in", "success")
-            return redirect("/home")
+                admin = users.is_admin(users.user_id())
+                if admin:
+                   return redirect(url_for("home_admin"))
+                else:
+                    return redirect("/home")
         else:
             flash("You are not logged in.", "danger")
             return render_template("error.html", message="Wrong username or password")
@@ -135,6 +140,14 @@ def bestsellers():
 @login_required
 def home():
     return render_template("home.html")
+
+
+@app.route("/home_admin")
+@login_required
+def home_admin():
+    user_list = users.get_users()
+    admin = users.is_admin(users.user_id())
+    return render_template("home_admin.html", user_list =user_list, admin= admin)
 
 
 @app.route("/summary", methods=["get", "post"])
@@ -235,6 +248,15 @@ def my_reading_list_books_delete(book_id):
     db.session.execute(sql, {"book_id": book_id})
     db.session.commit()
     return redirect(url_for('show_books'))
+
+
+@app.route('/delete/<id>', methods=["GET"])
+@login_required
+def delete_user(id):
+    sql = "DELETE FROM users WHERE id=:id"
+    db.session.execute(sql, {"id": id})
+    db.session.commit()
+    return redirect(url_for("home_admin"))
 
 
 @app.route('/my_current_books/update/<book_id>', methods=["get", "post"])
@@ -461,15 +483,15 @@ def community():
     result4 = db.session.execute(sql4)
     link_list = result4.fetchall()
 
-
     sql5 = "SELECT title, string_agg(comment, ', 'ORDER BY comment) AS comment_list, rating, username, " \
-          "user_id FROM public_books_read LEFT JOIN users ON users.id = public_books_read.user_id GROUP BY 1, users.username, " \
-          "public_books_read.user_id, public_books_read.rating "
+           "user_id FROM public_books_read LEFT JOIN users ON users.id = public_books_read.user_id GROUP BY 1, users.username, " \
+           "public_books_read.user_id, public_books_read.rating "
     result5 = db.session.execute(sql5)
     db.session.commit()
     read_books_comments = result5.fetchall()
 
-    return render_template("community.html", items=count_list, books=b_list, read_books=readb_list, count=user_count, links=link_list, comments=read_books_comments)
+    return render_template("community.html", items=count_list, books=b_list, read_books=readb_list, count=user_count,
+                           links=link_list, comments=read_books_comments)
 
 
 if __name__ == "__main__":

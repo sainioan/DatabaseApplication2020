@@ -1,7 +1,7 @@
 <body>
 <nav class="navbar navbar-expand-md navbar-light bg-light mb-4">
     <div class="header">
-        <H2>Welcome to Book Database Application!</H2>
+        <H2>{{ session.username }}, welcome to Book Database Application!</H2>
         <div class="content"><img src="../static/images/books.jpg" style="width:350px;height:150px;" alt=" books">
         </div>
     </div>
@@ -42,8 +42,7 @@
 {% extends "layout.html" %}
 
 {% block content %}
-<div></div>
-<br>
+
 <div class="container">
     <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
         <div class="infobox">

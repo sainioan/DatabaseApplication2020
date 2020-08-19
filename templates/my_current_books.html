@@ -31,7 +31,7 @@
 {% extends "layout.html" %}
 {% block content %}
 <body>
-<h2 align="center">My Currently Reading List:</h2>
+<h2 align="center">{{ session.username }}'s Currently Reading List:</h2>
 <tr>
     <ol size="small" , type="1">
         {% for item in items %}

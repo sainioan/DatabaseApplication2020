@@ -1,0 +1,30 @@
+
+<title>Home Admin</title>
+{% if admin %}
+Admin View
+<p>Welcome admin!</p>
+
+<div>
+    <ol size="small" , type="1">
+        {% for user in user_list %}
+        <li><td><b>id:</b>{{user.0}}
+            <td> <b>username:</b> {{user.1}}</td>
+            <td> <b>admin status:</b>{{user.2}}</td>
+               <td>
+                <form method="GET" action="{{url_for('delete_user', id=user[0]) }}">
+                    <input type="submit" onclick="return clicked();" value="Delete User Account"/></form>
+                <script type="text/javascript">
+                    function clicked() {
+                        return confirm('Are you sure you want to delete the user account?');
+                    }
+                </script>
+            </td>
+        </li>
+        {% endfor %}
+    </ol>
+</div>
+{% endif %}
+{% extends "layout.html" %}
+{% block content %}
+{{ super() }}
+{% endblock %}

@@ -8,11 +8,12 @@ class User(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     username = db.Column(db.String(144), nullable=False)
     password = db.Column(db.String(144), nullable=False)
+    admin = db.Column(db.Boolean, default=False, nullable=False)
 
-    def __init__(self, username, password):
+    def __init__(self, username, password, role):
         self.username = username
         self.password = password
-
+        self.role = role
 
     def get_id(self):
         return self.id
@@ -25,4 +26,5 @@ class User(db.Model):
 
     def is_authenticated(self):
         return True
+
 

@@ -34,3 +34,16 @@ def register(username, password):
 
 def user_id():
     return session.get("user_id", 0)
+
+
+def is_admin(id):
+    sql = "SELECT admin FROM users WHERE id=:id AND admin = True"
+    res = db.session.execute(sql, {"id": id})
+    return res.fetchall()
+
+
+def get_users():
+    sql = "SELECT id, username, admin FROM users"
+    res = db.session.execute(sql)
+    users = res.fetchall()
+    return users
