@@ -42,8 +42,16 @@ def is_admin(id):
     return res.fetchall()
 
 
+
+def delete_user(id):
+    sql = "DELETE from users WHERE id=:id"
+    db.session.execute(sql, {"id": id})
+    db.session.commit()
+    return True
 def get_users():
     sql = "SELECT id, username, admin FROM users"
     res = db.session.execute(sql)
     users = res.fetchall()
     return users
+
+

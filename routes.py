@@ -13,7 +13,7 @@ from app import app
 
 app.secret_key = os.getenv("SECRET_KEY")
 
-import books_to_read
+import future_books
 import books_read
 import users
 import books_currently_reading
@@ -211,8 +211,8 @@ def api_review2():
 @app.route("/books_to_read_list")
 @login_required
 def show_books():
-    user_id = books_to_read.user_id()
-    my_list = books_to_read.show(user_id)
+    user_id = future_books.user_id()
+    my_list = future_books.show(user_id)
     return render_template("future_reading_list.html", items=my_list)
 
 
@@ -235,27 +235,21 @@ def show_my_books():
 @app.route('/my_current_books/delete/<book_id>', methods=["GET"])
 @login_required
 def my_current_books_delete(book_id):
-    sql = "DELETE FROM books_currently_reading WHERE book_id=:book_id"
-    db.session.execute(sql, {"book_id": book_id})
-    db.session.commit()
+    books_currently_reading.delete_book(book_id)
     return redirect(url_for('show_my_current_books'))
 
 
-@app.route('/books_to_read_list/delete/<book_id>', methods=["GET"])
+@app.route('/future_book_list/delete/<book_id>', methods=["GET"])
 @login_required
-def my_reading_list_books_delete(book_id):
-    sql = "DELETE FROM bookstoread WHERE book_id=:book_id"
-    db.session.execute(sql, {"book_id": book_id})
-    db.session.commit()
+def my_future_reading_list_books_delete(book_id):
+    future_books.delete_book(book_id)
     return redirect(url_for('show_books'))
 
 
-@app.route('/delete/<id>', methods=["GET"])
+@app.route('/delete_user/<id>', methods=["GET"])
 @login_required
 def delete_user(id):
-    sql = "DELETE FROM users WHERE id=:id"
-    db.session.execute(sql, {"id": id})
-    db.session.commit()
+    users.delete_user(id)
     return redirect(url_for("home_admin"))
 
 
@@ -284,9 +278,7 @@ def my_current_books_update(book_id):
         return render_template("current_page_update.html", id=book_id)
     if request.method == "POST":
         current_page = int(request.form.get("current_page"))
-        sql = "UPDATE books_currently_reading SET current_page=:current_page WHERE book_id=:book_id"
-        db.session.execute(sql, {"current_page": current_page, "book_id": book_id})
-        db.session.commit()
+        books_currently_reading.update_page_number(current_page, book_id)
         return redirect("/my_current_books")
 
 
@@ -297,9 +289,7 @@ def my_current_books_update_summary(book_id):
         return render_template("summary_update.html", id=book_id)
     if request.method == "POST":
         summary = str(request.form.get("summary"))
-        sql = "UPDATE books_currently_reading SET plot_summary=:plot_summary WHERE book_id=:book_id"
-        db.session.execute(sql, {"plot_summary": summary, "book_id": book_id})
-        db.session.commit()
+        books_currently_reading.update_summary(summary, book_id)
         return redirect("/my_current_books")
 
 
@@ -310,9 +300,7 @@ def my_books_read_update_comment(book_id):
         return render_template("comment_update.html", id=book_id)
     if request.method == "POST":
         comment = request.form.get("comment")
-        sql = "UPDATE books_read SET comment=:comment WHERE book_id=:book_id"
-        db.session.execute(sql, {"comment": comment, "book_id": book_id})
-        db.session.commit()
+        books_read.update_comment(comment, book_id)
         return redirect('/my_books_read')
 
 
@@ -345,16 +333,10 @@ def my_books_read_update_rating(book_id):
 @app.route('/my_current_books/completed/<book_id>', methods=["get"])
 @login_required
 def my_current_books_completed(book_id):
-    sql = "INSERT INTO books_read (title, author, user_id, genre, pages) SELECT title, author, user_id, genre, " \
-          "pages FROM books_currently_reading " \
-          "WHERE book_id =:book_id "
-    db.session.commit()
-    db.session.execute(sql, {"book_id": book_id})
-    sql_delete = "DELETE FROM books_currently_reading WHERE book_id =:book_id"
-    db.session.execute(sql_delete, {"book_id": book_id})
-    flash("Item successfully moved to Books-Read List and deleted from your Current Reading List.", "success")
-    db.session.commit()
 
+    books_currently_reading.transfer_to_books_read(book_id)
+    books_currently_reading.delete_book(book_id)
+    flash("Item successfully moved to Books-Read List and deleted from your Current Reading List.", "success")
     return redirect("/my_books_read")
 
 
@@ -379,9 +361,9 @@ def add_future_book():
             author = str(request.form["author"])
         if not author:
             return render_template("error.html", message="Author missing.")
-        user_id = int(books_to_read.user_id())
-        books_to_read.new(title, author, user_id)
-        db.session.commit()
+        user_id = int(future_books.user_id())
+        future_books.new(title, author, user_id)
+        # db.session.commit()
         return redirect("/books_to_read_list")
     else:
         return render_template("error.html", message="Error adding a book")
@@ -407,7 +389,7 @@ def add_read_book():
             return render_template("error.html", message="'Pages' missing.")
         user_id = int(books_read.user_id())
         books_read.new_book(title, author, comment, rating, user_id, genre, pages)
-        db.session.commit()
+        # db.session.commit()
         return redirect("/my_books_read")
     else:
         return render_template("error.html", message="Error adding a book")
@@ -435,7 +417,7 @@ def add_current_book():
             return render_template("error.html", message="Page Count missing.")
         user_id = int(books_currently_reading.user_id())
         books_currently_reading.new_book(title, author, genre, plot_summary, current_page, pages, user_id)
-        db.session.commit()
+        # db.session.commit()
         return redirect("/my_current_books")
     else:
         return render_template("error.html", message="Error adding a book")
@@ -474,23 +456,15 @@ def show_links():
 def community():
     admin = users.is_admin(users.user_id())
     user_count = User.query.count()
-    sql = "SELECT username, user_id, count(user_id) FROM books_read LEFT JOIN users ON users.id = books_read.user_id " \
-          "GROUP BY books_read.user_id, users.username "
-    result = db.session.execute(sql)
-    count_list = result.fetchall()
-    sql2 = "SELECT DISTINCT TITLE from books_currently_reading"
-    result2 = db.session.execute(sql2)
-    title_list = result2.fetchall()
+    count_list = books_read.count_books_read_by_user()
+    title_list = books_currently_reading.books_currently_read_by_users()
     b_list = []
     for i in range(len(title_list)):
         message = str(title_list[i])[1:-1]
         message2 = message.replace("'", "")
         message3 = message2.replace(",", "")
         b_list.append(message3)
-
-    sql3 = "SELECT DISTINCT TITLE from books_read"
-    result3 = db.session.execute(sql3)
-    read_books = result3.fetchall()
+    read_books = books_read.books_read_by_users()
     readb_list = []
     for i in range(len(read_books)):
         message = str(read_books[i])[1:-1]
@@ -508,7 +482,7 @@ def community():
     result5 = db.session.execute(sql5)
     db.session.commit()
     read_books_comments = result5.fetchall()
-
+    print(read_books_comments)
     return render_template("community.html", admin=admin, items=count_list, books=b_list, read_books=readb_list,
                            count=user_count,
                            links=link_list, comments=read_books_comments)

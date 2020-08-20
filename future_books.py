@@ -23,10 +23,16 @@ def show(user_id):
 
 
 def get_book_id(title):
-
     sql = "SELECT book_id FROM bookstoread WHERE " \
           "title=:title"
     result = db.session.execute(sql, {"title": title})
     db.session.commit()
     id = result.fetchone()
     return id
+
+
+def delete_book(book_id):
+    sql = "DELETE FROM bookstoread WHERE book_id=:book_id"
+    db.session.execute(sql, {"book_id": book_id})
+    db.session.commit()
+    return True

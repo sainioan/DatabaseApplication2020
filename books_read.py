@@ -32,3 +32,25 @@ def share(book_id):
     db.session.execute(sql, {"book_id": book_id})
     db.session.commit()
     return True
+
+
+def update_comment(comment, book_id):
+    sql = "UPDATE books_read SET comment=:comment WHERE book_id=:book_id"
+    db.session.execute(sql, {"comment": comment, "book_id": book_id})
+    db.session.commit()
+    return True
+
+def count_books_read_by_user():
+    sql = "SELECT username, user_id, count(user_id) FROM books_read LEFT JOIN users ON users.id = books_read.user_id " \
+          "GROUP BY books_read.user_id, users.username "
+    result = db.session.execute(sql)
+    count_list = result.fetchall()
+    return count_list
+
+
+def books_read_by_users():
+    sql3 = "SELECT DISTINCT TITLE from books_read"
+    result3 = db.session.execute(sql3)
+    read_books = result3.fetchall()
+    return read_books
+

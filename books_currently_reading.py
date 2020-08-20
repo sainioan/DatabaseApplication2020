@@ -25,24 +25,39 @@ def show(user_id):
     return my_current_book_list
 
 
-def get_book_id(title):
-    sql = "SELECT book_id FROM books_currently_reading WHERE " \
-          "title=:title"
-    result = db.session.execute(sql, {"title": title})
-    db.session.commit()
-    id = result.fetchone()
-    return id
-
-
-def transfer_to_books_read(user_id, book_id):
-    sql = "INSERT INTO books_read (title, author, user_id, genre, pages) SELECT title, author, user_id,genre, pages FROM books_currently_reading WHERE " \
-          "books_currently_reading.book_id=:book_id"
-    db.session.execute(sql, {"user_id": user_id, "book_id": book_id})
+def transfer_to_books_read(book_id):
+    sql = "INSERT INTO books_read (title, author, user_id, genre, pages) SELECT title, author, user_id, genre, " \
+          "pages FROM books_currently_reading " \
+          "WHERE book_id =:book_id "
+    db.session.execute(sql, {"book_id": book_id})
     db.session.commit()
     return True
 
 
-def update_pageNumber(user_id, current_page):
-    sql = "UPDATE books_currently_reading SET current_page=? WHERE book_id = ?"
-    result = db.session.execute(sql, {"user_id": user_id, "current_page": current_page})
+def update_page_number(current_page, book_id):
+    sql = "UPDATE books_currently_reading SET current_page=:current_page WHERE book_id=:book_id"
+    db.session.execute(sql, {"current_page": current_page, "book_id": book_id})
     db.session.commit()
+    db.session.commit()
+    return True
+
+
+def update_summary(summary, book_id):
+    sql = "UPDATE books_currently_reading SET plot_summary=:plot_summary WHERE book_id=:book_id"
+    db.session.execute(sql, {"plot_summary": summary, "book_id": book_id})
+    db.session.commit()
+    return True
+
+
+def delete_book(book_id):
+    sql = "DELETE FROM books_currently_reading WHERE book_id=:book_id"
+    db.session.execute(sql, {"book_id": book_id})
+    db.session.commit()
+    return True
+
+
+def books_currently_read_by_users():
+    sql2 = "SELECT DISTINCT TITLE from books_currently_reading"
+    result2 = db.session.execute(sql2)
+    title_list = result2.fetchall()
+    return title_list
