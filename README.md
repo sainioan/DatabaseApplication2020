@@ -29,6 +29,8 @@ Execute the following command to install the necessary libraries:<br />
 * Users can view data about how many books various app users have read.
 * Users can add useful links to the application site. The links are visible to all users.
 * Users can view comments and ratings of books that app users have read.
+* Admin(s) can view the list of all app users.
+* Admin(s) can delete users, useful links, and public reviews. 
   
 
 ## Heroku Username and Password
