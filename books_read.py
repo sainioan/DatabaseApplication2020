@@ -6,18 +6,18 @@ def user_id():
     return session.get("user_id", 0)
 
 
-def new_book(title, author, comment, rating, user_id, genre, pages):
-    sql = "INSERT INTO books_read (title,author,comment, rating, user_id, genre, pages) VALUES (:title,:author, " \
+def new_book(title, author, comment, rating, user_id, genre, pages, plot_summary):
+    sql = "INSERT INTO books_read (title,author,comment, rating, user_id, genre, pages, plot_summary) VALUES (:title,:author, " \
           ":comment, :rating, " \
-          ":user_id, :genre, :pages)"
+          ":user_id, :genre, :pages, :plot_summary)"
     db.session.execute(sql, {"title": title, "author": author, "comment": comment, "rating": rating, "user_id": user_id,
-                             "genre": genre, "pages": pages})
+                             "genre": genre, "pages": pages, "plot_summary": plot_summary})
     db.session.commit()
     return True
 
 
 def show(user_id):
-    sql = "SELECT book_id, title, author, comment, rating, user_id, genre, pages FROM books_read WHERE " \
+    sql = "SELECT book_id, title, author, comment, rating, user_id, genre, pages, plot_summary FROM books_read WHERE " \
           "user_id=:user_id  " \
           "ORDER BY (rating IS NULL), rating DESC"
     result = db.session.execute(sql, {"user_id": user_id})
@@ -39,6 +39,7 @@ def update_comment(comment, book_id):
     db.session.execute(sql, {"comment": comment, "book_id": book_id})
     db.session.commit()
     return True
+
 
 def count_books_read_by_user():
     sql = "SELECT username, user_id, count(user_id) FROM books_read LEFT JOIN users ON users.id = books_read.user_id " \

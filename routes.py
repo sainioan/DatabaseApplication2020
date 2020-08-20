@@ -23,7 +23,7 @@ login_manager.init_app(app)
 
 from user_model import User
 from book_model import Book
-from current_book__model import Current_Book
+from current_book_model import Current_Book
 
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 app.config["SQLALCHEMY_DATABASE_URI"] = getenv("DATABASE_URL")
@@ -330,6 +330,19 @@ def my_books_read_update_rating(book_id):
         return redirect('/my_books_read')
 
 
+@app.route('/my_books_read/update_summary/<book_id>', methods=["get", "post"])
+@login_required
+def my_books_read_update_summary(book_id):
+    if request.method == "GET":
+        return render_template("summary_update.html", id=book_id)
+    if request.method == "POST":
+        plot_summary = request.form.get("summary")
+        sql = "UPDATE books_read SET plot_summary=:plot_summary WHERE book_id=:book_id"
+        db.session.execute(sql, {"plot_summary": plot_summary, "book_id": book_id})
+        db.session.commit()
+        return redirect('/my_books_read')
+
+
 @app.route('/my_current_books/completed/<book_id>', methods=["get"])
 @login_required
 def my_current_books_completed(book_id):
@@ -363,7 +376,6 @@ def add_future_book():
             return render_template("error.html", message="Author missing.")
         user_id = int(future_books.user_id())
         future_books.new(title, author, user_id)
-        # db.session.commit()
         return redirect("/books_to_read_list")
     else:
         return render_template("error.html", message="Error adding a book")
@@ -381,6 +393,7 @@ def add_read_book():
         rating = request.form.get("rating")
         genre = str(request.form.get("comment"))
         pages = request.form.get("pages")
+        summary = request.form.get("summary")
         if not title:
             return render_template("error.html", message="'Title' missing.")
         if not author:
@@ -388,8 +401,7 @@ def add_read_book():
         if not pages:
             return render_template("error.html", message="'Pages' missing.")
         user_id = int(books_read.user_id())
-        books_read.new_book(title, author, comment, rating, user_id, genre, pages)
-        # db.session.commit()
+        books_read.new_book(title, author, comment, rating, user_id, genre, pages, summary)
         return redirect("/my_books_read")
     else:
         return render_template("error.html", message="Error adding a book")
@@ -417,7 +429,6 @@ def add_current_book():
             return render_template("error.html", message="Page Count missing.")
         user_id = int(books_currently_reading.user_id())
         books_currently_reading.new_book(title, author, genre, plot_summary, current_page, pages, user_id)
-        # db.session.commit()
         return redirect("/my_current_books")
     else:
         return render_template("error.html", message="Error adding a book")
@@ -478,7 +489,7 @@ def community():
 
     sql5 = "SELECT book_id, title, string_agg(comment, ', 'ORDER BY comment) AS comment_list, rating, username, " \
            "user_id FROM public_books_read LEFT JOIN users ON users.id = public_books_read.user_id GROUP BY 1, users.username, " \
-           "public_books_read.user_id, public_books_read.rating, public_books_read.book_id"
+           "public_books_read.user_id, public_books_read.rating, public_books_read.book_id ORDER BY (rating IS NULL), rating DESC"
     result5 = db.session.execute(sql5)
     db.session.commit()
     read_books_comments = result5.fetchall()
