@@ -35,9 +35,9 @@ Execute the following command to install the necessary libraries:<br />
 
 **Admin**
 
-        Username: 
+        Username: administrator
 
-        Password: 
+        Password: admin123
 
 **User**
 
