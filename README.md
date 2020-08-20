@@ -30,3 +30,17 @@ Execute the following command to install the necessary libraries:<br />
 * Users can add useful links to the application site. The links are visible to all users.
 * Users can view comments and ratings of books that app users have read.
   
+
+## Heroku Username and Password
+
+**Admin**
+
+        Username: 
+
+        Password: 
+
+**User**
+
+        Username: Annie
+
+        Password: secret
