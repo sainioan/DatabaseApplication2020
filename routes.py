@@ -17,7 +17,6 @@ import future_books
 import books_read
 import users
 import books_currently_reading
-
 login_manager = LoginManager()
 login_manager.init_app(app)
 
@@ -113,6 +112,27 @@ def register():
     if request.method == "GET":
         return render_template("signup.html")
     if request.method == "POST":
+        user_check = db.session.execute("SELECT * FROM users WHERE username = :username",
+                               {"username": request.form.get("username")}).fetchone()
+
+        # Check if username already exist
+
+        if user_check:
+            return render_template("error.html", message="username already exist")
+        elif len(request.form.get("username")) < 6:
+            return render_template("error.html", message="username too short")
+        elif len(request.form.get("username")) > 16:
+            return render_template("error.html", message="username too long")
+        elif not request.form.get("password"):
+            return render_template("error.html", message="must provide password")
+        elif len(request.form.get("password")) <6:
+            return render_template("error.html", message="password too short")
+        elif len(request.form.get("password")) > 16:
+            return render_template("error.html", message="password too long")
+        elif not request.form.get("confirmation"):
+            return render_template("error.html", message="must confirm password")
+        elif not request.form.get("password") == request.form.get("confirmation"):
+            return render_template("error.html", message="passwords didn't match")
         username = request.form["username"]
         password = request.form["password"]
         if users.register(username, password):
@@ -458,7 +478,6 @@ def show_links():
     sql = "SELECT title, url from links"
     result = db.session.execute(sql)
     link_list = result.fetchall()
-    print(link_list)
     return render_template("links.html", links=link_list)
 
 
@@ -493,7 +512,6 @@ def community():
     result5 = db.session.execute(sql5)
     db.session.commit()
     read_books_comments = result5.fetchall()
-    print(read_books_comments)
     return render_template("community.html", admin=admin, items=count_list, books=b_list, read_books=readb_list,
                            count=user_count,
                            links=link_list, comments=read_books_comments)
