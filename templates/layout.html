@@ -103,6 +103,16 @@
                     };
                 </script>
             </td>
+            {% if admin %}
+                 <td>
+                <button id="myButton18" style="background-color:lightskyblue" class="float-left submit-button">Home:Admin View</button>
+                <script type="text/javascript">
+                    document.getElementById("myButton18").onclick = function () {
+                        location.href = "/home_admin";
+                    };
+                </script>
+            </td>
+            {% endif %}
         </div>
     </nav>
     <nav class="navbar navbar-expand-md navbar-light bg-light mb-4">

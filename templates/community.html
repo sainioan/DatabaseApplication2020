@@ -5,39 +5,44 @@
 {{ super() }}
 <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
     {% if admin %}
-    <p>HELLO ADMIN!</p>
+    <H5>Hello Admin!</H5>
     <div>
-        <h2>Community</h2>
+        <h2 style="background-color: #EFFBFB">Community</h2>
         <div align="left">
-            <img src="../static/images/Seuss.jpg" style="width:350px;height:250px;" alt="Quote">
+            <img src="../static/images/quote_seuss0.jpg" style="width:350px;height:250px;" alt="Quote">
             <p></p>
             <p></p>
         </div>
         <div class="infobox">
-            <h3><u>Useful Links:</u></h3>
-            <ul align="left">
+            <h3 style="background-color: #EFFBFB"><u>Useful Links:</u></h3>
+            <table class="table">
+                <thead>
+                <tr>
+                    <th scope="col">Link</th>
+                </tr>
+                </thead>
                 {% for link in links %}
-                <li>
+                <tr>
                     <td><b>{{link.0}}</b></td>
                     <td><a href={{link.1}}> {{link.1}}</a></td>
-                     <td>
-                <form method="GET" action="{{url_for('delete_link', id=link[0]) }}">
-                    <input type="submit" onclick="return clicked();" value="Delete Link"/></form>
-                <script type="text/javascript">
-                    function clicked() {
-                        return confirm('Are you sure you want to delete the link?');
-                    }
-                </script>
-            </td>
-                </li>
+                    <td>
+                        <form method="GET" action="{{url_for('delete_link', id=link[0]) }}">
+                            <input type="submit" onclick="return clicked();" value="Delete Link"/></form>
+                        <script type="text/javascript">
+                            function clicked() {
+                                return confirm('Are you sure you want to delete the link?');
+                            }
+                        </script>
+                    </td>
+                </tr>
                 {% endfor %}
-            </ul>
-            </aside>
+                </tbody>
+            </table>
         </div>
         <div class="infobox">
             <div>
                 <tr>
-                    <h3 class="inline-headers h3"><u>User Count:</u></h3>
+                    <h3 class="inline-headers h3" style="background-color: #EFFBFB"><u>User Count:</u></h3>
                     <p><b>Number of app users:</b> {{count}}</p>
                     <h3 class="inline-headers h3"><u>Book Count Per User:</u></h3>
                     <table class="table">
@@ -59,7 +64,7 @@
             </div>
             <tr>
                 <div class="infobox">
-                    <h3 class="inline-headers h3"><u>Books Currently Read by App Users:</u></h3>
+                    <h3 class="inline-headers h3" style="background-color: #EFFBFB"><u>Books Currently Read by App Users:</u></h3>
                     <ul>
                         {% for book in books %}
                         <li>
@@ -75,7 +80,7 @@
 </div>
 <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
     <div class="infobox">
-        <h3><u>Books Read by App Users:</u></h3>
+        <h3 style="background-color: #EFFBFB"><u>Books Read by App Users:</u></h3>
         <ul>
             {% for book in read_books %}
             <li>
@@ -85,7 +90,7 @@
         </ul>
     </div>
     <div class="infobox">
-        <h3 class="inline-headers h3"><u>Books Reviewed by App Users:</u></h3>
+        <h3 class="inline-headers h3" style="background-color: #EFFBFB"><u>Books Reviewed by App Users:</u></h3>
         <table class="table">
             <thead>
             <tr>
@@ -102,15 +107,15 @@
                 <td>{{comment.2}}</td>
                 <td>{{comment.3}}</td>
                 <td> Reviewed by {{comment.4}}</td>
-                       <td>
-                <form method="GET" action="{{url_for('delete_review', book_id=comment[0]) }}">
-                    <input type="submit" onclick="return clicked();" value="Delete Review"/></form>
-                <script type="text/javascript">
-                    function clicked() {
-                        return confirm('Are you sure you want to delete the link?');
-                    }
-                </script>
-            </td>
+                <td>
+                    <form method="GET" action="{{url_for('delete_review', book_id=comment[0]) }}">
+                        <input type="submit" onclick="return clicked();" value="Delete Review"/></form>
+                    <script type="text/javascript">
+                        function clicked() {
+                            return confirm('Are you sure you want to delete the link?');
+                        }
+                    </script>
+                </td>
             </tr>
             {% endfor %}
             </tbody>
@@ -119,69 +124,69 @@
 </div>
 </div>
 </body>
-    {% endif %}
-    {% if not admin %}
-    <div>
-        <h2>Community</h2>
-        <div align="left">
-            <img src="../static/images/Seuss.jpg" style="width:350px;height:250px;" alt="Quote">
-            <p></p>
-            <p></p>
-        </div>
-        <div class="infobox">
-            <h3><u>Useful Links:</u></h3>
-            <ul align="left">
-                {% for link in links %}
-                <li>
-                    <td><b>{{link.0}}</b></td>
-                    <td><a href={{link.1}}> {{link.1}}</a></td>
-                </li>
-                {% endfor %}
-            </ul>
-            </aside>
-        </div>
-        <div class="infobox">
-            <div>
-                <tr>
-                    <h3 class="inline-headers h3"><u>User Count:</u></h3>
-                    <p><b>Number of app users:</b> {{count}}</p>
-                    <h3 class="inline-headers h3"><u>Book Count Per User:</u></h3>
-                    <table class="table">
-                        <thead>
-                        <tr>
-                            <th scope="col">Username</th>
-                            <th scope="col">Book Count</th>
-                        </tr>
-                        </thead>
-                        <tbody>
-                        {% for item in items %}
-                        <tr>
-                            <td> {{item.0}}</td>
-                            <td> {{item.2}}</td>
-                        </tr>
-                        {% endfor %}
-                        </tbody>
-                    </table>
-            </div>
+{% endif %}
+{% if not admin %}
+<div>
+    <h2 style="background-color: #EFFBFB">Community</h2>
+    <div align="left">
+        <img src="../static/images/quote_seuss0.jpg".jpg" style="width:350px;height:250px;" alt="Quote">
+        <p></p>
+        <p></p>
+    </div>
+    <div class="infobox">
+        <h3 style="background-color: #EFFBFB"><u>Useful Links:</u></h3>
+        <ul align="left">
+            {% for link in links %}
+            <li>
+                <td><b>{{link.0}}</b></td>
+                <td><a href={{link.1}}> {{link.1}}</a></td>
+            </li>
+            {% endfor %}
+        </ul>
+        </aside>
+    </div>
+    <div class="infobox">
+        <div>
             <tr>
-                <div class="infobox">
-                    <h3 class="inline-headers h3"><u>Books Currently Read by App Users:</u></h3>
-                    <ul>
-                        {% for book in books %}
-                        <li>
-                            <th> {{ book }}</th>
-                        </li>
-                        {% endfor %}
-                    </ul>
-                </div>
-            </tr>
+                <h3 class="inline-headers h3" style="background-color: #EFFBFB"><u>User Count:</u></h3>
+                <p><b>Number of app users:</b> {{count}}</p>
+                <h3 class="inline-headers h3" style="background-color: #EFFBFB"><u>Book Count Per User:</u></h3>
+                <table class="table">
+                    <thead>
+                    <tr>
+                        <th scope="col">Username</th>
+                        <th scope="col">Book Count</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {% for item in items %}
+                    <tr>
+                        <td> {{item.0}}</td>
+                        <td> {{item.2}}</td>
+                    </tr>
+                    {% endfor %}
+                    </tbody>
+                </table>
         </div>
+        <tr>
+            <div class="infobox">
+                <h3 class="inline-headers h3" style="background-color: #EFFBFB"><u>Books Currently Read by App Users:</u></h3>
+                <ul>
+                    {% for book in books %}
+                    <li>
+                        <th> {{ book }}</th>
+                    </li>
+                    {% endfor %}
+                </ul>
+            </div>
         </tr>
     </div>
+    </tr>
+</div>
 </div>
 <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
     <div class="infobox">
-        <h3><u>Books Read by App Users:</u></h3>
+        <h3 style="background-color: #EFFBFB"><u>Books Read by App Users:</u></h3>
         <ul>
             {% for book in read_books %}
             <li>
@@ -191,7 +196,7 @@
         </ul>
     </div>
     <div class="infobox">
-        <h3 class="inline-headers h3"><u>Books Reviewed by App Users:</u></h3>
+        <h3 class="inline-headers h3" style="background-color: #EFFBFB"><u>Books Reviewed by App Users:</u></h3>
         <table class="table">
             <thead>
             <tr>
@@ -215,7 +220,7 @@
     </div>
 </div>
 </div>
-   {% endif %}
+{% endif %}
 </body>
 
 {% endblock %}
