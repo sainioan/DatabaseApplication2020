@@ -35,29 +35,37 @@
 <tr>
     <ol size="small" , type="1">
         {% for item in items %}
-        <li style = "background-color: #f9f9f9">
+        <li style="background-color: #f9f9f9">
             <strong> <b>Title:</b> {{item.1}} <br></strong>
             <b>Author:</b> {{item.2}}<br>
             <b>Genre:</b> {{item.3}}<br>
-            <b>Plot Summary/Content: </b> {{item.4}}
-            <p></p>
-            <td>
-                <form method="GET" action="{{url_for('my_current_books_update_summary', book_id=item[0])}}">
-                    <input type="submit" value="Update Plot Summary/Content"/></form>
-            </td>
-            <br>
-            <b>Current Page: </b> {{item.5}}
-            <p></p>
-            <td>
-                <form method="GET" action="{{url_for('my_current_books_update', book_id=item[0])}}">
-                    <input type="submit" value="Update Current Page"/></form>
-            </td>
-            <br>
+            <b>Plot Summary/Content: </b> {{item.4}}<br>
+            <b>Current Page: </b> {{item.5}}<br>
             <b>Page Count: </b> {{item.6}}<br>
             <p></p>
             <progress max="100" value="{{item.8}}"></progress>
             <p></p>
             You've read: <u> <b>{{item.8}}</b></u> % of the book.
+            <p></p>
+            <td>
+                <form method="GET" action="{{url_for('my_current_books_update_summary', book_id=item[0])}}">
+                    <input type="submit" value="Update Summary"/></form>
+            </td>
+            <td>
+                <form method="GET" action="{{url_for('my_books_current_books_update_genre', book_id=item[0])}}">
+                    <input type="submit" value="Update Genre"/></form>
+            </td>
+            <td>
+                <form method="GET" action="{{url_for('my_current_books_update_current_page', book_id=item[0])}}">
+                    <input type="submit" value="Update Current Page"/></form>
+            </td>
+              <td>
+                <form method="GET" action="{{url_for('my_current_books_update_page_count', book_id=item[0])}}">
+                    <input type="submit" value="Update Page Count"/></form>
+            </td>
+            <br>
+
+
             <i>Done with the book? Move the book to your books-read list by clicking the button below:</i>
             <p></p>
             <td>

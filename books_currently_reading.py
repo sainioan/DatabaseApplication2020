@@ -42,9 +42,24 @@ def update_page_number(current_page, book_id):
     return True
 
 
+def update_pages(pages, book_id):
+    sql = "UPDATE books_currently_reading SET pages=:pages WHERE book_id=:book_id"
+    db.session.execute(sql, {"pages": pages, "book_id": book_id})
+    db.session.commit()
+    db.session.commit()
+    return True
+
+
 def update_summary(summary, book_id):
     sql = "UPDATE books_currently_reading SET plot_summary=:plot_summary WHERE book_id=:book_id"
     db.session.execute(sql, {"plot_summary": summary, "book_id": book_id})
+    db.session.commit()
+    return True
+
+
+def update_genre(genre, book_id):
+    sql = "UPDATE books_currently_reading SET genre=:genre WHERE book_id=:book_id"
+    db.session.execute(sql, {"genre": genre, "book_id": book_id})
     db.session.commit()
     return True
 

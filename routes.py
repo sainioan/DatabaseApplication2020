@@ -21,8 +21,6 @@ login_manager = LoginManager()
 login_manager.init_app(app)
 
 from user_model import User
-from book_model import Book
-from current_book_model import Current_Book
 
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 app.config["SQLALCHEMY_DATABASE_URI"] = getenv("DATABASE_URL")
@@ -112,10 +110,10 @@ def register():
     if request.method == "GET":
         return render_template("signup.html")
     if request.method == "POST":
-        user_check = db.session.execute("SELECT * FROM users WHERE username = :username",
+        user_check = db.session.execute("SELECT username FROM users WHERE username = :username",
                                {"username": request.form.get("username")}).fetchone()
 
-        # Check if username already exist
+        # Check if username already exist, if the username is correct length, etc.
 
         if user_check:
             return render_template("error.html", message="username already exist")
@@ -266,6 +264,15 @@ def my_future_reading_list_books_delete(book_id):
     return redirect(url_for('show_books'))
 
 
+@app.route('/future_book_list/transfer/<book_id>', methods=["GET"])
+@login_required
+def my_future_reading_list_transfer(book_id):
+    future_books.transfer(book_id)
+    future_books.delete_book(book_id)
+    flash("Item successfully moved to Currently-Reading List and deleted from your Future Reading List.", "success")
+    return redirect("/my_current_books")
+
+
 @app.route('/delete_user/<id>', methods=["GET"])
 @login_required
 def delete_user(id):
@@ -293,7 +300,7 @@ def delete_review(book_id):
 
 @app.route('/my_current_books/update/<book_id>', methods=["get", "post"])
 @login_required
-def my_current_books_update(book_id):
+def my_current_books_update_current_page(book_id):
     if request.method == "GET":
         return render_template("current_page_update.html", id=book_id)
     if request.method == "POST":
@@ -301,6 +308,16 @@ def my_current_books_update(book_id):
         books_currently_reading.update_page_number(current_page, book_id)
         return redirect("/my_current_books")
 
+
+@app.route('/my_current_books/update_page_count/<book_id>', methods=["get", "post"])
+@login_required
+def my_current_books_update_page_count(book_id):
+    if request.method == "GET":
+        return render_template("page_count_update.html", id=book_id)
+    if request.method == "POST":
+        pages= int(request.form.get("pages"))
+        books_currently_reading.update_pages(pages, book_id)
+        return redirect("/my_current_books")
 
 @app.route('/my_current_books/update_summary/<book_id>', methods=["get", "post"])
 @login_required
@@ -331,10 +348,20 @@ def my_books_read_update_genre(book_id):
         return render_template("genre_update.html", id=book_id)
     if request.method == "POST":
         genre = request.form.get("genre")
-        sql = "UPDATE books_read SET genre=:genre WHERE book_id=:book_id"
-        db.session.execute(sql, {"genre": genre, "book_id": book_id})
-        db.session.commit()
+        books_read.update_genre(genre, book_id)
         return redirect('/my_books_read')
+
+
+@app.route('/my_current_books/update_genre/<book_id>', methods=["get", "post"])
+@login_required
+def my_books_current_books_update_genre(book_id):
+    if request.method == "GET":
+        return render_template("genre_update_current.html", id=book_id)
+    if request.method == "POST":
+        genre = request.form.get("genre")
+
+        books_currently_reading.update_genre(genre, book_id)
+        return redirect("/my_current_books")
 
 
 @app.route('/my_books_read/update_rating/<book_id>', methods=["get", "post"])

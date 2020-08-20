@@ -36,3 +36,10 @@ def delete_book(book_id):
     db.session.execute(sql, {"book_id": book_id})
     db.session.commit()
     return True
+
+
+def transfer(book_id):
+    sql = "INSERT INTO books_currently_reading (title, author, user_id) SELECT title, author, user_id FROM bookstoread WHERE book_id =:book_id"
+    db.session.execute(sql, {"book_id": book_id})
+    db.session.commit()
+    return True

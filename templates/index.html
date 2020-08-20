@@ -33,13 +33,13 @@
         {% endif %}
         {% endwith %}
         {% if error %}
-        <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span
+        <button align="left" type="button" class="close" data-dismiss="alert" aria-label="Close"><span
                 aria-hidden="true">&times;</span></button>
         <div class="alert alert-danger">{{error}}</div>
         {% endif %}
 
         {% if msg %}
-        <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span
+        <button align="left" type="button" class="close" data-dismiss="alert" aria-label="Close"><span
                 aria-hidden="true">&times;</span></button>
         <div class="alert alert-success">{{msg}}</div>
         {% endif %}
