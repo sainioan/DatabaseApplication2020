@@ -1,0 +1,18 @@
+<title>Links</title>
+<body>
+<h2 align="center">Useful Links:</h2>
+<table class="table">
+    <tbody>
+    {% for link in links %}
+    <tr>
+        <td><b>{{link.0}}</b></td>
+        <td><a href={{link.1}}> {{link.1}}</a></td>
+    </tr>
+    {% endfor %}
+    </tbody>
+</table>
+</body>
+{% extends "layout.html" %}
+{% block content %}
+{{ super() }}
+{% endblock %}

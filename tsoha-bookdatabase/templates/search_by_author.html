@@ -1,0 +1,15 @@
+<title>Search by Author</title>
+<body>
+<h3>Search by Author Name</h3>
+<form action="/summary2" method="post">
+    First Name: <input type="text" name="firstname">
+    <p>
+        Last Name: <input type="text" name="lastname">
+    <p>
+        <input type="submit" value="Submit">
+</form>
+</body>
+{% extends "layout.html" %}
+{% block content %}
+{{ super() }}
+{% endblock %}

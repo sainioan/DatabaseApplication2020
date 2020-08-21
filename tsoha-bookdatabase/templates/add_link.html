@@ -1,0 +1,19 @@
+
+<title>Add Link</title>
+<body>
+<h2 align="center">Add a Useful Link</h2>
+<p></p>
+<form action="/add_link" method="post">
+    <label> Title: </label><br>
+    <input type="text" name="title" placeholder="Link Title *">
+    <p>
+        <label> Url: </label><br>
+        <input type="text" name="url" placeholder="Url *">
+    <p>
+        <input type="submit" value="Add a link">
+</form>
+</body>
+{% extends "layout.html" %}
+{% block content %}
+{{ super() }}
+{% endblock %}

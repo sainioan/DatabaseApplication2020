@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Update Rating</title>
+</head>
+<body>
+<form action='/my_books_read/update_rating/{{id}}' method="post"> Update Rating
+    Choose rating to describe your reading experience:<br>
+    <input type="radio" name="rating" value="5"><b> Excellent ***** 5</b><br>
+    <input type="radio" name="rating" value="4"><b> Good **** 4</b><br>
+    <input type="radio" name="rating" value="3"><b> Mediocre *** 3</b><br>
+    <input type="radio" name="rating" value="2"><b> Just okay ** 2</b><br>
+    <input type="radio" name="rating" value="1"><b> Poor * 1</b><br>
+
+    <input type="submit" value="Submit">
+</form>
+<form>
+    <input type="button" value="Back" onclick="history.back()">
+</form>
+</body>
+</html>

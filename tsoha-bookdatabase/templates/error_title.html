@@ -1,0 +1,42 @@
+
+{% extends "error.html" %}
+
+{% block content %}
+    <div class="container"  style="padding-top: 2%">
+        <div class="col-lg-20 col-md-20 col-sm-20 col-xs-20">
+
+<body>
+<div>
+    <td>
+<button id="myButton9" class="float-left submit-button" >Summaries by book title</button>
+          <script type="text/javascript">
+    document.getElementById("myButton9").onclick = function () {
+        location.href = "/summary";
+    };
+</script>
+      </td>
+             <td>
+<button id="myButton8" class="float-left submit-button" >Summaries by author</button>
+          <script type="text/javascript">
+    document.getElementById("myButton8").onclick = function () {
+        location.href = "/summary2";
+    };
+</script></td>
+    <td>
+<button id="myButton" class="float-left submit-button" >Home</button>
+<script type="text/javascript">
+    document.getElementById("myButton").onclick = function () {
+        location.href = "/home";
+    };
+</script>
+</td>
+</div>
+    </body>
+<br>
+<p></p>
+            <p></p>   
+        </div>
+        {{ super() }}
+        {% endblock %}
+
+

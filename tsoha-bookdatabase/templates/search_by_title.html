@@ -1,0 +1,13 @@
+<title>Search by Title</title>
+<body>
+<h3>Search by book title</h3>
+<form action="/summary" method="post">
+    Title: <input type="text" name="title">
+
+    <input type="submit" value="Submit">
+</form>
+</body>
+{% extends "layout.html" %}
+{% block content %}
+{{ super() }}
+{% endblock %}
