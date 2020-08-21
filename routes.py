@@ -26,7 +26,7 @@ app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 app.config["SQLALCHEMY_DATABASE_URI"] = getenv("DATABASE_URL")
 db = SQLAlchemy(app)
 
-
+# new version of bookdatabase herokuapp:tsoha-books
 @login_manager.user_loader
 def load_user(user_id):
     return User.get(user_id)
