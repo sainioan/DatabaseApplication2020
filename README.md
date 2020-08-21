@@ -4,8 +4,8 @@ Intermediate Studies Project: Database Application 2020
 
 Simple Book library application written on flask with PostgreSQL database.
  
-Published online: https://tsoha-bookdatabase.herokuapp.com/
-
+Published online: 
+https://tsoha-books.herokuapp.com/
 
 ## Requirements:
 
