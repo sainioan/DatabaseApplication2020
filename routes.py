@@ -21,10 +21,8 @@ login_manager = LoginManager()
 login_manager.init_app(app)
 
 from user_model import User
+from db import db
 
-app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
-app.config["SQLALCHEMY_DATABASE_URI"] = getenv("DATABASE_URL")
-db = SQLAlchemy(app)
 
 # new version of bookdatabase herokuapp:tsoha-books
 @login_manager.user_loader
@@ -542,7 +540,3 @@ def community():
     return render_template("community.html", admin=admin, items=count_list, books=b_list, read_books=readb_list,
                            count=user_count,
                            links=link_list, comments=read_books_comments)
-
-
-if __name__ == "__main__":
-    app.run(debug=True)
