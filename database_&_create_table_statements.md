@@ -1,3 +1,4 @@
+```sql
 CREATE TABLE users
 (
     id       SERIAL PRIMARY KEY,
@@ -55,3 +56,4 @@ CREATE TABLE links
     title   VARCHAR(512)  NOT NULL,
     url     VARCHAR(1024) NOT NULL
 );
+```
