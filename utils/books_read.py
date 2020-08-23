@@ -16,6 +16,11 @@ def new_book(title, author, comment, rating, user_id, genre, pages, plot_summary
     return True
 
 
+def check_book(user_id, title):
+    sql = "SELECT title FROM books_read WHERE user_id = :user_id AND title = :title"
+    return db.session.execute(sql,{"user_id": user_id, "title": title})
+
+
 def show(user_id):
     sql = "SELECT book_id, title, author, comment, rating, user_id, genre, pages, plot_summary FROM books_read WHERE " \
           "user_id=:user_id  " \

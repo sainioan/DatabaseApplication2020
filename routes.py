@@ -409,9 +409,12 @@ def add_future_book():
     if request.method == "POST":
         title = str(request.form["title"])
         author = str(request.form["author"])
+        user_id= future_books.user_id()
         if not title:
             return render_template("error.html", message="Title missing.")
-            author = str(request.form["author"])
+        row = future_books.check_book(user_id, title)
+        if row.rowcount == 1:
+            return render_template("error.html", message="You've already entered this book")
         if not author:
             return render_template("error.html", message="Author missing.")
         user_id = int(future_books.user_id())
@@ -434,8 +437,12 @@ def add_read_book():
         genre = str(request.form.get("comment"))
         pages = request.form.get("pages")
         summary = request.form.get("summary")
+        user_id = books_read.user_id()
         if not title:
             return render_template("error.html", message="'Title' missing.")
+        row = books_read.check_book(user_id, title)
+        if row.rowcount == 1:
+            return render_template("error.html", message="You've already entered this book")
         if not author:
             return render_template("error.html", message="'Author' missing.")
         if not pages:
@@ -455,8 +462,12 @@ def add_current_book():
     if request.method == "POST":
         title = str(request.form["title"])
         author = str(request.form["author"])
+        user_id = books_currently_reading.user_id()
         if not title:
             return render_template("error.html", message="Title missing.")
+        row = books_currently_reading.check_book(user_id, title)
+        if row.rowcount == 1:
+            return render_template("error.html",message="You've already entered this book")
         if not author:
             return render_template("error.html", message="Author missing.")
         plot_summary = str(request.form.get("plot_summary"))
@@ -522,16 +533,16 @@ def community():
         message3 = message2.replace(",", "")
         readb_list.append(message3)
 
-    sql4 = "SELECT title, url from links"
-    result4 = db.session.execute(sql4)
-    link_list = result4.fetchall()
+    sql1 = "SELECT title, url from links"
+    result1 = db.session.execute(sql1)
+    link_list = result1.fetchall()
 
-    sql5 = "SELECT book_id, title, string_agg(comment, ', 'ORDER BY comment) AS comment_list, rating, username, " \
+    sql2 = "SELECT book_id, title, string_agg(comment, ', 'ORDER BY comment) AS comment_list, rating, username, " \
            "user_id FROM public_books_read LEFT JOIN users ON users.id = public_books_read.user_id GROUP BY 1, users.username, " \
            "public_books_read.user_id, public_books_read.rating, public_books_read.book_id ORDER BY (rating IS NULL), rating DESC"
-    result5 = db.session.execute(sql5)
+    result2 = db.session.execute(sql2)
     db.session.commit()
-    read_books_comments = result5.fetchall()
+    read_books_comments = result2.fetchall()
     return render_template("community.html", admin=admin, items=count_list, books=b_list, read_books=readb_list,
                            count=user_count,
                            links=link_list, comments=read_books_comments)

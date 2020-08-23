@@ -15,6 +15,11 @@ def new_book(title, author, genre, plot_summary, current_page, pages, user_id):
     return True
 
 
+def check_book(user_id, title):
+    sql = "SELECT title FROM books_currently_reading WHERE user_id = :user_id AND title = :title"
+    return db.session.execute(sql,{"user_id": user_id, "title": title})
+
+
 def show(user_id):
     sql = "SELECT book_id, title, author, genre, plot_summary,current_page, pages, user_id, CAST(round(cast(" \
           "current_page::float / pages::float as numeric)*100, 2) AS INTEGER)AS percentage FROM books_currently_reading WHERE " \

@@ -14,6 +14,11 @@ def new(title, author, user_id):
     return True
 
 
+def check_book(user_id, title):
+    sql = "SELECT title FROM bookstoread WHERE user_id = :user_id AND title = :title"
+    return db.session.execute(sql,{"user_id": user_id, "title": title})
+
+
 def show(user_id):
     sql = "SELECT book_id, title, author FROM bookstoread WHERE user_id=:user_id ORDER BY title"
     result = db.session.execute(sql, {"user_id": user_id})
