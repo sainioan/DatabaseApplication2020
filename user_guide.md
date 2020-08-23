@@ -1,35 +1,65 @@
 # User guide
 
-## Database file
+## Bookd Database Application 
 
-## 
+The purpose of this application is to provide user with a personal reading tracker to manage the books they wish to read, are currently reading, and have finished reading. The get ideas for books to add to the future reading list, users can view current New York Times bestseller list and search for summaries of many current books. In addition, the application includes a community page where the user can find book reviews written by other app users, lists of books currently being read and books previously read by app users, etc.
 
-<img src=""  width="400" height="250">
+### Signup and Login
+<img src="https://github.com/sainioan/DatabaseApplication2020/blob/master/static/images/first_view.png"  width="400" height="250">
 
+<img src="https://github.com/sainioan/DatabaseApplication2020/blob/master/static/images/sign%20up.png" width="400" height="250">
 
-<img src="" width="400" height="250">
+### Home Page
+<img src="https://github.com/sainioan/DatabaseApplication2020/blob/master/static/images/home_page.png" width="700" height="500">
 
-## 
-<img src="" width="700" height="500">
+### Home Page (Admin View)
+<img src="https://github.com/sainioan/DatabaseApplication2020/blob/master/static/images/home_admin_view.png" width="700" height="500">
 
+- Admin can view the list of app users and may delete a user's account and erase all data regarding the user from the database. 
 
-- **Logout** button will log you out and open the login view.
-- **Delete user (account)** button will delete the user's account and erase all data regarding the user from the database. 
-- **
-- **
-- **
-- **
-- **
-- **
-### 
+### Future Reading List
 
+Form for adding a book to the Future Reading List:
+<img src="https://github.com/sainioan/DatabaseApplication2020/blob/master/static/images/add_to_future_reading.png" width="300" height="600">
 
+Future Reading List
+<img src="https://github.com/sainioan/DatabaseApplication2020/blob/master/static/images/future_reading_list.png" width="300" height="600">
+An item can be moved to the currently reading list by clicking the button 'Move to Currently Reading List.'
 
-<img src="" width="300" height="600">
+### Currently Reading List
 
-### 
+Form for adding a book to the Currently Reading List:
+<img src="https://github.com/sainioan/DatabaseApplication2020/blob/master/static/images/add_to_currently_reading.png" width="300" height="600">
+Currently Reading List:
+<img src="https://github.com/sainioan/DatabaseApplication2020/blob/master/static/images/currently_reading.png" width="390" height="315">
+Users can update various reading by clicking the update button(s). 
+When the user has completed the book, it can be moved to the Books Read List.	
 
+### Books Read List
+Form for adding a book to the Books Read List:
+<img src="https://github.com/sainioan/DatabaseApplication2020/blob/master/static/images/add_to_books_read.png" width="390" height="315">
+Books Read List:
+<img src="https://github.com/sainioan/DatabaseApplication2020/blob/master/static/images/books_read_list.png" width="390" height="315">
+Users can update various reading by clicking the update button(s) and choose to share their reading experience with the app community by clicking the 'share with community' button. This makes the book review public to the app community.
 
-<img src="" width="390" height="315">
-	
-### Logout	
+### Add a useful link
+
+<img src="https://github.com/sainioan/DatabaseApplication2020/blob/master/static/images/add_link.png" width="390" height="315">
+Users can contribute to the app community by adding useful links to the website. However, the links should be relevant and related to reading. Admin can take down
+links considered irrelevant or inappropriate.
+
+### Community View
+
+Community view shared by all app users.
+<img src="https://github.com/sainioan/DatabaseApplication2020/blob/master/static/images/community.png" width="390" height="315">
+
+Admin Community View:
+<img src="https://github.com/sainioan/DatabaseApplication2020/blob/master/static/images/community_admin_view.png">
+Admin can delete links and book reviews that are irrelevant or inappropriate.
+
+### Menu Bar: 
+
+<img src="https://github.com/sainioan/DatabaseApplication2020/blob/master/static/images/menu_bar.png" width="300" height="600">
+
+The various views contain a menu bar, making it effortless for app users to switch between different views.
+
