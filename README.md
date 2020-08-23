@@ -46,3 +46,7 @@ Execute the following command to install the necessary libraries:<br />
         Username: Annie1
 
         Password: secret1
+        
+## User Guide
+
+https://github.com/sainioan/DatabaseApplication2020/blob/master/user_guide.md
