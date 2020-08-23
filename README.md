@@ -50,7 +50,7 @@ Execute the following command to install the necessary libraries:<br />
         
 ## User Guide
 
-- [User Guide](https://github.com/sainioan/DatabaseApplication2020/blob/master/user_guide.md)
+- [User Guide](https://github.com/sainioan/DatabaseApplication2020/blob/master/documentation/user_guide.md)
 
 ## Database and Create Table Statements 
 - [Database](https://github.com/sainioan/DatabaseApplication2020/blob/master/database_%26_create_table_statements.md)
