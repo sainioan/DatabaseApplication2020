@@ -1,22 +1,17 @@
 from functools import wraps
 from flask import url_for, flash
 from flask import g, render_template, redirect, request, session
-from flask_login import current_user
 import json
 import requests
-from flask_sqlalchemy import SQLAlchemy
 import os
 from dotenv import load_dotenv
-from os import getenv
 from flask_login import LoginManager
 from app import app
 
 app.secret_key = os.getenv("SECRET_KEY")
 
-import future_books
-import books_read
-import users
-import books_currently_reading
+from utils import books_currently_reading, books_read, future_books, users
+
 login_manager = LoginManager()
 login_manager.init_app(app)
 

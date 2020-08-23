@@ -3,7 +3,8 @@
 Intermediate Studies Project: Database Application 2020
 
 Simple Book library application written on flask with PostgreSQL database.
- 
+The book database is an app that allows users to keep a record of books they would like to read, are currently reading, and have read. 
+
 Published online: 
 https://tsoha-books.herokuapp.com/
 
