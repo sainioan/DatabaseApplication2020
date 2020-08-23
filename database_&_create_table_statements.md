@@ -57,3 +57,6 @@ CREATE TABLE links
     url     VARCHAR(1024) NOT NULL
 );
 ```
+## Class Diagram (draft)
+
+<img src="https://github.com/sainioan/DatabaseApplication2020/blob/master/static/images/book_database_class_diagram.png" width ="700">
