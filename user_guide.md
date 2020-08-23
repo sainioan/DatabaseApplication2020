@@ -37,7 +37,7 @@ Form for adding a book to the Currently Reading List:
 
 Currently Reading List:
 
-<img src="https://github.com/sainioan/DatabaseApplication2020/blob/master/static/images/currently_reading.png" width="700" height="215">
+<img src="https://github.com/sainioan/DatabaseApplication2020/blob/master/static/images/currently_reading.png" width="700" height="350">
 
 Users can update various reading by clicking the update button(s). 
 When the user has completed the book, it can be moved to the Books Read List.	
@@ -49,7 +49,7 @@ Form for adding a book to the Books Read List:
 
 Books Read List:
 
-<img src="https://github.com/sainioan/DatabaseApplication2020/blob/master/static/images/books_read_list.png" width="700" height="205">
+<img src="https://github.com/sainioan/DatabaseApplication2020/blob/master/static/images/books_read_list.png" width="700" height="350">
 
 Users can update various reading by clicking the update button(s) and choose to share their reading experience with the app community by clicking the 'share with community' button. This makes the book review public to the app community.
 
@@ -76,5 +76,8 @@ Admin can delete links and book reviews that are irrelevant or inappropriate.
 
 <img src="https://github.com/sainioan/DatabaseApplication2020/blob/master/static/images/menu_bar.png" width="800" height="200">
 
-The various views contain a menu bar, making it effortless for app users to switch between different views.
+The various views contain a menu bar, making it effortless for app users to switch between different views. 
+The user can view current bestsellers by clicking the 'bestsellers' button. 
+The user can search for summaries (and reviews) by either clicking the 'summaries by author' button or 'summaries by title' button. 
+The user can log out by clicking the 'logout' button .
 
