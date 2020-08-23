@@ -25,7 +25,7 @@ Form for adding a book to the Future Reading List:
 
 Future Reading List
 
-<img src="https://github.com/sainioan/DatabaseApplication2020/blob/master/static/images/future_reading_list.png" width="500" height="300">
+<img src="https://github.com/sainioan/DatabaseApplication2020/blob/master/static/images/future_reading_list.png" width="700" height="300">
 
 An item can be moved to the currently reading list by clicking the button 'Move to Currently Reading List.'
 
@@ -37,7 +37,7 @@ Form for adding a book to the Currently Reading List:
 
 Currently Reading List:
 
-<img src="https://github.com/sainioan/DatabaseApplication2020/blob/master/static/images/currently_reading.png" width="400" height="215">
+<img src="https://github.com/sainioan/DatabaseApplication2020/blob/master/static/images/currently_reading.png" width="700" height="215">
 
 Users can update various reading by clicking the update button(s). 
 When the user has completed the book, it can be moved to the Books Read List.	
@@ -49,7 +49,7 @@ Form for adding a book to the Books Read List:
 
 Books Read List:
 
-<img src="https://github.com/sainioan/DatabaseApplication2020/blob/master/static/images/books_read_list.png" width="400" height="205">
+<img src="https://github.com/sainioan/DatabaseApplication2020/blob/master/static/images/books_read_list.png" width="700" height="205">
 
 Users can update various reading by clicking the update button(s) and choose to share their reading experience with the app community by clicking the 'share with community' button. This makes the book review public to the app community.
 
