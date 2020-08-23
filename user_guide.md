@@ -21,7 +21,7 @@ The purpose of this application is to provide user with a personal reading track
 
 Form for adding a book to the Future Reading List:
 
-<img src="https://github.com/sainioan/DatabaseApplication2020/blob/master/static/images/add_to_future_reading.png" width="400" height="400">
+<img src="https://github.com/sainioan/DatabaseApplication2020/blob/master/static/images/add_to_future_reading.png" width="200" height="200">
 
 Future Reading List
 
@@ -33,7 +33,7 @@ An item can be moved to the currently reading list by clicking the button 'Move 
 
 Form for adding a book to the Currently Reading List:
 
-<img src="https://github.com/sainioan/DatabaseApplication2020/blob/master/static/images/add_to_currently_reading.png" width="300" height="500">
+<img src="https://github.com/sainioan/DatabaseApplication2020/blob/master/static/images/add_to_currently_reading.png" width="400" height="500">
 
 Currently Reading List:
 
@@ -45,7 +45,7 @@ When the user has completed the book, it can be moved to the Books Read List.
 ### Books Read List
 Form for adding a book to the Books Read List:
 
-<img src="https://github.com/sainioan/DatabaseApplication2020/blob/master/static/images/add_to_books_read.png" width="300" height="500">
+<img src="https://github.com/sainioan/DatabaseApplication2020/blob/master/static/images/add_to_books_read.png" width="400" height="500">
 
 Books Read List:
 
