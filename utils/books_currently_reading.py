@@ -30,6 +30,13 @@ def show(user_id):
     return my_current_book_list
 
 
+def page_count(book_id):
+    sql = "SELECT pages FROM books_currently_reading WHERE book_id= :book_id"
+    result = db.session.execute(sql, {"book_id": book_id})
+    db.session.commit()
+    count = result.fetchone()
+    return count
+
 def transfer_to_books_read(book_id):
     sql = "INSERT INTO books_read (title, author, user_id, genre, pages, plot_summary) SELECT title, author, user_id, genre, " \
           "pages, plot_summary FROM books_currently_reading " \

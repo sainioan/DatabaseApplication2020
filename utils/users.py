@@ -32,6 +32,12 @@ def register(username, password):
     return login(username, password)
 
 
+def user_check(username):
+    sql = "SELECT username FROM users WHERE username = :username"
+    db.session.execute(    {"username": username}).fetchone()
+    db.session.commit()
+
+
 def user_id():
     return session.get("user_id", 0)
 

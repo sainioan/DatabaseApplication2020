@@ -42,7 +42,6 @@
                     <b>Plot Summary/Content: </b> {{ item.4 }}<br>
                     <b>Current Page: </b> {{ item.5 }}<br>
                     <b>Page Count: </b> {{ item.6 }}<br>
-                    <p></p>
                     <label>Reading progress:</label>
                     <div class="progress">
                         <div class="progress-bar" role="progressbar" aria-valuenow="{{ item.8 }}"
@@ -50,7 +49,6 @@
                             {{ item.8 }} %
                         </div>
                     </div>
-                    {#            You've read: <u> <b>{{item.8}}</b></u> % of the book.#}
                     <p></p>
                     <td>
                         <form method="GET" action="{{ url_for('my_current_books_update_summary', book_id=item[0]) }}">

@@ -70,10 +70,14 @@ def login():
     if request.method == "GET":
         return render_template("login.html")
     if request.method == "POST":
-        session["username"] = request.form["username"]
-        username = request.form["username"]
-        password = request.form["password"]
+        session["username"] = request.form.get("username")
+        username = request.form.get("username")
+        password = request.form.get("password")
     try:
+        if not username:
+            return render_template("error.html", message="username missing")
+        if not password:
+            return render_template("error.html", message="password missing")
         if users.login(username, password):
             if "user_id" in session:
                 flash(username + " logged in", "success")
@@ -103,11 +107,11 @@ def register():
     if request.method == "GET":
         return render_template("signup.html")
     if request.method == "POST":
-        user_check = db.session.execute("SELECT username FROM users WHERE username = :username",
-                               {"username": request.form.get("username")}).fetchone()
-
+        username = request.form.get("username")
+        if not username or username == "":
+            return render_template("error.html", message="username missing")
+        user_check = users.user_check(username)
         # Check if username already exist, if the username is correct length, etc.
-
         if user_check:
             return render_template("error.html", message="username already exist")
         elif len(request.form.get("username")) < 3:
@@ -297,9 +301,16 @@ def my_current_books_update_current_page(book_id):
     if request.method == "GET":
         return render_template("current_page_update.html", id=book_id)
     if request.method == "POST":
-        current_page = int(request.form.get("current_page"))
-        books_currently_reading.update_page_number(current_page, book_id)
-        return redirect("/my_current_books")
+        try:
+            current_page = int(request.form.get("current_page"))
+            pages = int(books_currently_reading.page_count(book_id)[0])
+            if pages < current_page:
+                return render_template("error.html",
+                                       message="Page Count must be greater than or equal to current page.")
+            books_currently_reading.update_page_number(current_page, book_id)
+            return redirect("/my_current_books")
+        except ValueError:
+            return render_template("error.html", message="Current page must be a number.")
 
 
 @app.route("/my_current_books/update_page_count/<book_id>", methods=["get", "post"])
@@ -308,9 +319,13 @@ def my_current_books_update_page_count(book_id):
     if request.method == "GET":
         return render_template("page_count_update.html", id=book_id)
     if request.method == "POST":
-        pages= int(request.form.get("pages"))
-        books_currently_reading.update_pages(pages, book_id)
-        return redirect("/my_current_books")
+        try:
+            pages = int(request.form.get("pages"))
+            books_currently_reading.update_pages(pages, book_id)
+            return redirect("/my_current_books")
+        except ValueError:
+            return render_template("error.html", message="Page count must be a number.")
+
 
 @app.route("/my_current_books/update_summary/<book_id>", methods=["get", "post"])
 @login_required
@@ -364,9 +379,7 @@ def my_books_read_update_rating(book_id):
         return render_template("rating_update.html", id=book_id)
     if request.method == "POST":
         rating = request.form.get("rating")
-        sql = "UPDATE books_read SET rating=:rating WHERE book_id=:book_id"
-        db.session.execute(sql, {"rating": rating, "book_id": book_id})
-        db.session.commit()
+        books_read.update_rating(rating, book_id)
         return redirect("/my_books_read")
 
 
@@ -386,7 +399,6 @@ def my_books_read_update_summary(book_id):
 @app.route("/my_current_books/completed/<book_id>", methods=["get"])
 @login_required
 def my_current_books_completed(book_id):
-
     books_currently_reading.transfer_to_books_read(book_id)
     books_currently_reading.delete_book(book_id)
     flash("Item successfully moved to Books-Read List and deleted from your Current Reading List.", "success")
@@ -409,7 +421,7 @@ def add_future_book():
     if request.method == "POST":
         title = str(request.form["title"])
         author = str(request.form["author"])
-        user_id= future_books.user_id()
+        user_id = future_books.user_id()
         if not title:
             return render_template("error.html", message="Title missing.")
         row = future_books.check_book(user_id, title)
@@ -467,17 +479,23 @@ def add_current_book():
             return render_template("error.html", message="Title missing.")
         row = books_currently_reading.check_book(user_id, title)
         if row.rowcount == 1:
-            return render_template("error.html",message="You've already entered this book")
+            return render_template("error.html", message="You've already entered this book")
         if not author:
             return render_template("error.html", message="Author missing.")
         plot_summary = str(request.form.get("plot_summary"))
         genre = str(request.form.get("genre"))
-        current_page = request.form.get("current_page")
-        if not current_page:
-            return render_template("error.html", message="Current Page missing.")
-        pages = request.form["pages"]
-        if not pages:
-            return render_template("error.html", message="Page Count missing.")
+        try:
+            current_page = request.form.get("current_page")
+            if not current_page:
+                return render_template("error.html", message="Current Page missing.")
+        except ValueError:
+            return render_template("error.html", message="Current Page must be a number.")
+        try:
+            pages = request.form.get("pages")
+            if not pages:
+                return render_template("error.html", message="Page Count missing.")
+        except ValueError:
+            return render_template("error.html", message="Page must be a number.")
         user_id = int(books_currently_reading.user_id())
         books_currently_reading.new_book(title, author, genre, plot_summary, current_page, pages, user_id)
         return redirect("/my_current_books")

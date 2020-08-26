@@ -21,6 +21,12 @@ def check_book(user_id, title):
     return db.session.execute(sql,{"user_id": user_id, "title": title})
 
 
+def update_rating(rating, book_id):
+    sql = "UPDATE books_read SET rating=:rating WHERE book_id=:book_id"
+    db.session.execute(sql, {"rating": rating, "book_id": book_id})
+    db.session.commit()
+
+
 def show(user_id):
     sql = "SELECT book_id, title, author, comment, rating, user_id, genre, pages, plot_summary FROM books_read WHERE " \
           "user_id=:user_id  " \
