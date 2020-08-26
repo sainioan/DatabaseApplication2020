@@ -14,30 +14,91 @@
           integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
           crossorigin="anonymous">
     <title>Login</title>
-    <nav>
-        <h3  position="relative"; left="30px;" class="section-heading"> Book Database Application Login Form </h3>
-    </nav>
+    <style>
+        /*set border to the form*/
+
+        form {
+            border: 3px solid #f1f1f1;
+            width: 50%;
+            padding-top: 20px;
+            padding-left: 20px;
+            padding-right: 20px;
+            float: right;
+        }
+
+        /*assign full width inputs*/
+
+        input[type=text],
+        input[type=password] {
+            width: 100%;
+            padding: 12px 20px;
+            margin: 8px 0;
+            display: inline-block;
+            border: 1px solid #ccc;
+            box-sizing: border-box;
+        }
+
+        /*set a style for the buttons*/
+
+        button {
+            background-color: #4CAF50;
+            color: white;
+            padding: 14px 20px;
+            margin: 8px 0;
+            border: none;
+            cursor: pointer;
+            width: 50%;
+        }
+
+        /* set a hover effect for the button*/
+
+        button:hover {
+            opacity: 0.8;
+        }
+
+        /*set padding to the container*/
+
+        .container {
+            padding: 16px;
+        }
+
+        /*set the forgot password text*/
+
+        span.psw {
+            float: right;
+            padding-top: 16px;
+        }
+
+        /*set styles for span and cancel button on small screens*/
+
+        @media screen and (max-width: 150px) {
+            span.psw {
+                display: block;
+                float: none;
+            }
+        }
+    </style>
 </head>
 <body>
-<link rel='stylesheet' href="../static/css/base.css">
+<br>
+<form action="/login" method="post">
+    <h3 float="right" ;> Book Database Application Login Form </h3>
+    <div class="container">
+        <label><b>Username</b></label>
+        <input type="text" placeholder="Enter Username" name="username" required>
 
-<div class="login_container">
+        <label><b>Password</b></label>
+        <input type="password" placeholder="Enter Password" name="password" required>
 
-    <form action="/login" method="post">
-        <p></p>
-
-        <label style="text-align: left">Username:</label><br>
-        <input type="text" name="username" placeholder="Enter Username">
-        <p></p>
-        <label style="text-align: left">Password:</label>
-        <br>
-        <input type="password" name="password" placeholder="Enter Password">
-        <p></p>
-        <input type="submit" value="Log in">
-    </form>
+        <button type="submit">Login</button>
+        <input type="checkbox" checked="checked"> Remember me
+    </div>
     <br>
+
     Not a user yet? Sign up <a href="/sign_up">here</a>
-</div>
+    <p></p>
+    <br>
+</form>
 </body>
 
 <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"

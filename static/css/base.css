@@ -36,15 +36,6 @@ body {
 
 }
 
-.login_container {
-
-    margin: 50px auto;
-    width: 960px;
-    position: relative;
-    text-align: left;
-    overflow: hidden;
-    border: 3px solid #73AD21;
-}
 
 label {
     padding-right: 10px;
