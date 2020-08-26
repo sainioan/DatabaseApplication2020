@@ -1,9 +1,10 @@
 <!DOCTYPE html>
 <html lang="en">
-<link rel='stylesheet' href="../static/css/base.css">
+
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel='stylesheet' href="../static/css/base.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
           rel="stylesheet">
     <link rel="shortcut icon" href="data:image/x-icon;," type="image/x-icon">
@@ -17,15 +18,16 @@
     <title>Index</title>
 </head>
 
-<body>
-<H2>Book Database Application</H2>
-<H4>Welcome!</H4>
-<p>Would you like to <a href="{{ url_for('login') }}">
+<body padding="100px"; align ="center"  float="right";>
+<div class="wrapper"></div>
+<H2  style ="text-align: center" float ="right";> Book Database Application</H2>
+<H4  align ="center"> Welcome!</H4>
+<p  align ="center"> Would you like to <a href="{{ url_for('login') }}">
     <b>log in?</b></a></p>
 
-Not a user yet? Sign up <a href="/sign_up">here</a>
-
-<div class="container" style="min-height:100%; width:80%">
+<p  align ="center"> Not a user yet? Sign up <a href="/sign_up">here</a></p>
+</div>
+<div   align ="center" leftmargin="80px" class="container" style="min-height:100%; width:80%">
     {% with messages = get_flashed_messages(with_categories=true) %}
     {% if messages %}
     {% for category, message in messages %}

@@ -1,38 +1,61 @@
 /* ==================================== base.html styles ======================================== */
 
 .add-margin-top {
-    margin-top:5%;
+    margin-top: 5%;
+}
+
+.add-margin-left {
+    margin-left: 10%;
 }
 
 @media only screen and (max-device-width: 480px) {
     /* define mobile specific styles come here */
     .add-margin-top {
-        margin-top:20%;
+        margin-top: 20%;
     }
 
     .add-margin-bottom {
-        margin-top:5%;
+        margin-top: 5%;
     }
 }
 
 .add-margin-bottom {
-    margin-bottom:5%;
+    margin-bottom: 5%;
 }
+
 form {
     display: inline-block;
-    /*float: right;*/
+    float: right;
 }
 
-body{
+body {
+    leftmargin: 100;
+    float: left;
     text-align: center;
     background-color: rgb(242, 243, 244);
+
 }
 
+.login_container {
+
+    margin: 50px auto;
+    width: 960px;
+    position: relative;
+    text-align: left;
+    overflow: hidden;
+    border: 3px solid #73AD21;
+}
+
+label {
+    padding-right: 10px;
+    font-size: 1rem;
+}
 /* ===================================== Homepage styles ======================================== */
 .navbar-default {
     font-size: 17px;
     margin: 0;
     padding: 7px;
+    margin-left: 80px;
     /*opacity: 0.5;*/
 }
 
@@ -48,11 +71,13 @@ nav .navbar-brand {
 }
 
 /*change default active links*/
-.navbar-default .navbar-nav> .active > a,
-.navbar-default .navbar-nav> .active > a:focus,
-.navbar-default .navbar-nav> .active > a:hover {
+.navbar-default .navbar-nav > .active > a,
+.navbar-default .navbar-nav > .active > a:focus,
+.navbar-default .navbar-nav > .active > a:hover {
 
 }
+
+
 
 /*change default behaviour of jumbotron*/
 .jumbotron {
@@ -69,37 +94,45 @@ nav .navbar-brand {
 
 .section-heading {
     color: #2E3134;
+    margin: 50px auto;
+    padding: 10px;
+    align: center;
+    text-align: center;
 }
 
 .hr-line {
-    max-width:50px;
+    max-width: 50px;
     border-top: 2px solid #2E3134;
 }
-.box{
-margin:0 auto;
-width:300px;
-padding:20px;
-border:2px solid #333;
-}
-.infobox{
-      border: 1px solid black;
-  padding: 3px; margin: 3px;
+
+.box {
+    margin: 0 auto;
+    width: 300px;
+    padding: 20px;
+    border: 2px solid #333;
 }
 
+.infobox {
+    border: 1px solid black;
+    padding: 3px;
+    margin: 3px;
+}
 
 
 /* ===================================== Profile styles ======================================== */
-.list-group-item{
+.list-group-item {
     border-radius: 0px !important;
 }
+
 .header {
-  padding: 60px;
-  text-align: center;
-  background: #AED6F1;
-  color: white;
-  width: 100%;
-  font-size: 30px;
+    padding: 60px;
+    text-align: center;
+    background: #AED6F1;
+    color: white;
+    width: 100%;
+    font-size: 30px;
 }
+
 .thumbnail {
     border-radius: 0px;
     box-shadow: 2px 2px 2px #D6DBDF;
@@ -115,8 +148,8 @@ border:2px solid #333;
     text-decoration: none;
 }
 
-.no_borders{
-    border-radius: 0px;
+.no_borders {
+    border-radius: 10px;
 }
 
 .flask-pagedown-preview {
@@ -133,20 +166,21 @@ border:2px solid #333;
 }
 
 .inline-headers h3, .inline-headers h5 {
-  display: inline-block;
-  vertical-align: baseline;
-  background-color: lightskyblue;
+    display: inline-block;
+    vertical-align: baseline;
+    background-color: lightskyblue;
 }
 
 .inline-p p {
-  display: inline-block;
-  vertical-align: baseline;
+    display: inline-block;
+    vertical-align: baseline;
 }
+
 .table {
-  border: 1px solid black;
+    border: 1px solid black;
 }
 
 .th, .td {
-  border: 1px solid black;
+    border: 1px solid black;
 }
 

@@ -39,9 +39,9 @@ def login_required(f):
     @wraps(f)
     def decorated_function(*args, **kwargs):
         if g.user is None:
-            return redirect(url_for('login', next=request.url))
+            return redirect(url_for("login", next=request.url))
         if g.user == {"name": "Guest"}:
-            return redirect(url_for('login', next=request.url))
+            return redirect(url_for("login", next=request.url))
         return f(*args, **kwargs)
 
     return decorated_function
@@ -49,13 +49,13 @@ def login_required(f):
 
 load_dotenv()
 
-API_KEY = os.environ['API_KEY']
+API_KEY = os.environ["API_KEY"]
 end_point = "https://api.nytimes.com/svc/books/v3/lists/current/hardcover-fiction.json?api-key=" + API_KEY
 response = requests.get(end_point)
 data = response.text
 parsed = json.loads(data)
 parsed_results = parsed["results"]
-book_list = parsed_results.get('books')
+book_list = parsed_results.get("books")
 titles = []
 images = []
 
@@ -70,7 +70,7 @@ def login():
     if request.method == "GET":
         return render_template("login.html")
     if request.method == "POST":
-        session['username'] = request.form['username']
+        session["username"] = request.form["username"]
         username = request.form["username"]
         password = request.form["password"]
     try:
@@ -94,7 +94,7 @@ def logout():
     if "user_id" in session:
         flash("You have been logged out", "info")
     users.logout()
-    session.pop('user_id', None)
+    session.pop("user_id", None)
     return redirect("/")
 
 
@@ -110,13 +110,13 @@ def register():
 
         if user_check:
             return render_template("error.html", message="username already exist")
-        elif len(request.form.get("username")) < 6:
+        elif len(request.form.get("username")) < 3:
             return render_template("error.html", message="username too short")
         elif len(request.form.get("username")) > 16:
             return render_template("error.html", message="username too long")
         elif not request.form.get("password"):
             return render_template("error.html", message="must provide password")
-        elif len(request.form.get("password")) <6:
+        elif len(request.form.get("password")) < 3:
             return render_template("error.html", message="password too short")
         elif len(request.form.get("password")) > 16:
             return render_template("error.html", message="password too long")
@@ -137,13 +137,13 @@ def register():
 @login_required
 def bestsellers():
     if g.user is None:
-        return redirect(url_for('index'))
+        return redirect(url_for("index"))
     else:
         for i in range(len(book_list)):
-            message = book_list[i]['title'] + ", " + book_list[i]['author'] + ",  Description: " + book_list[i][
-                'description'] + " "
+            message = book_list[i]["title"] + ", " + book_list[i]["author"] + ",  Description: " + book_list[i][
+                "description"] + " "
             titles.append(message)
-            images.append(book_list[i]['book_image'])
+            images.append(book_list[i]["book_image"])
         return render_template("bestseller_list.html", message="Current Bestsellers:", items=titles, images=images)
 
 
@@ -178,10 +178,10 @@ def api_review():
         list = []
         links = []
         for i in range(length):
-            message = results[i]['book_title'] + ": " + results[i]['summary']
+            message = results[i]["book_title"] + ": " + results[i]["summary"]
             list.append(message)
         for i in range(length):
-            message = results[i]['url']
+            message = results[i]["url"]
             links.append(message)
         return render_template("summary_by_title.html", title=title, items=list, links=links)
 
@@ -209,10 +209,10 @@ def api_review2():
             list = []
             links = []
             for i in range(length):
-                message = results2[i]['book_title'] + ": " + results2[i]['summary']
+                message = results2[i]["book_title"] + ": " + results2[i]["summary"]
                 list.append(message)
             for i in range(length):
-                message = results2[i]['url']
+                message = results2[i]["url"]
                 links.append(message)
             return render_template("summary_by_author.html", author=authorname, items=list, links=links)
         else:
@@ -243,21 +243,21 @@ def show_my_books():
     return render_template("my_books_read.html", items=my_book_list)
 
 
-@app.route('/my_current_books/delete/<book_id>', methods=["GET"])
+@app.route("/my_current_books/delete/<book_id>", methods=["GET"])
 @login_required
 def my_current_books_delete(book_id):
     books_currently_reading.delete_book(book_id)
-    return redirect(url_for('show_my_current_books'))
+    return redirect(url_for("show_my_current_books"))
 
 
-@app.route('/future_book_list/delete/<book_id>', methods=["GET"])
+@app.route("/future_book_list/delete/<book_id>", methods=["GET"])
 @login_required
 def my_future_reading_list_books_delete(book_id):
     future_books.delete_book(book_id)
-    return redirect(url_for('show_books'))
+    return redirect(url_for("show_books"))
 
 
-@app.route('/future_book_list/transfer/<book_id>', methods=["GET"])
+@app.route("/future_book_list/transfer/<book_id>", methods=["GET"])
 @login_required
 def my_future_reading_list_transfer(book_id):
     future_books.transfer(book_id)
@@ -266,14 +266,14 @@ def my_future_reading_list_transfer(book_id):
     return redirect("/my_current_books")
 
 
-@app.route('/delete_user/<id>', methods=["GET"])
+@app.route("/delete_user/<id>", methods=["GET"])
 @login_required
 def delete_user(id):
     users.delete_user(id)
     return redirect(url_for("home_admin"))
 
 
-@app.route('/delete_link/<id>', methods=["GET"])
+@app.route("/delete_link/<id>", methods=["GET"])
 @login_required
 def delete_link(id):
     sql = "DELETE FROM links WHERE link_id=:id"
@@ -282,7 +282,7 @@ def delete_link(id):
     return redirect(url_for("community"))
 
 
-@app.route('/delete_review/<book_id>', methods=["GET"])
+@app.route("/delete_review/<book_id>", methods=["GET"])
 @login_required
 def delete_review(book_id):
     sql = "DELETE FROM public_books_read WHERE book_id=:book_id"
@@ -291,7 +291,7 @@ def delete_review(book_id):
     return redirect(url_for("community"))
 
 
-@app.route('/my_current_books/update/<book_id>', methods=["get", "post"])
+@app.route("/my_current_books/update/<book_id>", methods=["get", "post"])
 @login_required
 def my_current_books_update_current_page(book_id):
     if request.method == "GET":
@@ -302,7 +302,7 @@ def my_current_books_update_current_page(book_id):
         return redirect("/my_current_books")
 
 
-@app.route('/my_current_books/update_page_count/<book_id>', methods=["get", "post"])
+@app.route("/my_current_books/update_page_count/<book_id>", methods=["get", "post"])
 @login_required
 def my_current_books_update_page_count(book_id):
     if request.method == "GET":
@@ -312,7 +312,7 @@ def my_current_books_update_page_count(book_id):
         books_currently_reading.update_pages(pages, book_id)
         return redirect("/my_current_books")
 
-@app.route('/my_current_books/update_summary/<book_id>', methods=["get", "post"])
+@app.route("/my_current_books/update_summary/<book_id>", methods=["get", "post"])
 @login_required
 def my_current_books_update_summary(book_id):
     if request.method == "GET":
@@ -323,7 +323,7 @@ def my_current_books_update_summary(book_id):
         return redirect("/my_current_books")
 
 
-@app.route('/my_books_read/update_comment/<book_id>', methods=["get", "post"])
+@app.route("/my_books_read/update_comment/<book_id>", methods=["get", "post"])
 @login_required
 def my_books_read_update_comment(book_id):
     if request.method == "GET":
@@ -331,10 +331,10 @@ def my_books_read_update_comment(book_id):
     if request.method == "POST":
         comment = request.form.get("comment")
         books_read.update_comment(comment, book_id)
-        return redirect('/my_books_read')
+        return redirect("/my_books_read")
 
 
-@app.route('/my_books_read/update_genre/<book_id>', methods=["get", "post"])
+@app.route("/my_books_read/update_genre/<book_id>", methods=["get", "post"])
 @login_required
 def my_books_read_update_genre(book_id):
     if request.method == "GET":
@@ -342,10 +342,10 @@ def my_books_read_update_genre(book_id):
     if request.method == "POST":
         genre = request.form.get("genre")
         books_read.update_genre(genre, book_id)
-        return redirect('/my_books_read')
+        return redirect("/my_books_read")
 
 
-@app.route('/my_current_books/update_genre/<book_id>', methods=["get", "post"])
+@app.route("/my_current_books/update_genre/<book_id>", methods=["get", "post"])
 @login_required
 def my_books_current_books_update_genre(book_id):
     if request.method == "GET":
@@ -357,7 +357,7 @@ def my_books_current_books_update_genre(book_id):
         return redirect("/my_current_books")
 
 
-@app.route('/my_books_read/update_rating/<book_id>', methods=["get", "post"])
+@app.route("/my_books_read/update_rating/<book_id>", methods=["get", "post"])
 @login_required
 def my_books_read_update_rating(book_id):
     if request.method == "GET":
@@ -367,10 +367,10 @@ def my_books_read_update_rating(book_id):
         sql = "UPDATE books_read SET rating=:rating WHERE book_id=:book_id"
         db.session.execute(sql, {"rating": rating, "book_id": book_id})
         db.session.commit()
-        return redirect('/my_books_read')
+        return redirect("/my_books_read")
 
 
-@app.route('/my_books_read/update_summary/<book_id>', methods=["get", "post"])
+@app.route("/my_books_read/update_summary/<book_id>", methods=["get", "post"])
 @login_required
 def my_books_read_update_summary(book_id):
     if request.method == "GET":
@@ -380,10 +380,10 @@ def my_books_read_update_summary(book_id):
         sql = "UPDATE books_read SET plot_summary=:plot_summary WHERE book_id=:book_id"
         db.session.execute(sql, {"plot_summary": plot_summary, "book_id": book_id})
         db.session.commit()
-        return redirect('/my_books_read')
+        return redirect("/my_books_read")
 
 
-@app.route('/my_current_books/completed/<book_id>', methods=["get"])
+@app.route("/my_current_books/completed/<book_id>", methods=["get"])
 @login_required
 def my_current_books_completed(book_id):
 
@@ -393,7 +393,7 @@ def my_current_books_completed(book_id):
     return redirect("/my_books_read")
 
 
-@app.route('/my_books_read/share/<book_id>', methods=["get"])
+@app.route("/my_books_read/share/<book_id>", methods=["get"])
 @login_required
 def my_books_read_share(book_id):
     books_read.share(book_id)
