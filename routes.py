@@ -56,8 +56,7 @@ data = response.text
 parsed = json.loads(data)
 parsed_results = parsed["results"]
 book_list = parsed_results.get("books")
-titles = []
-images = []
+
 
 
 @app.route("/")
@@ -143,6 +142,8 @@ def bestsellers():
     if g.user is None:
         return redirect(url_for("index"))
     else:
+        titles = []
+        images = []
         for i in range(len(book_list)):
             message = book_list[i]["title"] + ", " + book_list[i]["author"] + ",  Description: " + book_list[i][
                 "description"] + " "
@@ -169,7 +170,7 @@ def home_admin():
 @login_required
 def api_review():
     if request.method == "GET":
-        return render_template("search_by_title.html", items=titles)
+        return render_template("search_by_title.html")
     if request.method == "POST":
         title = str(request.form["title"])
     endpoint2 = "https://api.nytimes.com/svc/books/v3/reviews.json?title=" + title + "&api-key=" + API_KEY
@@ -197,7 +198,7 @@ def api_review():
 @login_required
 def api_review2():
     if request.method == "GET":
-        return render_template("search_by_author.html", items=titles)
+        return render_template("search_by_author.html")
     if request.method == "POST":
         firstname = str(request.form["firstname"])
         lastname = str(request.form["lastname"])
@@ -417,7 +418,7 @@ def my_books_read_share(book_id):
 @login_required
 def add_future_book():
     if request.method == "GET":
-        return render_template("add_future_book.html", items=titles)
+        return render_template("add_future_book.html")
     if request.method == "POST":
         title = str(request.form["title"])
         author = str(request.form["author"])
