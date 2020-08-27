@@ -7,14 +7,14 @@
     {% if admin %}
     <H6>Admin View</H6>
     <div>
-        <h2 style="background-color: #EFFBFB">Community</h2>
+        <h2 style="background-color: #EFFBFB"><b>Community</b></h2>
         <div align="left">
             <img src="../static/images/quote_seuss0.jpg" style="width:350px;height:250px;" alt="Quote">
             <p></p>
             <p></p>
         </div>
         <div class="infobox">
-            <h3 style="background-color: #EFFBFB"><u>Useful Links:</u></h3>
+            <h3 style="background-color: #EFFBFB">Useful Links</h3>
             <table class="table">
                 <thead>
                 <tr>
@@ -42,9 +42,9 @@
         <div class="infobox">
             <div>
                 <tr>
-                    <h3 class="inline-headers h3" style="background-color: #EFFBFB"><u>User Count:</u></h3>
+                    <h3 class="inline-headers h3" style="background-color: #EFFBFB">User Count</h3>
                     <p><b>Number of app users:</b> {{count}}</p>
-                    <h3 class="inline-headers h3" style="background-color: #EFFBFB"><u>Book Count Per User:</u></h3>
+                    <h3 class="inline-headers h3" style="background-color: #EFFBFB">Book Count Per User</h3>
                     <table class="table">
                         <thead>
                         <tr>
@@ -64,7 +64,7 @@
             </div>
             <tr>
                 <div class="infobox">
-                    <h3 class="inline-headers h3" style="background-color: #EFFBFB"><u>Books Currently Read by App Users:</u></h3>
+                    <h3 class="inline-headers h3" style="background-color: #EFFBFB">Books Currently Read by App Users</h3>
                     <ul>
                         {% for book in books %}
                         <li>
@@ -80,7 +80,7 @@
 </div>
 <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
     <div class="infobox">
-        <h3 style="background-color: #EFFBFB"><u>Books Read by App Users:</u></h3>
+        <h3 style="background-color: #EFFBFB">Books Read by App Users</h3>
         <ul>
             {% for book in read_books %}
             <li>
@@ -90,7 +90,7 @@
         </ul>
     </div>
     <div class="infobox">
-        <h3 class="inline-headers h3" style="background-color: #EFFBFB"><u>Books Reviewed by App Users:</u></h3>
+        <h3 class="inline-headers h3" style="background-color: #EFFBFB">Books Reviewed by App Users</h3>
         <table class="table">
             <thead>
             <tr>
@@ -127,14 +127,14 @@
 {% endif %}
 {% if not admin %}
 <div>
-    <h2 style="background-color: #EFFBFB">Community</h2>
+    <h2 style="background-color: #EFFBFB"><b>Community</b></h2>
     <div align="left">
-        <img src="../static/images/quote_seuss0.jpg".jpg" style="width:350px;height:250px;" alt="Quote">
+        <img src="../static/images/quote_seuss0.jpg" style="width:350px;height:250px;" alt="Quote">
         <p></p>
         <p></p>
     </div>
     <div class="infobox">
-        <h3 style="background-color: #EFFBFB"><u>Useful Links:</u></h3>
+        <h3 style="background-color: #EFFBFB">Useful Links</h3>
         <ul align="left">
             {% for link in links %}
             <li>
@@ -148,9 +148,9 @@
     <div class="infobox">
         <div>
             <tr>
-                <h3 class="inline-headers h3" style="background-color: #EFFBFB"><u>User Count:</u></h3>
+                <h3 class="inline-headers h3" style="background-color: #EFFBFB">User Count</h3>
                 <p><b>Number of app users:</b> {{count}}</p>
-                <h3 class="inline-headers h3" style="background-color: #EFFBFB"><u>Book Count Per User:</u></h3>
+                <h3 class="inline-headers h3" style="background-color: #EFFBFB">Book Count Per User</h3>
                 <table class="table">
                     <thead>
                     <tr>
@@ -170,7 +170,7 @@
         </div>
         <tr>
             <div class="infobox">
-                <h3 class="inline-headers h3" style="background-color: #EFFBFB"><u>Books Currently Read by App Users:</u></h3>
+                <h3 class="inline-headers h3" style="background-color: #EFFBFB">Books Currently Read by App Users:</h3>
                 <ul>
                     {% for book in books %}
                     <li>
@@ -186,7 +186,7 @@
 </div>
 <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
     <div class="infobox">
-        <h3 style="background-color: #EFFBFB"><u>Books Read by App Users:</u></h3>
+        <h3 style="background-color: #EFFBFB">Books Read by App Users</h3>
         <ul>
             {% for book in read_books %}
             <li>
@@ -196,7 +196,7 @@
         </ul>
     </div>
     <div class="infobox">
-        <h3 class="inline-headers h3" style="background-color: #EFFBFB"><u>Books Reviewed by App Users:</u></h3>
+        <h3 class="inline-headers h3" style="background-color: #EFFBFB">Books Reviewed by App Users</h3>
         <table class="table">
             <thead>
             <tr>
