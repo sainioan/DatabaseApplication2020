@@ -1,5 +1,8 @@
-<title>New York Times Bestseller List</title>
+{% extends "layout.html" %}
+<title>New York Times Bestsellers</title>
+{% block content %}
 <body>
+{{ super() }}
 <h3 align="center">New York Times Best Seller List</h3>
 <p>{{ message }}</p>
 <div>
@@ -15,7 +18,5 @@
     {% endfor %}
 </div>
 </body>
-{% extends "layout.html" %}
-{% block content %}
-{{ super() }}
+
 {% endblock %}

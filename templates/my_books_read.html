@@ -1,85 +1,77 @@
-<title>Books Read List</title>
-<nav>
-    {% with messages = get_flashed_messages(with_categories=true) %}
-    {% if messages %}
-    {% for category, message in messages %}
-    <div class="alert alert-{{ category }} alert-dismissible" role="alert">
-        <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span
-                aria-hidden="true">&times;</span></button>
-        {{ message }}
-        {% endfor %}
-        {% endif %}
+{% extends "layout.html" %}
+<title>Books Read</title>
+{% block content %}
+    <body>
+    {{ super() }}
+    <nav>
+        {% with messages = get_flashed_messages(with_categories=true) %}
+            {% if messages %}
+                {% for category, message in messages %}
+                    <div class="alert alert-{{ category }} alert-dismissible" role="alert">
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span
+                            aria-hidden="true">&times;</span></button>
+                    {{ message }}
+                {% endfor %}
+            {% endif %}
         {% endwith %}
 
         {% if error %}
 
-        <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span
-                aria-hidden="true">&times;</span></button>
-        <div class="alert alert-danger">{{error}}</div>
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span
+                    aria-hidden="true">&times;</span></button>
+            <div class="alert alert-danger">{{ error }}</div>
         {% endif %}
 
         {% if msg %}
 
-        <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span
-                aria-hidden="true">&times;</span></button>
-        <div class="alert alert-success">{{msg}}</div>
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span
+                    aria-hidden="true">&times;</span></button>
+            <div class="alert alert-success">{{ msg }}</div>
         {% endif %}
         {% block body %}{% endblock %}
-    </div>
-</nav>
-</head>
-{% extends "layout.html" %}
-{% block content %}
-<body>
+        </div>
+    </nav>
+    </head>
 
-<h2> {{ session.username }}'s Books-Read-List:</h2>
-<tr>
-    <ol size="small" , type="1">
-        {% for item in items %}
-        <li style="background-color: #f9f9f9">
-            <b>Title:</b> {{item.1}} <br>
-            <b>Author:</b> {{item.2}}<br>
-            <b> Comment:</b> {{item.3}}<br>
-            <b> Rating: </b> {{item.4}}<br>
-            <b> Genre: </b> {{item.6}}<br>
-            <b> Page Count: </b> {{item.7}}<br>
-            <b> Summary: </b> {{item.8}}<br>
-            <td>
-                <form method="GET" action="{{url_for('my_books_read_update_comment', book_id=item[0])}}">
-                    <input type="submit" value="Update Comment"/></form>
+    <h2 style="background-color: #EFFBFB"> {{ session.username }}'s Books-Read List:</h2>
+    <tr>
+        <ol size="small" , type="1">
+            {% for item in items %}
+                <li style="background-color: #f9f9f9">
+                    <b>Title:</b> {{ item.1 }} <br>
+                    <b>Author:</b> {{ item.2 }}<br>
+                    <b> Comment:</b> {{ item.3 }}<br>
+                    <b> Rating: </b> {{ item.4 }}<br>
+                    <b> Genre: </b> {{ item.6 }}<br>
+                    <b> Page Count: </b> {{ item.7 }}<br>
+                    <b> Summary: </b> {{ item.8 }}<br>
+                    <td float="left">
+                        <form method="GET" action="{{ url_for('my_books_read_update_comment', book_id=item[0]) }}">
+                            <input type="submit" value="Update Comment"/></form>
+                        <form method="GET" action="{{ url_for('my_books_read_update_rating', book_id=item[0]) }}">
+                            <input type="submit" value="Update Rating"/></form>
+                        <form method="GET" action="{{ url_for('my_books_read_update_genre', book_id=item[0]) }}">
+                            <input type="submit" value="Update Genre"/></form>
+                        <form method="get" action="{{ url_for('my_books_read_update_summary', book_id=item[0]) }}">
+                            <input type="submit" value="Update Summary"/></form>
+                    </td>
+                    <p></p>
+                    <br>
+                    <p></p>
+                    <td>
+                        <i>Share your reading experience with the book app community by clicking the button below:</i>
 
-            </td>
 
+                        <form method="get" action="{{ url_for('my_books_read_share', book_id=item[0]) }}">
+                            <input type="submit" value="Share with community"/></form>
+                    </td>
+                    <p></p>
 
-            <td>
-                <form method="GET" action="{{url_for('my_books_read_update_rating', book_id=item[0])}}">
-                    <input type="submit" value="Update Rating"/></form>
+                </li>
+            {% endfor %}
+        </ol>
+    </tr>
 
-            </td>
-            <td>
-                <form method="GET" action="{{url_for('my_books_read_update_genre', book_id=item[0])}}">
-                    <input type="submit" value="Update Genre"/></form>
-            </td>
-
-            <td>
-                <form method="get" action="{{url_for('my_books_read_update_summary', book_id=item[0]) }}">
-                    <input type="submit" value="Update Summary"/></form>
-            </td>
-            <p></p>
-            <i>Share your reading experience with the book app community by clicking the button below:</i>
-
-            <td>
-                <form method="get" action="{{url_for('my_books_read_share', book_id=item[0]) }}">
-                    <input type="submit" value="Share with community"/></form>
-            </td>
-            <p></p>
-
-        </li>
-        {% endfor %}
-    </ol>
-</tr>
-
-</p>
-</body>
-{{ super() }}
+    </p>
+    </body>
 {% endblock %}

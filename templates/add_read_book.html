@@ -1,4 +1,6 @@
-<title>Add to Read Book List</title>
+{% extends "layout.html" %}
+<title>Add to Read Books</title>
+{% block content %}
 <style>
     input[type=text], select {
         width: 100%;
@@ -54,8 +56,8 @@
         margin: -16px -16px 16px -16px;
     }
 </style>
-
 <body>
+{{ super() }}
 <h2 align="center">Add a Book to Your Books-Read List</h2>
 <div class="box">
     <form action="/add_book" method="post">
@@ -133,7 +135,4 @@
     </form>
 </div>
 </body>
-{% extends "layout.html" %}
-{% block content %}
-{{ super() }}
 {% endblock %}

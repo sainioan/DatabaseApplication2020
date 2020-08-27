@@ -1,5 +1,8 @@
+{% extends "layout.html" %}
 <title>Links</title>
+{% block content %}
 <body>
+{{ super() }}
 <h2 align="center">Useful Links:</h2>
 <table class="table">
     <tbody>
@@ -12,7 +15,4 @@
     </tbody>
 </table>
 </body>
-{% extends "layout.html" %}
-{% block content %}
-{{ super() }}
 {% endblock %}

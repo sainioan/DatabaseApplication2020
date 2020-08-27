@@ -1,18 +1,21 @@
-<title>Add to Future Reading</title>
-<body>
-<h3>Add a Book to Your Future Reading List</h3>
-<p></p>
-<form action="/new_book" method="post">
-    <label> Title: </label><br>
-    <input type="text" name="title" placeholder="Book Title *">
-    <p>
-        <label> Author: </label><br>
-        <input type="text" name="author" placeholder="Book Author *">
-    <p>
-        <input type="submit" value="Add a book">
-</form>
-</body>
 {% extends "layout.html" %}
+<title>Add to Future Reading</title>
 {% block content %}
-{{ super() }}
+    <body>
+    {{ super() }}
+    <nav class="navbar-default">
+        <h3>Add to Your Future Reading List</h3>
+        <div class=" formbox">
+            <form action="/new_book" method="post">
+                <label> Title: </label><br>
+                <input type="text" name="title" placeholder="Book Title *">
+                <p>
+                    <label> Author: </label><br>
+                    <input type="text" name="author" placeholder="Book Author *">
+                <p>
+                    <input type="submit" value="Add a book">
+            </form>
+        </div>
+    </nav>
+    </body>
 {% endblock %}

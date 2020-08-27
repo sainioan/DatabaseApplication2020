@@ -29,25 +29,17 @@ form {
 }
 
 body {
-    leftmargin: 100;
     float: left;
     text-align: center;
     background-color: rgb(242, 243, 244);
 
 }
 
-
-label {
-    padding-right: 10px;
-    font-size: 1rem;
-}
 /* ===================================== Homepage styles ======================================== */
 .navbar-default {
     font-size: 17px;
     margin: 0;
     padding: 7px;
-    margin-left: 80px;
-    /*opacity: 0.5;*/
 }
 
 nav .navbar-brand {
@@ -72,11 +64,11 @@ nav .navbar-brand {
 
 /*change default behaviour of jumbotron*/
 .jumbotron {
-    margin-bottom: 0px;
+    margin-bottom: 0;
     height: 350px;
     color: white;
     background-color: #2E3134;
-    border-radius: 0px !important;
+    border-radius: 0 !important;
 }
 
 .jumbotron .element {
@@ -87,7 +79,6 @@ nav .navbar-brand {
     color: #2E3134;
     margin: 50px auto;
     padding: 10px;
-    align: center;
     text-align: center;
 }
 
@@ -108,11 +99,18 @@ nav .navbar-brand {
     padding: 3px;
     margin: 3px;
 }
+.formbox {
+    border: 1px solid black;
+    background-color: #AED6F1;
+    padding: 20px;
+    margin: 3px;
+    float: left;
+}
 
 
 /* ===================================== Profile styles ======================================== */
 .list-group-item {
-    border-radius: 0px !important;
+    border-radius: 0 !important;
 }
 
 .header {
@@ -125,16 +123,14 @@ nav .navbar-brand {
 }
 
 .thumbnail {
-    border-radius: 0px;
+    border-radius: 0;
     box-shadow: 2px 2px 2px #D6DBDF;
-    border-style: none;
     border: 0;
     color: #2E3134;
 }
 
 .thumbnail:hover {
     box-shadow: 2px 2px 2px #A6ACAF;
-    border-style: none;
     border: 0;
     text-decoration: none;
 }

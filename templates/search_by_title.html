@@ -1,13 +1,17 @@
-<title>Search by Title</title>
-<body>
-<h3>Search by book title</h3>
-<form action="/summary" method="post">
-    Title: <input type="text" name="title">
-
-    <input type="submit" value="Submit">
-</form>
-</body>
 {% extends "layout.html" %}
+<title>Search by Title</title>
 {% block content %}
-{{ super() }}
+    <body>
+    {{ super() }}
+    <nav class="navbar-default">
+        <h3>Search by Title</h3>
+        <div class=" formbox">
+            <form action="/summary" method="post">
+                Title: <input type="text" name="title">
+
+                <input type="submit" value="Submit">
+            </form>
+        </div>
+    </nav>
+    </body>
 {% endblock %}

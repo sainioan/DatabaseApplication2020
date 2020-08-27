@@ -1,15 +1,20 @@
 <title>Search by Author</title>
-<body>
-<h3>Search by Author Name</h3>
-<form action="/summary2" method="post">
-    First Name: <input type="text" name="firstname" placeholder="* required">
-    <p>
-        Last Name: <input type="text" name="lastname" placeholder="* required">
-    <p>
-        <input type="submit" value="Submit">
-</form>
-</body>
+
 {% extends "layout.html" %}
 {% block content %}
-{{ super() }}
+    {{ super() }}
+    <body>
+    <nav class="navbar-default">
+        <h3>Search by Author Name</h3>
+        <div class=" formbox">
+            <form  action="/summary2" method="post">
+                First Name: <input type="text" name="firstname" placeholder="* required">
+                <p>
+                    Last Name: <input type="text" name="lastname" placeholder="* required">
+                <p>
+                    <input type="submit" value="Submit">
+            </form>
+        </div>
+    </nav>
+    </body>
 {% endblock %}

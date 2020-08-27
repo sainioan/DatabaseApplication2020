@@ -1,36 +1,37 @@
-<title>Currently Reading Books</title>
-<nav>
-    {% with messages = get_flashed_messages(with_categories=true) %}
-        {% if messages %}
-            {% for category, message in messages %}
-                <div class="alert alert-{{ category }} alert-dismissible" role="alert">
-                <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span
-                        aria-hidden="true">&times;</span></button>
-                {{ message }}
-            {% endfor %}
-        {% endif %}
-    {% endwith %}
-
-    {% if error %}
-
-        <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span
-                aria-hidden="true">&times;</span></button>
-        <div class="alert alert-danger">{{ error }}</div>
-    {% endif %}
-
-    {% if msg %}
-
-        <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span
-                aria-hidden="true">&times;</span></button>
-        <div class="alert alert-success">{{ msg }}</div>
-    {% endif %}
-    {% block body %}{% endblock %}
-    </div>
-</nav>
-</head>
 {% extends "layout.html" %}
+<title>Currently Reading List</title>
 {% block content %}
     <body>
+    {{ super() }}
+    <nav>
+        {% with messages = get_flashed_messages(with_categories=true) %}
+            {% if messages %}
+                {% for category, message in messages %}
+                    <div class="alert alert-{{ category }} alert-dismissible" role="alert">
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span
+                            aria-hidden="true">&times;</span></button>
+                    {{ message }}
+                {% endfor %}
+            {% endif %}
+        {% endwith %}
+
+        {% if error %}
+
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span
+                    aria-hidden="true">&times;</span></button>
+            <div class="alert alert-danger">{{ error }}</div>
+        {% endif %}
+
+        {% if msg %}
+
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span
+                    aria-hidden="true">&times;</span></button>
+            <div class="alert alert-success">{{ msg }}</div>
+        {% endif %}
+        {% block body %}{% endblock %}
+        </div>
+    </nav>
+    </head>
     <h2>{{ session.username }}'s Currently Reading List:</h2>
     <tr>
         <ol size="small" , type="1">
@@ -42,46 +43,37 @@
                     <b>Plot Summary/Content: </b> {{ item.4 }}<br>
                     <b>Current Page: </b> {{ item.5 }}<br>
                     <b>Page Count: </b> {{ item.6 }}<br>
-                    <label>Reading progress:</label>
+                    <b>Reading progress:</b>
                     <div class="progress">
                         <div class="progress-bar" role="progressbar" aria-valuenow="{{ item.8 }}"
                              aria-valuemin="0" aria-valuemax="100" style="width:{{ item.8 }}%">
                             {{ item.8 }} %
                         </div>
                     </div>
-                    <p></p>
+                    <br>
                     <td>
                         <form method="GET" action="{{ url_for('my_current_books_update_summary', book_id=item[0]) }}">
                             <input type="submit" value="Update Summary"/></form>
-                    </td>
-                    <td>
                         <form method="GET"
                               action="{{ url_for('my_books_current_books_update_genre', book_id=item[0]) }}">
                             <input type="submit" value="Update Genre"/></form>
-                    </td>
-                    <td>
                         <form method="GET"
                               action="{{ url_for('my_current_books_update_current_page', book_id=item[0]) }}">
                             <input type="submit" value="Update Current Page"/></form>
-                    </td>
-                    <td>
                         <form method="GET"
                               action="{{ url_for('my_current_books_update_page_count', book_id=item[0]) }}">
                             <input type="submit" value="Update Page Count"/></form>
                     </td>
                     <br>
-
-
-                    <i>Done with the book? Move the book to your books-read list by clicking the button below:</i>
-                    <p></p>
                     <td>
+                    <i>Done with the book? Move the book to your books-read list by clicking the 'Move to Books-Read' button:</i>
+
                         <form method="get" action="{{ url_for('my_current_books_completed', book_id=item[0]) }}">
-                            <input type="submit" value="Add to Books-Read list"/></form>
+                            <input type="submit" value="Move to Books-Read"/></form>
                     </td>
                     <br>
-                    <i>No longer reading the book? You can safely delete it by clicking the button below:</i>
-                    <p></p>
                     <td>
+                    <i>No longer reading the book? You can safely delete it by clicking the 'delete' button:</i>
                         <form method="GET" action="{{ url_for('my_current_books_delete', book_id=item[0]) }}">
                             <input type="submit" onclick="return clicked();" value="Delete Book"/></form>
                         <script type="text/javascript">
@@ -96,5 +88,4 @@
         </ol>
     </tr>
     </body>
-    {{ super() }}
 {% endblock %}

@@ -1,4 +1,6 @@
-<title>Add to Currently Reading List</title>
+{% extends "layout.html" %}
+<title>Add to Currently Reading</title>
+{% block content %}
 
 <style>
     input[type=text], select {
@@ -56,7 +58,7 @@
     }
 </style>
 <body>
-
+{{ super() }}
 <h3 align ="center">Add a Book to Your Currently Reading List</h3>
 <div class="box">
     <form action="/add_current_book" method="post">
@@ -65,7 +67,6 @@
         <label><b>Author:</b></label><br>
         <input type="text" name="author" placeholder="Author Name *"><br>
         <label><b>Genre:</b></label><br>
-        <!--        <input type="text" name="genre" placeholder="Book Category (thriller, programming...)"><br>-->
         <select name="genre" id="genre">
 
             <option value="Action">Action</option>
@@ -126,7 +127,4 @@
     </form>
 </div>
 </body>
-{% extends "layout.html" %}
-{% block content %}
-{{ super() }}
 {% endblock %}
