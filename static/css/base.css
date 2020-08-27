@@ -92,6 +92,7 @@ nav .navbar-brand {
     width: 300px;
     padding: 20px;
     border: 2px solid #333;
+    float: left;
 }
 
 .infobox {
@@ -169,5 +170,6 @@ nav .navbar-brand {
 
 .th, .td {
     border: 1px solid black;
+    float: left;
 }
 

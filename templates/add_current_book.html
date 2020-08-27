@@ -33,12 +33,19 @@
         background-color: #f2f2f2;
         padding: 5px;
         width: 100%;
+        margin: 0 auto;
         border-style: solid;
         border-width: 3px;
         border-color: black;
+        align: center;
 
     }
-
+    aDiv {
+            width: 300px;
+            height: 300px;
+            margin: 0 auto;
+            float:left;
+        }
     .form-style-6 {
         font: 95% Arial, Helvetica, sans-serif;
         max-width: 400px;
@@ -57,11 +64,12 @@
         margin: -16px -16px 16px -16px;
     }
 </style>
-<body>
+       <body>
 {{ super() }}
+  <nav class="navbar-default">
 <h3 align ="center">Add a Book to Your Currently Reading List</h3>
-<div class="box">
-    <form action="/add_current_book" method="post">
+    <form float="left" class="box" action="/add_current_book" method="post">
+
         <label><b>Title:</b></label><br>
         <input type="text" name="title" placeholder="Book Title *"><br>
         <label><b>Author:</b></label><br>
@@ -124,7 +132,8 @@
         <label><b>Page Count:</b></label><br>
         <input type="number" name="pages" placeholder="Total page count *"><br>
         <input type="submit" value="Submit">
+
     </form>
-</div>
-</body>
+  </nav>
+       </body>
 {% endblock %}
