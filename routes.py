@@ -204,11 +204,11 @@ def delete_user(id):
     return redirect(url_for("home_admin"))
 
 
-@app.route("/delete_link/<id>", methods=["GET"])
+@app.route("/delete_link/<link_id>", methods=["GET"])
 @login_required
-def delete_link(id):
-    sql = "DELETE FROM links WHERE link_id=:id"
-    db.session.execute(sql, {"link_id": id})
+def delete_link(link_id):
+    sql = "DELETE FROM links WHERE link_id=:link_id"
+    db.session.execute(sql, {"link_id": link_id})
     db.session.commit()
     return redirect(url_for("community"))
 
@@ -451,7 +451,7 @@ def add_link():
 @app.route("/links")
 @login_required
 def show_links():
-    sql = "SELECT title, url from links"
+    sql = "SELECT link_id, title, url from links"
     result = db.session.execute(sql)
     link_list = result.fetchall()
     return render_template("links.html", links=link_list)
@@ -478,7 +478,7 @@ def community():
         message3 = message2.replace(",", "")
         readb_list.append(message3)
 
-    sql1 = "SELECT title, url from links"
+    sql1 = "SELECT link_id, title, url from links"
     result1 = db.session.execute(sql1)
     link_list = result1.fetchall()
 

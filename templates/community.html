@@ -23,10 +23,10 @@
                 </thead>
                 {% for link in links %}
                 <tr>
-                    <td><b>{{link.0}}</b></td>
-                    <td><a href={{link.1}}> {{link.1}}</a></td>
+                    <td><b>{{link.1}}</b></td>
+                    <td><a href={{link.2}}> {{link.2}}</a></td>
                     <td>
-                        <form method="GET" action="{{url_for('delete_link', id=link[0]) }}">
+                        <form method="GET" action="{{url_for('delete_link', link_id=link[0]) }}">
                             <input type="submit" onclick="return clicked();" value="Delete Link"/></form>
                         <script type="text/javascript">
                             function clicked() {
