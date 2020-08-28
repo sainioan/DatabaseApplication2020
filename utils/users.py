@@ -34,8 +34,9 @@ def register(username, password):
 
 def user_check(username):
     sql = "SELECT username FROM users WHERE username = :username"
-    db.session.execute(    {"username": username}).fetchone()
+    result = db.session.execute(sql, {"username": username})
     db.session.commit()
+    return result.fetchone()
 
 
 def user_id():
@@ -48,12 +49,13 @@ def is_admin(id):
     return res.fetchall()
 
 
-
 def delete_user(id):
     sql = "DELETE from users WHERE id=:id"
     db.session.execute(sql, {"id": id})
     db.session.commit()
     return True
+
+
 def get_users():
     sql = "SELECT id, username, admin FROM users"
     res = db.session.execute(sql)
