@@ -13,9 +13,11 @@
     <p>
 
     <div class="form-group">
-       Confirm Password:  <input class="form-control" name="confirmation" type="password" placholder="retype password here"/>
+        Confirm Password: <input class="form-control" name="confirmation" type="password"
+                                 placholder="retype password here"/>
     </div>
-       <input type="submit" value="Sign up">
+    <input type="submit" value="Sign up">
+    <input type="hidden" name="csrf_token" value="{{ csrf_token() }}"/>
 </form>
 <form>
     <input type="button" value="Back" onclick="history.back()">

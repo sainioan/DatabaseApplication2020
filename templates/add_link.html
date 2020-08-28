@@ -4,19 +4,21 @@
 {% block content %}
     {{ super() }}
     <body>
-<nav class="navbar-default">
-    <h3>Add a Useful Link</h3>
-    <div class=" formbox">
-        <form action="/add_link" method="post">
-            <label> Title: </label><br>
-            <input type="text" name="title" placeholder="Link Title *">
-            <p>
-                <label> Url: </label><br>
-                <input type="text" name="url" placeholder="Url *">
-            <p>
-                <input type="submit" value="Add a link">
-        </form>
-    </div>
-</nav>
-</body>
+    <nav class="navbar-default">
+        <h3>Add a Useful Link</h3>
+        <div class=" formbox">
+            <form action="/add_link" method="post">
+                <label> Title: </label><br>
+                <input type="text" name="title" placeholder="Link Title *">
+                <p>
+                    <label> Url: </label><br>
+                    <input type="text" name="url" placeholder="Url *">
+                <p>
+                    <input type="submit" value="Add a link">
+                    <input type="hidden" name="csrf_token" value="{{ csrf_token() }}"/>
+
+            </form>
+        </div>
+    </nav>
+    </body>
 {% endblock %}
