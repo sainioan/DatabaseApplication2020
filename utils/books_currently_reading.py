@@ -9,8 +9,10 @@ def user_id():
 def new_book(title, author, genre, plot_summary, current_page, pages, user_id):
     sql = "INSERT INTO books_currently_reading (title,author, genre, plot_summary, current_page, pages, user_id) VALUES (:title,:author, :genre, :plot_summary, :current_page, :pages, " \
           ":user_id) "
-    return db.session.execute(sql, {"title": title, "author": author, "genre": genre, "plot_summary": plot_summary,
+    db.session.execute(sql, {"title": title, "author": author, "genre": genre, "plot_summary": plot_summary,
                                     "current_page": current_page, "pages": pages, "user_id": user_id})
+
+    db.session.commit()
 
 
 def check_book(user_id, title):
