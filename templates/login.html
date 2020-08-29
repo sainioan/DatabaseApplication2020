@@ -1,5 +1,5 @@
 {% extends "layout.html" %}
-{% block title %}Index{% endblock %}
+{% block title %}Login{% endblock %}
 {% block content %}
 <body>
 {{ super() }}
@@ -86,7 +86,7 @@
                 <label><b>Password</b></label><br>
                 <input type="password" placeholder="Enter Password" name="password" required><br>
 
-                <button type="submit">Login</button><br>
+                <button type="submit">Log In</button><br>
                 <input type="hidden" name="csrf_token" value="{{ csrf_token() }}"/>
                 <br>
               <h4>  Not a user yet? Sign up <a href="/sign_up">here</a></h4>

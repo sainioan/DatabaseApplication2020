@@ -1,11 +1,10 @@
-<title>Search by Author</title>
-
 {% extends "layout.html" %}
+{% block title %}Search by Author{% endblock %}
 {% block content %}
     {{ super() }}
     <body>
     <nav class="navbar-default">
-        <h3>Search by Author Name</h3>
+        <h3 style="background-color: #EFFBFB">Search by Author Name</h3>
         <div class=" formbox">
             <form action="/summary2" method="post">
                 First Name: <input type="text" name="firstname" placeholder="* required">

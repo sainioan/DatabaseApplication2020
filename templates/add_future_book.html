@@ -1,10 +1,10 @@
 {% extends "layout.html" %}
-<title>Add to Future Reading</title>
+{% block title %}Add to Future Reading{% endblock %}
 {% block content %}
     <body>
     {{ super() }}
     <nav class="navbar-default">
-        <h3>Add to Your Future Reading List</h3>
+        <h3 style="background-color: #EFFBFB" >Add to Your Future Reading List</h3>
         <div class=" formbox">
             <form action="/new_book" method="post">
                 <label> Title: </label><br>

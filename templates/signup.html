@@ -1,26 +1,103 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <link rel="icon" href="data:;base64,iVBORw0KGgo=">
-    <title>Sign Up</title>
-</head>
-<body>
-<form action="/sign_up" method="post">
-    Username: <input type="text" placeholder="must be 3-15 characters" name="username">
-    <p>
-        Password: <input type="password" placeholder="must be 3-15 characters" name="password">
-    <p>
+{% extends "layout.html" %}
+{% block title %}Sign up{% endblock %}
+{% block content %}
+    <body>
+    {{ super() }}
+    <style>
+        /*set border to the form*/
+        body {
+            float: left;
+        }
 
-    <div class="form-group">
-        Confirm Password: <input class="form-control" name="confirmation" type="password"
-                                 placholder="retype password here"/>
+        login_form {
+            border: 3px solid #f1f1f1;
+            width: 40%;
+            padding: 20px;
+            position: relative;
+            float: left;
+        }
+
+        /*assign full width inputs*/
+
+        input[type=text],
+        input[type=password] {
+            width: 35%;
+            padding: 12px 20px;
+            margin: 8px 0;
+            display: inline-block;
+            border: 1px solid #ccc;
+            box-sizing: border-box;
+        }
+
+
+        /*set a style for the buttons*/
+
+        button {
+            background-color: #4CAF50;
+            color: white;
+            padding: 14px 20px;
+            margin: 8px 0;
+            border: none;
+            cursor: pointer;
+            width: 35%;
+        }
+
+        /* set a hover effect for the button*/
+
+        button:hover {
+            opacity: 0.8;
+        }
+
+        /*set padding to the container*/
+
+        .container {
+            padding: 16px;
+        }
+
+        /*set the forgot password text*/
+
+        span.psw {
+            float: left;
+            padding-top: 16px;
+            padding-left: 5px;
+        }
+
+        /*set styles for span and cancel button on small screens*/
+
+        @media screen and (max-width: 150px) {
+            span.psw {
+                display: block;
+                float: none;
+            }
+        }
+    </style>
+    <div class="header">
+        <h3>Book Database Application</h3>
     </div>
-    <input type="submit" value="Sign up">
-    <input type="hidden" name="csrf_token" value="{{ csrf_token() }}"/>
-</form>
-<form>
-    <input type="button" value="Back" onclick="history.back()">
-</form>
-</body>
-</html>
+    <br>
+    <div>
+        <form class="login_form" action="/sign_up" method="post">
+            <h3 float="left" ;> Signup Form </h3>
+            <div class="container">
+                <label><b>Usernamed</b></label><br>
+                <input type="text" placeholder="must be 3-15 characters" name="username">
+                <p>
+                    <label><b>Password</b></label><br>
+                    <input type="password" placeholder="must be 3-15 characters" name="password">
+                <p>
+
+                <div class="form-group">
+                   <label><b>Confirm Password</b></label><br>
+                <input class="form-control" name="confirmation" type="password"
+                                             placholder="retype password here"/>
+                </div>
+                <button type="submit">Sign Up</button><br>
+                <input type="hidden" name="csrf_token" value="{{ csrf_token() }}"/>
+                <p></p>
+                <br>
+            </div>
+        </form>
+    </div>
+    </div>
+    </body>
+{% endblock %}

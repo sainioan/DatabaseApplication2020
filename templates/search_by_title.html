@@ -1,10 +1,10 @@
 {% extends "layout.html" %}
-<title>Search by Title</title>
+{% block title %}Search by Title{% endblock %}
 {% block content %}
     <body>
     {{ super() }}
     <nav class="navbar-default">
-        <h3>Search by Title</h3>
+        <h3 style="background-color: #EFFBFB">Search by Title</h3>
         <div class=" formbox">
             <form action="/summary" method="post">
                 Title: <input type="text" name="title">

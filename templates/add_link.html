@@ -1,11 +1,10 @@
-<title>Add Link</title>
-
 {% extends "layout.html" %}
+{% block title %}Add Link{% endblock %}
 {% block content %}
     {{ super() }}
     <body>
     <nav class="navbar-default">
-        <h3>Add a Useful Link</h3>
+        <h3 style="background-color: #EFFBFB">Add a Useful Link</h3>
         <div class=" formbox">
             <form action="/add_link" method="post">
                 <label> Title: </label><br>

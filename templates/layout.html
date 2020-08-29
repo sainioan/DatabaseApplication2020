@@ -29,6 +29,10 @@
             margin: 0;
             font-family: Arial, Helvetica, sans-serif;
         }
+        form {
+            float:left;
+            position:relative;
+        }
 
         .topnav {
             background-color: #333;
@@ -79,7 +83,7 @@
             {% if admin %}
                 <a href="/home_admin">Home:Admin View</a>
             {% endif %}
-            <form>
+            <form float="left">
                 <input type="button" value="Back" onclick="history.back()">
             </form>
             <td>
