@@ -79,7 +79,7 @@
         <form class="login_form" action="/sign_up" method="post">
             <h3 float="left" ;> Signup Form </h3>
             <div class="container">
-                <label><b>Usernamed</b></label><br>
+                <label><b>Username</b></label><br>
                 <input type="text" placeholder="must be 3-15 characters" name="username">
                 <p>
                     <label><b>Password</b></label><br>
@@ -88,8 +88,8 @@
 
                 <div class="form-group">
                    <label><b>Confirm Password</b></label><br>
-                <input class="form-control" name="confirmation" type="password"
-                                             placholder="retype password here"/>
+                <input name="confirmation" type="password"
+                                             placeholder="retype password here"/>
                 </div>
                 <button type="submit">Sign Up</button><br>
                 <input type="hidden" name="csrf_token" value="{{ csrf_token() }}"/>
