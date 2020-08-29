@@ -13,12 +13,11 @@ def new_book(title, author, comment, rating, user_id, genre, pages, plot_summary
     db.session.execute(sql, {"title": title, "author": author, "comment": comment, "rating": rating, "user_id": user_id,
                              "genre": genre, "pages": pages, "plot_summary": plot_summary})
     db.session.commit()
-    return True
 
 
 def check_book(user_id, title):
     sql = "SELECT title FROM books_read WHERE user_id = :user_id AND title = :title"
-    return db.session.execute(sql,{"user_id": user_id, "title": title})
+    return db.session.execute(sql, {"user_id": user_id, "title": title})
 
 
 def update_rating(rating, book_id):
@@ -42,21 +41,18 @@ def share(book_id):
           "books_read.book_id=:book_id"
     db.session.execute(sql, {"book_id": book_id})
     db.session.commit()
-    return True
 
 
 def update_comment(comment, book_id):
     sql = "UPDATE books_read SET comment=:comment WHERE book_id=:book_id"
     db.session.execute(sql, {"comment": comment, "book_id": book_id})
     db.session.commit()
-    return True
 
 
 def update_genre(genre, book_id):
     sql = "UPDATE books_read SET genre=:genre WHERE book_id=:book_id"
     db.session.execute(sql, {"genre": genre, "book_id": book_id})
     db.session.commit()
-    return True
 
 
 def count_books_read_by_user():

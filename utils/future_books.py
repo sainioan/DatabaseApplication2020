@@ -1,5 +1,4 @@
 from flask import session
-
 from db import db
 
 
@@ -11,7 +10,6 @@ def new(title, author, user_id):
     sql = "INSERT INTO bookstoread (title,author,user_id) VALUES (:title,:author,:user_id)"
     db.session.execute(sql, {"title": title, "author": author, "user_id": user_id})
     db.session.commit()
-    return True
 
 
 def check_book(user_id, title):
@@ -27,24 +25,14 @@ def show(user_id):
     return bookList
 
 
-def get_book_id(title):
-    sql = "SELECT book_id FROM bookstoread WHERE " \
-          "title=:title"
-    result = db.session.execute(sql, {"title": title})
-    db.session.commit()
-    id = result.fetchone()
-    return id
-
-
 def delete_book(book_id):
     sql = "DELETE FROM bookstoread WHERE book_id=:book_id"
     db.session.execute(sql, {"book_id": book_id})
     db.session.commit()
-    return True
 
 
 def transfer(book_id):
-    sql = "INSERT INTO books_currently_reading (title, author, user_id) SELECT title, author, user_id FROM bookstoread WHERE book_id =:book_id"
+    sql = "INSERT INTO books_currently_reading (title, author, user_id) SELECT title, author, user_id FROM " \
+          "bookstoread WHERE book_id =:book_id "
     db.session.execute(sql, {"book_id": book_id})
     db.session.commit()
-    return True

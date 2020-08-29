@@ -9,15 +9,13 @@ def user_id():
 def new_book(title, author, genre, plot_summary, current_page, pages, user_id):
     sql = "INSERT INTO books_currently_reading (title,author, genre, plot_summary, current_page, pages, user_id) VALUES (:title,:author, :genre, :plot_summary, :current_page, :pages, " \
           ":user_id) "
-    db.session.execute(sql, {"title": title, "author": author, "genre": genre, "plot_summary": plot_summary,
-                             "current_page": current_page, "pages": pages, "user_id": user_id})
-    db.session.commit()
-    return True
+    return db.session.execute(sql, {"title": title, "author": author, "genre": genre, "plot_summary": plot_summary,
+                                    "current_page": current_page, "pages": pages, "user_id": user_id})
 
 
 def check_book(user_id, title):
     sql = "SELECT title FROM books_currently_reading WHERE user_id = :user_id AND title = :title"
-    return db.session.execute(sql,{"user_id": user_id, "title": title})
+    return db.session.execute(sql, {"user_id": user_id, "title": title})
 
 
 def show(user_id):
@@ -37,50 +35,43 @@ def page_count(book_id):
     count = result.fetchone()
     return count
 
+
 def transfer_to_books_read(book_id):
     sql = "INSERT INTO books_read (title, author, user_id, genre, pages, plot_summary) SELECT title, author, user_id, genre, " \
           "pages, plot_summary FROM books_currently_reading " \
           "WHERE book_id =:book_id "
     db.session.execute(sql, {"book_id": book_id})
     db.session.commit()
-    return True
 
 
 def update_page_number(current_page, book_id):
     sql = "UPDATE books_currently_reading SET current_page=:current_page WHERE book_id=:book_id"
     db.session.execute(sql, {"current_page": current_page, "book_id": book_id})
     db.session.commit()
-    db.session.commit()
-    return True
 
 
 def update_pages(pages, book_id):
     sql = "UPDATE books_currently_reading SET pages=:pages WHERE book_id=:book_id"
     db.session.execute(sql, {"pages": pages, "book_id": book_id})
     db.session.commit()
-    db.session.commit()
-    return True
 
 
 def update_summary(summary, book_id):
     sql = "UPDATE books_currently_reading SET plot_summary=:plot_summary WHERE book_id=:book_id"
     db.session.execute(sql, {"plot_summary": summary, "book_id": book_id})
     db.session.commit()
-    return True
 
 
 def update_genre(genre, book_id):
     sql = "UPDATE books_currently_reading SET genre=:genre WHERE book_id=:book_id"
     db.session.execute(sql, {"genre": genre, "book_id": book_id})
     db.session.commit()
-    return True
 
 
 def delete_book(book_id):
     sql = "DELETE FROM books_currently_reading WHERE book_id=:book_id"
     db.session.execute(sql, {"book_id": book_id})
     db.session.commit()
-    return True
 
 
 def books_currently_read_by_users():
