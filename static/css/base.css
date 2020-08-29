@@ -112,8 +112,11 @@ nav .navbar-brand {
 /* ===================================== Profile styles ======================================== */
 .list-group-item {
     border-radius: 0 !important;
+    float: left;
 }
-
+.inline-form {
+    display: inline;
+}
 .header {
     padding: 60px;
     text-align: center;

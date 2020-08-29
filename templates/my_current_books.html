@@ -1,6 +1,11 @@
 {% extends "layout.html" %}
 <title>Currently Reading List</title>
 {% block content %}
+    <style>
+        inline-form {
+            display: inline;
+        }
+    </style>
     <body>
     {{ super() }}
     <nav>
@@ -32,63 +37,65 @@
         </div>
     </nav>
     </head>
-    <h2>{{ session.username }}'s Currently Reading List:</h2>
-    <tr>
-        <ol size="small" , type="1">
+    <div class="infobox">
+        <h3 style="background-color: #EFFBFB">{{ session.username }}'s Currently Reading List:</h3>
+          <ol size="small" , type="1">
             {% for item in items %}
                 <li style="background-color: #f9f9f9">
-                    <strong> <b>Title:</b> {{ item.1 }} <br></strong>
+                    <b>Title:</b> {{ item.1 }} <br>
                     <b>Author:</b> {{ item.2 }}<br>
                     <b>Genre:</b> {{ item.3 }}<br>
                     <b>Plot Summary/Content: </b> {{ item.4 }}<br>
                     <b>Current Page: </b> {{ item.5 }}<br>
                     <b>Page Count: </b> {{ item.6 }}<br>
                     <b>Reading progress:</b>
-                    <div class="progress">
-                        <div class="progress-bar" role="progressbar" aria-valuenow="{{ item.8 }}"
-                             aria-valuemin="0" aria-valuemax="100" style="width:{{ item.8 }}%">
-                            {{ item.8 }} %
-                        </div>
-                    </div>
-                    <br>
-
-                    <td float="left">
-                         <div float="left">
-                        <form method="GET" action="{{ url_for('my_current_books_update_summary', book_id=item[0]) }}">
-                            <input type="submit" value="Update Summary"/></form>
-                        <form method="GET"
-                              action="{{ url_for('my_books_current_books_update_genre', book_id=item[0]) }}">
-                            <input type="submit" value="Update Genre"/></form>
-                        <form method="GET"
-                              action="{{ url_for('my_current_books_update_current_page', book_id=item[0]) }}">
-                            <input type="submit" value="Update Current Page"/></form>
-                        <form method="GET"
-                              action="{{ url_for('my_current_books_update_page_count', book_id=item[0]) }}">
-                            <input type="submit" value="Update Page Count"/></form>
-                        </div>
-                    </td>
-                    <br>
-                    <td>
-                    <i>Done with the book? Move the book to your books-read list by clicking the 'Move to Books-Read' button:</i>
-
-                        <form method="get" action="{{ url_for('my_current_books_completed', book_id=item[0]) }}">
-                            <input type="submit" value="Move to Books-Read"/></form>
-                    </td>
-                    <br>
-                    <td>
-                    <i>No longer reading the book? You can safely delete it by clicking the 'delete' button:</i>
-                        <form method="GET" action="{{ url_for('my_current_books_delete', book_id=item[0]) }}">
-                            <input type="submit" onclick="return clicked();" value="Delete Book"/></form>
-                        <script type="text/javascript">
-                            function clicked() {
-                                return confirm('Are you sure you want to delete the book?');
-                            }
-                        </script>
-                    </td>
+                            <div class="progress">
+                                <div class="progress-bar" role="progressbar" aria-valuenow="{{ item.8 }}"
+                                     aria-valuemin="0" aria-valuemax="100" style="width:{{ item.8 }}%">
+                                    {{ item.8 }} %
+                                </div>
+                            </div><br>
+                         <ul class="list-group-item"/>
+                      <li class="list-group-item">
+                            <form  method="GET"
+                                  action="{{ url_for('my_current_books_update_summary', book_id=item[0]) }}">
+                                <input type="submit" value="Update Summary"/></form>
+                        </li>
+                        <li class="list-group-item">
+                            <form class="inline-form" method="GET"
+                                  action="{{ url_for('my_books_current_books_update_genre', book_id=item[0]) }}">
+                                <input type="submit" value="Update Genre"/></form>
+                        </li>
+                        <li class="list-group-item">
+                            <form method="GET"
+                                  action="{{ url_for('my_current_books_update_current_page', book_id=item[0]) }}">
+                                <input type="submit" value="Update Current Page"/></form>
+                        </li>
+                        <li class="list-group-item">
+                            <form method="GET"
+                                  action="{{ url_for('my_current_books_update_page_count', book_id=item[0]) }}">
+                                <input type="submit" value="Update Page Count"/></form>
+                        </li>
+                        <li class="list-group-item">
+                            <i>Done with the book? Move the book to your books-read list by clicking the 'Move to
+                                Books-Read' button:</i>
+                            <form method="get" action="{{ url_for('my_current_books_completed', book_id=item[0]) }}">
+                                <input type="submit" value="Move to Books-Read"/></form>
+                        </li>
+                        <li class="list-group-item">
+                            <i>No longer reading the book? You can safely delete it by clicking the 'delete' button:</i>
+                            <form method="GET" action="{{ url_for('my_current_books_delete', book_id=item[0]) }}">
+                                <input type="submit" onclick="return clicked();" value="Delete Book"/></form>
+                            <script type="text/javascript">
+                                function clicked() {
+                                    return confirm('Are you sure you want to delete the book?');
+                                }
+                            </script>
+                        </li>
+                    </ul>
                 </li>
-                <br>
             {% endfor %}
         </ol>
-    </tr>
+    </div>
     </body>
 {% endblock %}

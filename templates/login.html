@@ -1,42 +1,27 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <link rel='stylesheet' href="../static/css/base.css">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <link rel="icon" href="data:;base64,iVBORw0KGgo=">
-    <link rel="shortcut icon" href="data:image/x-icon;," type="image/x-icon">
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
-          integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
-          integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
-          integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
-          crossorigin="anonymous">
-    <title>Login</title>
+{% extends "layout.html" %}
+{% block title %}Index{% endblock %}
+{% block content %}
+<body>
+{{ super() }}
     <style>
         /*set border to the form*/
         body {
             float: left;
         }
 
-        form {
+        login_form {
             border: 3px solid #f1f1f1;
             width: 40%;
-            padding-top: 20px;
-            padding-left: 20px;
-            padding-right: 20px;
-            padding-bottom: 10px;
+            padding: 20px;
             position: relative;
             float: left;
-        {#display: inline-block;#}{#position:relative;#}{# margin: 10px;#}{#float: right;#}
         }
 
         /*assign full width inputs*/
 
         input[type=text],
         input[type=password] {
-            width: 100%;
+            width: 35%;
             padding: 12px 20px;
             margin: 8px 0;
             display: inline-block;
@@ -54,7 +39,7 @@
             margin: 8px 0;
             border: none;
             cursor: pointer;
-            width: 50%;
+            width: 35%;
         }
 
         /* set a hover effect for the button*/
@@ -86,48 +71,30 @@
             }
         }
     </style>
-
-</head>
-
-<body>
-
-<nav class="navbar navbar-default ">
     <div class="header">
         <h3>Book Database Application</h3>
     </div>
 
     <br>
     <div>
-        <form action="/login" method="post">
-            <h4 float="left" ;> Login Form </h4>
+        <form class="login_form" action="/login" method="post">
+            <h3 float="left" ;> Login Form </h3>
             <div class="container">
-                <label><b>Username</b></label>
-                <input type="text" placeholder="Enter Username" name="username" required>
+                <label><b>Username</b></label><br>
+                <input type="text" placeholder="Enter Username" name="username" required><br>
 
-                <label><b>Password</b></label>
-                <input type="password" placeholder="Enter Password" name="password" required>
+                <label><b>Password</b></label><br>
+                <input type="password" placeholder="Enter Password" name="password" required><br>
 
-                <button type="submit">Login</button>
+                <button type="submit">Login</button><br>
                 <input type="hidden" name="csrf_token" value="{{ csrf_token() }}"/>
                 <br>
-                Not a user yet? Sign up <a href="/sign_up">here</a>
+              <h4>  Not a user yet? Sign up <a href="/sign_up">here</a></h4>
                 <p></p>
                 <br>
             </div>
         </form>
     </div>
     </div>
-</nav>
 </body>
-
-<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
-        integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
-        crossorigin="anonymous"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
-        integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
-        crossorigin="anonymous"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
-        integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
-        crossorigin="anonymous"></script>
-</body>
-</html>
+{% endblock %}

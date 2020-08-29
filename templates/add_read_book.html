@@ -46,12 +46,6 @@
             background: #F7F7F7;
         }
 
-        aDiv {
-            width: 300px;
-            height: 300px;
-            margin: 0 auto;
-        }
-
         .form-style-6 h1 {
             background: #43D1AF;
             padding: 20px 0;
@@ -65,13 +59,13 @@
     <body>
     {{ super() }}
     <nav class="navbar-default">
-        <h4 align="center">Add a Book to Your Books-Read List</h4>
+        <h3 align="left">Add a Book to Your Books-Read List</h3>
         <form float="left" class="box" action="/add_book" method="post">
             <label><b>Title:</b></label><br>
             <input type="text" name="title" placeholder="Book Title *"><br>
             <label><b>Author:</b></label><br>
             <input type="text" name="author" placeholder="Author Name *"><br>
-            How was the book? Summarize or comment on the book's content.
+            Summarize or comment on the book's content.
             <label><b>Comment: </b>(optional)</label><br>
             <input type="text" name="comment">
             <label><b>Summary: </b>(optional)</label><br>
