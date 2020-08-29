@@ -3,8 +3,9 @@
 {% block content %}
 <body>
 {{ super() }}
-<form action='/my_books_read/update_rating/{{ id }}' method="post"> Update Rating
-    Choose rating to describe your reading experience:<br>
+<form action='/my_books_read/update_rating/{{ id }}' method="post">
+    <div class="container">
+    <label>Update Rating</label><br>
     <input type="radio" name="rating" value="5"><b> Excellent ***** 5</b><br>
     <input type="radio" name="rating" value="4"><b> Good **** 4</b><br>
     <input type="radio" name="rating" value="3"><b> Mediocre *** 3</b><br>
@@ -12,6 +13,7 @@
     <input type="radio" name="rating" value="1"><b> Poor * 1</b><br>
     <input type="submit" value="Submit">
     <input type="hidden" name="csrf_token" value="{{ csrf_token() }}"/>
+    </div>
 </form>
 </body>
 {% endblock %}

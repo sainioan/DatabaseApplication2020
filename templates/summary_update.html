@@ -4,8 +4,12 @@
     <body>
     {{ super() }}
     <form action='/my_current_books/update_summary/{{ id }}' method="post">
-        Update Summary or Content<input type="text" name="summary">
-        <input type="submit" value="Submit"></form>
-    <input type="hidden" name="csrf_token" value="{{ csrf_token() }}"/>
+        <div class="container">
+            <label>Update Summary or Content</label><br>
+            <input type="text" name="summary">
+            <input type="submit" value="Submit">
+            <input type="hidden" name="csrf_token" value="{{ csrf_token() }}"/></div>
+    </form>
+
     </body>
 {% endblock %}

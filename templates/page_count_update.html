@@ -1,12 +1,15 @@
 {% extends "layout.html" %}
 {% block title %}Update Page Count{% endblock %}
 {% block content %}
-<body>
-{{ super() }}
-<form action='/my_current_books/update_page_count/{{ id }}' method="post">
-    Update Page Count<input type="text" name="pages">
-    <input type="submit" value="Submit">
-    <input type="hidden" name="csrf_token" value="{{ csrf_token() }}"/>
-</form>
-</body>
+    <body>
+    {{ super() }}
+    <form action='/my_current_books/update_page_count/{{ id }}' method="post">
+        <div class="container">
+            <label> Update Page Count</label><br>
+            <input type="text" name="pages">
+            <input type="submit" value="Submit">
+            <input type="hidden" name="csrf_token" value="{{ csrf_token() }}"/>
+        </div>
+    </form>
+    </body>
 {% endblock %}

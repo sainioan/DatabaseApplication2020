@@ -3,7 +3,9 @@
 {% block content %}
 <body>
 {{ super() }}
-<form action='/my_current_books/update_genre/{{ id }}' method="post">Update Genre
+<form action='/my_current_books/update_genre/{{ id }}' method="post">
+    <div class="container">
+        <label>Update Genre</label><br>
     <select name="genre" id="genre">
         <option value="Action">Action</option>
         <option value="Astronomy">Astronomy</option>
@@ -53,6 +55,7 @@
     </select>
     <input type="submit" value="Submit">
     <input type="hidden" name="csrf_token" value="{{ csrf_token() }}"/>
+    </div>
 </form>
 </body>
 {% endblock %}
