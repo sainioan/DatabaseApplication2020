@@ -44,7 +44,7 @@
                     <b> Genre: </b> {{ item.6 }}<br>
                     <b> Page Count: </b> {{ item.7 }}<br>
                     <b> Summary: </b> {{ item.8 }}<br>
-                    <ul class="list-group-item"/>
+                    <ul class="list-group"/>
                 <li class="list-group-item">
                     <form method="GET" action="{{ url_for('my_books_read_update_comment', book_id=item[0]) }}">
                         <input type="submit" value="Update Comment"/></form>
