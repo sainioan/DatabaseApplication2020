@@ -50,4 +50,4 @@ CREATE TABLE links
 ```
 ## Class Diagram 
 
-<img src="https://github.com/sainioan/DatabaseApplication2020/blob/master/static/images/book_database_application_class_diagram.drawio.pdf" width ="700">
+<img src="https://github.com/sainioan/DatabaseApplication2020/blob/master/static/images/class diagram.png" width ="700">
