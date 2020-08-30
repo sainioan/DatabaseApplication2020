@@ -14,7 +14,7 @@ The purpose of this application is to provide user with a personal reading track
 <img src="https://github.com/sainioan/DatabaseApplication2020/blob/master/static/images/home page.png" width="700" height="500">
 
 ### Home Page (Admin View)
-<img src="https://github.com/sainioan/DatabaseApplication2020/blob/master/static/images/home_admin_view.png" width="700" height="500">
+<img src="https://github.com/sainioan/DatabaseApplication2020/blob/master/static/images/home page admin view.png" width="700" height="500">
 
 - Admin can view the list of app users and may delete a user's account and erase all data regarding the user from the database. 
 
@@ -34,7 +34,7 @@ An item can be moved to the currently reading list by clicking the button 'Move 
 
 Form for adding a book to the Currently Reading List:
 
-<img src="https://github.com/sainioan/DatabaseApplication2020/blob/master/static/images/add_to_currently_reading.png" width="400" height="500">
+<img src="https://github.com/sainioan/DatabaseApplication2020/blob/master/static/images/add to currently list.png" width="400" height="500">
 
 Currently Reading List:
 
@@ -46,7 +46,7 @@ When the user has completed the book, it can be moved to the Books Read List.
 ### Books Read List
 Form for adding a book to the Books Read List:
 
-<img src="https://github.com/sainioan/DatabaseApplication2020/blob/master/static/images/add_to_books_read.png" width="400" height="500">
+<img src="https://github.com/sainioan/DatabaseApplication2020/blob/master/static/images/add to books read list.png" width="400" height="500">
 
 Books Read List:
 
