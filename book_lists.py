@@ -271,12 +271,10 @@ def my_books_read_update_rating(book_id):
 @login_required
 def my_books_read_update_summary(book_id):
     if request.method == "GET":
-        return render_template("summary_update.html", id=book_id)
+        return render_template("summary_update_books_read.html", id=book_id)
     if request.method == "POST":
         plot_summary = request.form.get("summary")
-        sql = "UPDATE books_read SET plot_summary=:plot_summary WHERE book_id=:book_id"
-        db.session.execute(sql, {"plot_summary": plot_summary, "book_id": book_id})
-        db.session.commit()
+        books_read.update_summary(plot_summary, book_id)
         return redirect("/my_books_read")
 
 

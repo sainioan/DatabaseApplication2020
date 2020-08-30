@@ -1,0 +1,14 @@
+{% extends "layout.html" %}
+{% block title %}Update Summary Books Read{% endblock %}
+{% block content %}
+    <body>
+    {{ super() }}
+    <form action='/my_books_read/update_summary/{{ id }}' method="post">
+        <div class="container">
+            <label>Update Summary or Content</label><br>
+            <input type="text" name="summary">
+            <input type="submit" value="Submit">
+            <input type="hidden" name="csrf_token" value="{{ csrf_token() }}"/></div>
+    </form>
+    </body>
+{% endblock %}

@@ -51,6 +51,12 @@ def update_genre(genre, book_id):
     db.session.commit()
 
 
+def update_summary(plot_summary, book_id):
+    sql = "UPDATE books_read SET plot_summary=:plot_summary WHERE book_id=:book_id"
+    db.session.execute(sql, {"plot_summary": plot_summary, "book_id": book_id})
+    db.session.commit()
+
+
 def count_books_read_by_user():
     sql = "SELECT username, user_id, count(user_id) FROM books_read LEFT JOIN users ON users.id = books_read.user_id " \
           "GROUP BY books_read.user_id, users.username "
