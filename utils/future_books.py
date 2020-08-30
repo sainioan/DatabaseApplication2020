@@ -1,9 +1,4 @@
-from flask import session
 from db import db
-
-
-def user_id():
-    return session.get("user_id", 0)
 
 
 def new(title, author, user_id):

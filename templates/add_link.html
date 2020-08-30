@@ -1,12 +1,13 @@
- <link rel='stylesheet' href="../static/css/base.css">
+<link rel='stylesheet' href="../static/css/base.css">
+<link rel='stylesheet' href="../static/css/form.css">
 {% extends "layout.html" %}
 {% block title %}Add Link{% endblock %}
 {% block content %}
     {{ super() }}
     <body>
     <nav class="navbar-default">
-        <div class=" formbox">
-            <form action="/add_link" method="post">
+        <form action="/add_link" method="post" class="form-style-6">
+            <div class="form">
                 <h3 style="background-color: #EFFBFB">Add a Useful Link</h3>
                 <label> Title: </label><br>
                 <input type="text" name="title" placeholder="Link Title *">
@@ -16,9 +17,9 @@
                 <p>
                     <input type="submit" value="Add a link">
                     <input type="hidden" name="csrf_token" value="{{ csrf_token() }}"/>
-
-            </form>
-        </div>
+                </p>
+            </div>
+        </form>
     </nav>
     </body>
 {% endblock %}

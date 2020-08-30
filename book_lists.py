@@ -18,7 +18,7 @@ from db import db
 @app.route("/books_to_read_list")
 @login_required
 def show_books():
-    user_id = future_books.user_id()
+    user_id = users.user_id()
     my_list = future_books.show(user_id)
     return render_template("future_reading_list.html", items=my_list)
 
@@ -32,7 +32,7 @@ def add_future_book():
     if request.method == "POST":
         title = str(request.form["title"])
         author = str(request.form["author"])
-        user_id = future_books.user_id()
+        user_id = users.user_id()
         if not title:
             return render_template("error.html", message="Title missing.")
         row = future_books.check_book(user_id, title)
@@ -40,7 +40,7 @@ def add_future_book():
             return render_template("error.html", message="You've already entered this book")
         if not author:
             return render_template("error.html", message="Author missing.")
-        user_id = int(future_books.user_id())
+        user_id = users.user_id()
         future_books.new(title, author, user_id)
         return redirect("/books_to_read_list")
     else:
@@ -70,7 +70,7 @@ def my_future_reading_list_books_delete(book_id):
 @app.route("/my_current_books")
 @login_required
 def show_my_current_books():
-    user_id = books_currently_reading.user_id()
+    user_id = users.user_id()
     my_current_book_list = books_currently_reading.show(user_id)
     return render_template("my_current_books.html", items=my_current_book_list)
 
@@ -84,7 +84,7 @@ def add_current_book():
     if request.method == "POST":
         title = str(request.form["title"])
         author = str(request.form["author"])
-        user_id = books_currently_reading.user_id()
+        user_id = users.user_id()
         if not title:
             return render_template("error.html", message="Title missing.")
         row = books_currently_reading.check_book(user_id, title)
@@ -106,7 +106,7 @@ def add_current_book():
                 return render_template("error.html", message="Page Count missing.")
         except ValueError:
             return render_template("error.html", message="Page must be a number.")
-        user_id = int(books_currently_reading.user_id())
+        user_id = users.user_id()
         books_currently_reading.new_book(title, author, genre, plot_summary, current_page, pages, user_id)
         return redirect("/my_current_books")
     else:
@@ -194,7 +194,7 @@ def my_current_books_delete(book_id):
 @app.route("/my_books_read")
 @login_required
 def show_my_books():
-    user_id = books_read.user_id()
+    user_id = users.user_id()
     my_book_list = books_read.show(user_id)
     return render_template("my_books_read.html", items=my_book_list)
 
@@ -213,7 +213,7 @@ def add_read_book():
         genre = str(request.form.get("comment"))
         pages = request.form.get("pages")
         summary = request.form.get("summary")
-        user_id = books_read.user_id()
+        user_id = users.user_id()
         if not title:
             return render_template("error.html", message="'Title' missing.")
         row = books_read.check_book(user_id, title)
@@ -223,7 +223,7 @@ def add_read_book():
             return render_template("error.html", message="'Author' missing.")
         if not pages:
             return render_template("error.html", message="'Pages' missing.")
-        user_id = int(books_read.user_id())
+        user_id = users.user_id()
         books_read.new_book(title, author, comment, rating, user_id, genre, pages, summary)
         return redirect("/my_books_read")
     else:

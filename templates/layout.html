@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-{#    <link rel='stylesheet' href="../static/css/base.css">#}
+    {#    <link rel='stylesheet' href="../static/css/base.css">#}
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
           rel="stylesheet">
@@ -73,7 +73,11 @@
         {% if session.username %}
             <p><b>{{ session.username }}</b> logged in </p>
         {% endif %}
-        <a class="active"><a href="/home">Home</a>
+        <a class="active">
+            <a href="/home">Home</a>
+            {% if admin %}
+                <a href="/home_admin">Home:Admin View</a>
+            {% endif %}
             <a href="/bestsellers">Bestsellers</a>
             <a href="/summary">Summaries by Title</a>
             <a href="/summary2">Summaries by Author</a>
@@ -86,12 +90,9 @@
             <a href="/add_link">Add a Useful Link</a>
             <a href="/stats">Community</a>
             <a href="/logout">Log Out</a>
-            {% if admin %}
-                <a href="/home_admin">Home:Admin View</a>
-            {% endif %}
-            <form class="back-form" id="back-form">
-                <input type="button" value="Back" onclick="history.back()">
-            </form>
+            <script>
+                document.write('<a href="' + document.referrer + '">Back</a>');
+            </script>
             <td>
         </a>
         </td>

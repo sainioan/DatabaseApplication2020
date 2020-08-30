@@ -1,5 +1,6 @@
+ <link rel='stylesheet' href="../static/css/base.css">
 {% extends "layout.html" %}
-<title>Books Read</title>
+{% block title %}Books Read List{% endblock %}
 {% block content %}
     <body>
     {{ super() }}
@@ -44,7 +45,7 @@
                     <b> Genre: </b> {{ item.6 }}<br>
                     <b> Page Count: </b> {{ item.7 }}<br>
                     <b> Summary: </b> {{ item.8 }}<br>
-                    <ul class="list-group"/>
+                    <ul class="list-group">
                 <li class="list-group-item">
                     <form method="GET" action="{{ url_for('my_books_read_update_comment', book_id=item[0]) }}">
                         <input type="submit" value="Update Comment"/></form>
@@ -63,6 +64,7 @@
                 </li>
                 <li class="list-group-item">
                     <i>Share your reading experience with the book app community by clicking the button:</i><br>
+                    <p></p>
                     <form method="get" action="{{ url_for('my_books_read_share', book_id=item[0]) }}">
                         <input type="submit" value="Share with community"/></form>
                 </li>

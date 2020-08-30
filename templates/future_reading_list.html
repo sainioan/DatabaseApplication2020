@@ -1,5 +1,6 @@
+ <link rel='stylesheet' href="../static/css/base.css">
 {% extends "layout.html" %}
-<title>Future Reading List</title>
+{% block title %}Future Reading List{% endblock %}
 {% block content %}
     <body>
     {{ super() }}
@@ -9,13 +10,13 @@
             {% for item in items %}
                 <li style="background-color: #f9f9f9">
                 <ul class="list-group">
-                    <li class="list-group"><b>Title:</b> {{ item.1 }}</li>
-                    <li class="list-group"><b>Author:</b> {{ item.2 }}</li>
-                    <li class="list-group">
+                    <li class="list-group-item"><b>Title:</b> {{ item.1 }}</li>
+                    <li class="list-group-item"><b>Author:</b> {{ item.2 }}</li>
+                    <li class="list-group-item">
                     <form method="GET" action="{{ url_for('my_future_reading_list_transfer', book_id=item[0]) }}">
                         <input type="submit" value="Move Book to Currently Reading List"/></form>
                 </li>
-                <li class="list-group">
+                <li class="list-group-item">
                     <form method="GET"
                           action="{{ url_for('my_future_reading_list_books_delete', book_id=item[0]) }}">
                         <input type="submit" onclick="return clicked();" value="Delete Book"/></form>

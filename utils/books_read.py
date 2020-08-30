@@ -1,13 +1,9 @@
 from db import db
-from flask import session
-
-
-def user_id():
-    return session.get("user_id", 0)
 
 
 def new_book(title, author, comment, rating, user_id, genre, pages, plot_summary):
-    sql = "INSERT INTO books_read (title,author,comment, rating, user_id, genre, pages, plot_summary) VALUES (:title,:author, " \
+    sql = "INSERT INTO books_read (title,author,comment, rating, user_id, genre, pages, plot_summary) VALUES (:title," \
+          ":author, " \
           ":comment, :rating, " \
           ":user_id, :genre, :pages, :plot_summary)"
     db.session.execute(sql, {"title": title, "author": author, "comment": comment, "rating": rating, "user_id": user_id,
@@ -68,4 +64,3 @@ def books_read_by_users():
     result3 = db.session.execute(sql3)
     read_books = result3.fetchall()
     return read_books
-

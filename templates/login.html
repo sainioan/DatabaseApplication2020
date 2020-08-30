@@ -1,10 +1,9 @@
- <link rel='stylesheet' href="../static/css/base.css">
+<link rel='stylesheet' href="../static/css/base.css">
 {% extends "layout.html" %}
 {% block title %}Login{% endblock %}
 {% block content %}
 <body>
 {{ super() }}
- <link rel='stylesheet' href="../static/css/base.css">
     <style>
         /*set border to the form*/
         body {
@@ -80,8 +79,8 @@
     <br>
     <div>
         <form class="login_form" action="/login" method="post">
-            <h3 float="left" ;> Login Form </h3>
             <div class="container">
+                <h3> Login Form </h3>
                 <label><b>Username</b></label><br>
                 <input type="text" placeholder="Enter Username" name="username" required><br>
 
