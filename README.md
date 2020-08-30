@@ -16,20 +16,23 @@ Execute the following command to install the necessary libraries:<br />
 
 ## Features
 * Users can login, logout 
-* Users can search for current New York Times bestsellers (to get ideas for books to read in the future).
+* Users can view the current New York Times bestseller list in order to get ideas for books to read in the future.
+* Users can read summaries and reviews of several books by search a book by its title or author (provided by New York Times API) to know more about the book.
 * Users can enter the books they wish to read to their personal reading list
 * Users can enter the books they are currently reading to their currently reading list.
 * Users can enter the books they have read to books-read list. In addition, they can write include information, such as a comment,
   and rating from scale 1-5 on each book.
-* Users can update the current page number of the books they are currently reading.
-* Users can update Plot Summary/Content.
-* Users can update Comment field on the books-read list.
-* Users can update Rating field on the books-read list.
-* Users can delete books from their (books-to-read) reading list as well as from their current reading list.
-* Users can move books from their currently-reading list to their books-read list.
-* Users can view data about how many books various app users have read.
-* Users can add useful links to the application site. The links are visible to all users.
-* Users can view comments and ratings of books that app users have read.
+* Users can update the current page number of the books they are currently reading and see the completion percentage on the currently reading list.
+* Users can also update summary, genre, and page count fields of a book on the currently reading page.
+* Users can delete books from their future reading list as well as from their currently reading list.
+* Users can update the comment, rating, genre, and summary fields of a book on their books-read list.
+* Users can move books from their future reading list to their currently reading list.
+* Users can move books from their currently reading list to their books-read list.
+* Users can share their review (including title, author, comment, and rating) of a completed book with the app user community. 
+* Users can read book reviews (comments and ratings) shared by app users on the community page.
+* Users can view data about the books app users are currently reading and the books they have finished reading on the community page.
+* Users can view bookcount per app user on the community page.
+* Users can add useful links to the application site. The links are visible to all users on the community page.
 * Admin(s) can view the list of all app users.
 * Admin(s) can delete users, useful links, and public reviews. 
   
