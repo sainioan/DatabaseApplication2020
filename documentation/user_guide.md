@@ -4,10 +4,11 @@
 
 The purpose of this application is to provide user with a personal reading tracker to manage the books they wish to read, are currently reading, and have finished reading. The get ideas for books to add to the future reading list, users can view current New York Times bestseller list and search for summaries of many current books. In addition, the application includes a community page where the user can find book reviews written by other app users, lists of books currently being read and books previously read by app users, etc.
 
-### Login/Signup
+### Login
 <img src="https://github.com/sainioan/DatabaseApplication2020/blob/master/static/images/login.png"  width="300" height="150">
 
-<img src="https://github.com/sainioan/DatabaseApplication2020/blob/master/static/images/sign%20up.png" width="200" height="125">
+### Signup
+<img src="https://github.com/sainioan/DatabaseApplication2020/blob/master/static/images/sign%20up.png" width="200" height="150">
 
 ### Home Page
 <img src="https://github.com/sainioan/DatabaseApplication2020/blob/master/static/images/home page.png" width="700" height="500">
