@@ -7,7 +7,7 @@ CREATE TABLE users
     admin    BOOLEAN NOT NULL DEFAULT FALSE
 );
 
-CREATE TABLE booksToRead
+CREATE TABLE bookstoread
 (
     book_id SERIAL PRIMARY KEY,
     title   TEXT NOT NULL,
@@ -36,18 +36,9 @@ CREATE TABLE books_read
     user_id      INTEGER,
     genre        TEXT,
     pages        INTEGER,
-    plot_summary TEXT
+    plot_summary TEXT,
+    is_public    BOOLEAN NOT NULL DEFAULT FALSE 
 
-);
-
-CREATE TABLE public_books_read
-(
-    book_id SERIAL PRIMARY KEY,
-    title   TEXT NOT NULL,
-    author  TEXT NOT NULL,
-    comment TEXT,
-    rating  TEXT,
-    user_id INTEGER
 );
 
 CREATE TABLE links
@@ -59,4 +50,4 @@ CREATE TABLE links
 ```
 ## Class Diagram 
 
-<img src="https://github.com/sainioan/DatabaseApplication2020/blob/master/static/images/book_database_class_diagram.png" width ="700">
+<img src="https://github.com/sainioan/DatabaseApplication2020/blob/master/static/images/book_database_application_class_diagram.drawio.pdf" width ="700">
