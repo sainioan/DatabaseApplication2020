@@ -40,15 +40,6 @@ CREATE TABLE books_read
 
 );
 
-CREATE TABLE public_books_read
-(
-    book_id SERIAL PRIMARY KEY,
-    title   TEXT NOT NULL,
-    author  TEXT NOT NULL,
-    comment TEXT,
-    rating  TEXT,
-    user_id INTEGER
-);
 
 CREATE TABLE links
 (
