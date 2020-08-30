@@ -92,6 +92,7 @@ def add_link():
         sql = "INSERT into links(title, url) VALUES (:title,:url)"
         db.session.execute(sql, {"title": title, "url": url})
         db.session.commit()
+        flash("Link added successfully!", "success")
         return redirect("/home")
 
 
