@@ -35,7 +35,8 @@ CREATE TABLE books_read
     user_id      INTEGER,
     genre        TEXT,
     pages        INTEGER,
-    plot_summary TEXT
+    plot_summary TEXT,
+    is_public    BOOLEAN NOT NULL DEFAULT FALSE
 
 );
 

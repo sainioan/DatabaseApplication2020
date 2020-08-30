@@ -40,9 +40,15 @@ def community():
     result1 = db.session.execute(sql1)
     link_list = result1.fetchall()
 
-    sql2 = "SELECT book_id, title, string_agg(comment, ', 'ORDER BY comment) AS comment_list, rating, username, " \
-           "user_id FROM public_books_read LEFT JOIN users ON users.id = public_books_read.user_id GROUP BY 1, users.username, " \
-           "public_books_read.user_id, public_books_read.rating, public_books_read.book_id ORDER BY (rating IS NULL), rating DESC"
+    # sql2 = "SELECT book_id, title, string_agg(comment, ', 'ORDER BY comment) AS comment_list, rating, username, " \
+    #        "user_id FROM public_books_read LEFT JOIN users ON users.id = public_books_read.user_id GROUP BY 1, users.username, " \
+    #        "public_books_read.user_id, public_books_read.rating, public_books_read.book_id ORDER BY (rating IS NULL), rating DESC"
+
+    sql2 = "SELECT  book_id, title, string_agg(comment, ', 'ORDER BY comment) AS comment_list, rating, username, " \
+           "user_id FROM books_read LEFT JOIN users ON users.id = books_read.user_id  WHERE books_read.is_public=TRUE GROUP BY 1, users.username, " \
+           "books_read.user_id, books_read.rating, books_read.book_id ORDER BY (rating IS NULL), rating DESC"
+
+
     result2 = db.session.execute(sql2)
     db.session.commit()
     read_books_comments = result2.fetchall()
