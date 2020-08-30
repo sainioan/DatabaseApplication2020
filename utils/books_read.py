@@ -32,18 +32,16 @@ def show(user_id):
     return my_book_list
 
 
-# def share(book_id):
-#     sql = "INSERT INTO public_books_read (title, author, comment, rating, user_id) SELECT title, author, comment, rating, user_id FROM books_read WHERE " \
-#           "books_read.book_id=:book_id"
-#     db.session.execute(sql, {"book_id": book_id})
-#     db.session.commit()
-
-
 def share(book_id):
     sql = "UPDATE books_read SET is_public= TRUE WHERE book_id=:book_id"
     db.session.execute(sql, {"book_id": book_id})
     db.session.commit()
 
+
+def un_share(book_id):
+    sql = "UPDATE books_read SET is_public= FALSE WHERE book_id=:book_id"
+    db.session.execute(sql, {"book_id": book_id})
+    db.session.commit()
 
 def update_comment(comment, book_id):
     sql = "UPDATE books_read SET comment=:comment WHERE book_id=:book_id"

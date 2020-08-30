@@ -6,7 +6,7 @@ CREATE TABLE users
     admin    BOOLEAN NOT NULL DEFAULT FALSE
 );
 
-CREATE TABLE booksToRead
+CREATE TABLE bookstoread
 (
     book_id SERIAL PRIMARY KEY,
     title   TEXT NOT NULL,
