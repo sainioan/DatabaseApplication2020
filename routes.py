@@ -59,7 +59,8 @@ def index():
 @app.route("/home")
 @login_required
 def home():
-    return render_template("home.html")
+    admin = users.is_admin(users.user_id())
+    return render_template("home.html", admin=admin)
 
 
 @app.route("/home_admin")
@@ -81,7 +82,8 @@ def delete_user(id):
 @login_required
 def add_link():
     if request.method == "GET":
-        return render_template("add_link.html")
+        admin = users.is_admin(users.user_id())
+        return render_template("add_link.html", admin=admin)
     if request.method == "POST":
         title = str(request.form.get("title"))
         url = str(request.form.get("url"))

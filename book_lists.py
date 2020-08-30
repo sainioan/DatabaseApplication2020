@@ -20,7 +20,8 @@ from db import db
 def show_books():
     user_id = users.user_id()
     my_list = future_books.show(user_id)
-    return render_template("future_reading_list.html", items=my_list)
+    admin = users.is_admin(users.user_id())
+    return render_template("future_reading_list.html", items=my_list, admin=admin)
 
 
 # function for adding a book to the user's future book list
@@ -28,7 +29,8 @@ def show_books():
 @login_required
 def add_future_book():
     if request.method == "GET":
-        return render_template("add_future_book.html")
+        admin = users.is_admin(users.user_id())
+        return render_template("add_future_book.html", admin=admin)
     if request.method == "POST":
         title = str(request.form["title"])
         author = str(request.form["author"])
@@ -72,7 +74,8 @@ def my_future_reading_list_books_delete(book_id):
 def show_my_current_books():
     user_id = users.user_id()
     my_current_book_list = books_currently_reading.show(user_id)
-    return render_template("my_current_books.html", items=my_current_book_list)
+    admin = users.is_admin(users.user_id())
+    return render_template("my_current_books.html", items=my_current_book_list, admin=admin)
 
 
 # function for adding a book to user's currently reading list
@@ -80,7 +83,8 @@ def show_my_current_books():
 @login_required
 def add_current_book():
     if request.method == "GET":
-        return render_template("add_current_book.html")
+        admin = users.is_admin(users.user_id())
+        return render_template("add_current_book.html", admin=admin)
     if request.method == "POST":
         title = str(request.form["title"])
         author = str(request.form["author"])
@@ -118,7 +122,8 @@ def add_current_book():
 @login_required
 def my_books_current_books_update_genre(book_id):
     if request.method == "GET":
-        return render_template("genre_update_current.html", id=book_id)
+        admin = users.is_admin(users.user_id())
+        return render_template("genre_update_current.html", id=book_id, admin=admin)
     if request.method == "POST":
         genre = request.form.get("genre")
         books_currently_reading.update_genre(genre, book_id)
@@ -130,7 +135,8 @@ def my_books_current_books_update_genre(book_id):
 @login_required
 def my_current_books_update_summary(book_id):
     if request.method == "GET":
-        return render_template("summary_update.html", id=book_id)
+        admin = users.is_admin(users.user_id())
+        return render_template("summary_update.html", id=book_id, admin=admin)
     if request.method == "POST":
         summary = str(request.form.get("summary"))
         books_currently_reading.update_summary(summary, book_id)
@@ -142,7 +148,8 @@ def my_current_books_update_summary(book_id):
 @login_required
 def my_current_books_update_current_page(book_id):
     if request.method == "GET":
-        return render_template("current_page_update.html", id=book_id)
+        admin = users.is_admin(users.user_id())
+        return render_template("current_page_update.html", id=book_id, admin=admin)
     if request.method == "POST":
         try:
             current_page = int(request.form.get("current_page"))
@@ -161,7 +168,8 @@ def my_current_books_update_current_page(book_id):
 @login_required
 def my_current_books_update_page_count(book_id):
     if request.method == "GET":
-        return render_template("page_count_update.html", id=book_id)
+        admin = users.is_admin(users.user_id())
+        return render_template("page_count_update.html", id=book_id, admin=admin)
     if request.method == "POST":
         try:
             pages = int(request.form.get("pages"))
@@ -196,7 +204,8 @@ def my_current_books_delete(book_id):
 def show_my_books():
     user_id = users.user_id()
     my_book_list = books_read.show(user_id)
-    return render_template("my_books_read.html", items=my_book_list)
+    admin = users.is_admin(users.user_id())
+    return render_template("my_books_read.html", items=my_book_list, admin=admin)
 
 
 # function for adding a book to the user's read books list
@@ -204,7 +213,8 @@ def show_my_books():
 @login_required
 def add_read_book():
     if request.method == "GET":
-        return render_template("add_read_book.html")
+        admin = users.is_admin(users.user_id())
+        return render_template("add_read_book.html", admin=admin)
     if request.method == "POST":
         title = str(request.form["title"])
         author = str(request.form["author"])
@@ -235,7 +245,8 @@ def add_read_book():
 @login_required
 def my_books_read_update_comment(book_id):
     if request.method == "GET":
-        return render_template("comment_update.html", id=book_id)
+        admin = users.is_admin(users.user_id())
+        return render_template("comment_update.html", id=book_id, admin=admin)
     if request.method == "POST":
         comment = request.form.get("comment")
         books_read.update_comment(comment, book_id)
@@ -247,7 +258,8 @@ def my_books_read_update_comment(book_id):
 @login_required
 def my_books_read_update_genre(book_id):
     if request.method == "GET":
-        return render_template("genre_update.html", id=book_id)
+        admin = users.is_admin(users.user_id())
+        return render_template("genre_update.html", id=book_id, admin=admin)
     if request.method == "POST":
         genre = request.form.get("genre")
         books_read.update_genre(genre, book_id)
@@ -259,7 +271,8 @@ def my_books_read_update_genre(book_id):
 @login_required
 def my_books_read_update_rating(book_id):
     if request.method == "GET":
-        return render_template("rating_update.html", id=book_id)
+        admin = users.is_admin(users.user_id())
+        return render_template("rating_update.html", id=book_id, admin=admin)
     if request.method == "POST":
         rating = request.form.get("rating")
         books_read.update_rating(rating, book_id)
@@ -271,7 +284,8 @@ def my_books_read_update_rating(book_id):
 @login_required
 def my_books_read_update_summary(book_id):
     if request.method == "GET":
-        return render_template("summary_update_books_read.html", id=book_id)
+        admin = users.is_admin(users.user_id())
+        return render_template("summary_update_books_read.html", id=book_id, admin=admin)
     if request.method == "POST":
         plot_summary = request.form.get("summary")
         books_read.update_summary(plot_summary, book_id)

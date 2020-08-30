@@ -30,19 +30,21 @@ def bestsellers():
     else:
         titles = []
         images = []
+        admin = users.is_admin(users.user_id())
         for i in range(len(book_list)):
             message = book_list[i]["title"] + ", " + book_list[i]["author"] + ",  Description: " + book_list[i][
                 "description"] + " "
             titles.append(message)
             images.append(book_list[i]["book_image"])
-        return render_template("bestseller_list.html", message="Current Bestsellers:", items=titles, images=images)
+        return render_template("bestseller_list.html", admin=admin, message="Current Bestsellers:", items=titles, images=images)
 
 
 @app.route("/summary", methods=["get", "post"])
 @login_required
 def api_review():
     if request.method == "GET":
-        return render_template("search_by_title.html")
+        admin = users.is_admin(users.user_id())
+        return render_template("search_by_title.html", admin=admin)
     if request.method == "POST":
         title = str(request.form.get("title"))
     endpoint2 = "https://api.nytimes.com/svc/books/v3/reviews.json?title=" + title + "&api-key=" + API_KEY
@@ -50,6 +52,7 @@ def api_review():
     data2 = response2.text
     parsed2 = json.loads(data2)
     results = parsed2["results"]
+    admin = users.is_admin(users.user_id())
     if (results):
         length = len(results)
         list = []
@@ -60,7 +63,7 @@ def api_review():
         for i in range(length):
             message = results[i]["url"]
             links.append(message)
-        return render_template("summary_by_title.html", title=title, items=list, links=links)
+        return render_template("summary_by_title.html", title=title, items=list, links=links, admin=admin)
 
     else:
         return render_template("error_title.html", message=title + " not found")
@@ -70,7 +73,8 @@ def api_review():
 @login_required
 def api_review2():
     if request.method == "GET":
-        return render_template("search_by_author.html")
+        admin = users.is_admin(users.user_id())
+        return render_template("search_by_author.html", admin=admin)
     if request.method == "POST":
         firstname = str(request.form["firstname"])
         lastname = str(request.form["lastname"])
@@ -81,6 +85,7 @@ def api_review2():
         data3 = response3.text
         parsed3 = json.loads(data3)
         results2 = parsed3["results"]
+        admin = users.is_admin(users.user_id())
         if results2:
             length = len(results2)
             list = []
@@ -91,6 +96,6 @@ def api_review2():
             for i in range(length):
                 message = results2[i]["url"]
                 links.append(message)
-            return render_template("summary_by_author.html", author=authorname, items=list, links=links)
+            return render_template("summary_by_author.html", author=authorname, items=list, links=links, admin=admin)
         else:
             return render_template("error_title.html", message=authorname + " not found")
