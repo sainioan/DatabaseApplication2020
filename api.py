@@ -44,7 +44,7 @@ def api_review():
     if request.method == "GET":
         return render_template("search_by_title.html")
     if request.method == "POST":
-        title = str(request.form["title"])
+        title = str(request.form.get("title"))
     endpoint2 = "https://api.nytimes.com/svc/books/v3/reviews.json?title=" + title + "&api-key=" + API_KEY
     response2 = requests.get(endpoint2)
     data2 = response2.text
